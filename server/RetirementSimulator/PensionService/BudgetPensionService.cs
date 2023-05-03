@@ -328,9 +328,18 @@ public class BudgetPensionService : IPensionService
         }
         return Math.Round(sumOfPeriods, 2);
     }
-    /*
+
     // Calculating the allowance
     // חישוב הקצבה
+
+    public double SalaryDetermines()
+    {
+        var salary = this.Employee.SalaryDetermines;
+        // fix:
+        // יופיע הסכום כפי שהזינו במסך 4,
+        // בניכוי תוספת פנסיונית שלא מהווה בסיס לפנסיה
+        return salary;
+    }
 
     /// <summary>
     /// A fixed salary for a full-time budget pension,
@@ -345,6 +354,7 @@ public class BudgetPensionService : IPensionService
         // well done ...
         return fixedSalaryForAFullTimePosition - pensionSupplement;
     }
+    /*
     /// <summary>
     /// calculate the full pension percentage
     /// אחוז קצבה מלא

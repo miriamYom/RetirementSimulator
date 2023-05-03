@@ -8,6 +8,10 @@ public class Employee
     {
 
     }
+    public Dictionary<string, object> Clculates()
+    {
+        return new Dictionary<string, object>();
+    }
     public string Name { get; set; }
     public int ID { get; set; }
     public DateTime BirthDate { get; set; }
