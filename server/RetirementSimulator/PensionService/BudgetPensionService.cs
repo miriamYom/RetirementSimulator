@@ -19,6 +19,11 @@ public class BudgetPensionService : IPensionService
         this.Employee = current;
     }
 
+    public static double TryGetAns()
+    {
+        return 12345.6789;
+    }
+
     /// <summary>
     /// the func calculate the years between 2 dates
     /// </summary>

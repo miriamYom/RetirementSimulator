@@ -1,4 +1,6 @@
 ﻿using BL.Enums;
+using BL.PensionService;
+using System.Reflection;
 
 namespace BL.DTO;
 
@@ -8,9 +10,20 @@ public class Employee
     {
 
     }
-    public Dictionary<string, object> Clculates()
+    public virtual string Clculates()
     {
-        return new Dictionary<string, object>();
+        string json = "{";
+        foreach (var methodInfo in (typeof(BudgetPensionService)).GetMethods(BindingFlags.Static))//?
+        {
+            if (methodInfo.GetParameters().Length == 0)
+            {
+                var result = methodInfo.Invoke(null, null);
+                //var result = methodInfo.Invoke(null, this);
+                json += $" '{methodInfo.Name}' : '{result}'";
+            }
+        }
+        json += "}";
+        return json.Replace("'", "\"");
     }
     public string Name { get; set; }
     public int ID { get; set; }

@@ -53,7 +53,7 @@ public class RentiermentSimulatorController : ControllerBase
     {
         return userServiceBL.Login(email, pass);
     }
-    [HttpPost("CreatePensionService")]
+    [HttpPost("GetPensionCalculates")]
     public string CreatePensionService(string pensionType, [FromBody] object employee)
     {
         try

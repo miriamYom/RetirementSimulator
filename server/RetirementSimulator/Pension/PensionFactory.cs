@@ -11,24 +11,27 @@ public class PensionFactory : IPensionFactory
     }
     public string Create(string pensionType, object employee)
     {
-        Employee pensionService;
+        Employee pensionEmploee;
 
         switch (pensionType)
         {
             case "AccrualPensionService":
-                pensionService = new Employee();
+                pensionEmploee = new Employee();
                 break;
             case "BudgetPensionService":
-                pensionService = new BudgetPensionEmployee();
+                var temp = JsonSerializer.Serialize(employee);
+                var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(temp);
+                pensionEmploee = current;
+                //pensionEmploee = new BudgetPensionEmployee();
                 break;
             case "BPSForSeniorSalarye":
-                pensionService = new BudgetPensionEmployee();
+                pensionEmploee = new BudgetPensionEmployee();
                 break;
             default:
                 throw new InvalidParameterException();
         }
         string jsonEmployee = JsonSerializer.Serialize(employee);
-        pensionService.Clculates();
+       return pensionEmploee.Clculates();
         //pensionService.SetEmployee(jsonEmployee);
         //return GetCalculates(pensionService);
     }
