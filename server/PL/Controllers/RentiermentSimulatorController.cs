@@ -67,7 +67,13 @@ public class RentiermentSimulatorController : ControllerBase
         }
     }
 
-    [HttpPost("!!!")]
+    [HttpPost("GetBudgetEmp")]
+    public Employee GetBudgetEmp()
+    {
+        return new BudgetPensionEmployee();
+    }
+
+    [HttpPost("GetEmp")]
     public Employee GetEmp()
     {
         return new Employee();

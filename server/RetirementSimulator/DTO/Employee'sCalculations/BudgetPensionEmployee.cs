@@ -5,6 +5,10 @@ namespace BL.DTO;
 
 public class BudgetPensionEmployee : Employee
 {
+    public BudgetPensionEmployee()
+    {
+
+    }
     // הבראה- מסך 4--------------------------------------------------------------------
     /// <summary>
     /// אחוז הפרשה לפיצויים
@@ -33,9 +37,9 @@ public class BudgetPensionEmployee : Employee
     /// אם נבחר המדינה \ הרשות המקומית \צה"ל \ כוחות בטחון
     /// </summary>uble percentagePensionFromPreviousWorkplace;
 
-    public double PercentagePensionFromPreviousWorkplace
+    public double PercentagePensionFromPreviousWorkplace 
     {
-        get { return PercentagePensionFromPreviousWorkplace; }
+        get { return 12; }// PercentagePensionFromPreviousWorkplace; }
         set
         {
             if (value > 70)
@@ -70,7 +74,7 @@ public class BudgetPensionEmployee : Employee
     /// תקופות עבודה- טבלה בעלת 4 עמודות-
     /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה ממצועת 
     /// </summary>
-    public DataTable WorkPeriods { get; set; }
+    public DataTable? WorkPeriods { get; set; } 
     
     /// <summary>
     /// משכורת קובעת
