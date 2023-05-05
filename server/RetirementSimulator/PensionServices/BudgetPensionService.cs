@@ -1,28 +1,22 @@
 ﻿using BL.DTO;
 using System.Data;
 using System.Text.Json;
-using static BL.PensionService.Consts;
+using static BL.PensionServices.Consts;
 
-namespace BL.PensionService;
+namespace BL.PensionServices;
 
-public class BudgetPensionService : IPensionService
+internal class BudgetPensionService : PensionService
 //תקציבית
 {
-    BudgetPensionEmployee Employee { get; set; }
     public BudgetPensionService()
     {
-        this.Employee = new BudgetPensionEmployee();
-    }
-    public void SetEmployee(string employee)
-    {
-        var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(employee);
-        this.Employee = current;
-    }
 
-    public static double TryGetAns()
-    {
-        return 12345.6789;
     }
+    //public void SetEmployee(string employee)
+    //{
+    //    var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(employee);
+    //    // Employee = current;
+    //}
 
     /// <summary>
     /// the func calculate the years between 2 dates
@@ -80,20 +74,20 @@ public class BudgetPensionService : IPensionService
     /// function to calculate the age of the employee at retirment
     /// </summary>
     /// <returns></returns>
-    public double EmployeesAgeAtRetirement()
+    public static double EmployeesAgeAtRetirement(BudgetPensionEmployee employee)
     {
         //well done
-        return TotalYears(Employee.BirthDate, Employee.RetirementDate);
+        return TotalYears(employee.BirthDate, employee.RetirementDate);
     }
 
     /// <summary>
     /// function to calculate how time the employee worked in the authory
     /// </summary>
     /// <returns></returns>
-    public double YearsOfWorkAtTheAuthority()
+    public static double YearsOfWorkAtTheAuthority(BudgetPensionEmployee employee)
     {
         //well done
-        return TotalYears(Employee.StartWorkDate, Employee.RetirementDate);
+        return TotalYears(employee.StartWorkDate, employee.RetirementDate);
     }
     /*
     /// <summary>
@@ -102,10 +96,10 @@ public class BudgetPensionService : IPensionService
     /// אז יהי שנוי.
     /// </summary>
     /// <returns></returns>
-    public double SalaryDetermines()
+    public static double SalaryDetermines(BudgetPensionEmployee employee)
     {
-        Employee.SalaryDetermines -= Employee.SalaryIncreasesThatAreNotCalculated;
-        return Employee.SalaryDetermines;
+        employee.SalaryDetermines -= employee.SalaryIncreasesThatAreNotCalculated;
+        return employee.SalaryDetermines;
     }
     */
     /// <summary>
@@ -123,9 +117,9 @@ public class BudgetPensionService : IPensionService
     /// get data table with start date, end date and part time job and calculate the work periods.
     /// </summary>
     /// <returns> data table with the calculated column</returns>
-    public DataTable TotalWorkPeriods()
+    public static DataTable TotalWorkPeriods(BudgetPensionEmployee employee)
     {
-        DataTable table = Employee.WorkPeriods;
+        DataTable table = employee.WorkPeriods;
         // well done!!!
         try
         {
@@ -140,7 +134,7 @@ public class BudgetPensionService : IPensionService
             }
         }
         catch (Exception ex) { }
-        Employee.WorkPeriods = table;
+        employee.WorkPeriods = table;
         return table;
 
     }
@@ -150,13 +144,13 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <returns>sum of work periods work</returns>
     /// <exception cref="InvalidDataException">if the value in the table is not a number</exception>
-    public double TotalPeriodOfWorkAtTheAuthority()
+    public static double TotalPeriodOfWorkAtTheAuthority(BudgetPensionEmployee employee)
     {
-        DataTable table = Employee.WorkPeriods;
+        DataTable table = employee.WorkPeriods;
         // well done!!!
         return TotalPeriodOfWork(table);
     }
-    protected double TotalPeriodOfWork(DataTable table)
+    protected static double TotalPeriodOfWork(DataTable table)
     {
         // well done!!!
         var numOfRows = table.Rows.Count;
@@ -183,10 +177,10 @@ public class BudgetPensionService : IPensionService
     /// <param name="totalWorkPeriod"> work period in current job</param>
     /// <param name="partTimeJob">part time job</param>
     /// <returns></returns>
-    public double FullWorkPeriodAccordingToPartiality()
+    public static double FullWorkPeriodAccordingToPartiality(BudgetPensionEmployee employee)
     {
         // change this func
-        return TotalPeriodOfWorkAtTheAuthority() * AveragePartTimeJobForRetirement();
+        return TotalPeriodOfWorkAtTheAuthority(employee) * AveragePartTimeJobForRetirement(employee);
     }
 
     /// <summary>
@@ -195,9 +189,9 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <returns>Total working period for retirement</returns>
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
-    public double TotalWorkingPeriodForRetirement()
+    public static double TotalWorkingPeriodForRetirement(BudgetPensionEmployee employee)
     {
-        DataTable table = ((BudgetPensionEmployee)this.Employee).WorkPeriods;
+        DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
         double doubleValue;
@@ -230,9 +224,9 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <returns>The total number of periods in which the employee was on unpaid vacation</returns>
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
-    public double UnpaidVacation()
+    public static double UnpaidVacation(BudgetPensionEmployee employee)
     {
-        DataTable table = ((BudgetPensionEmployee)this.Employee).WorkPeriods;
+        DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
         double doubleValue;
@@ -265,9 +259,9 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <returns>The total work periods in which the employee worked less than 1/3 of a job</returns>
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
-    public double WorkingPeriodForCompensation()
+    public static double WorkingPeriodForCompensation(BudgetPensionEmployee employee)
     {
-        DataTable table = ((BudgetPensionEmployee)this.Employee).WorkPeriods;
+        DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
         double doubleValue;
@@ -301,11 +295,15 @@ public class BudgetPensionService : IPensionService
     /// <returns> the Average part-time job for retirement</returns>
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
     /// 
-    public double AveragePartTimeJobForRetirement()
+    public static double AveragePartTimeJobForRetirement(BudgetPensionEmployee employee)
     {
-        return AveragePartTimeJob(Employee.WorkPeriods);
+        return AveragePartTimeJob(employee.WorkPeriods);
     }
-    public double AveragePartTimeJob(DataTable table)
+    public static double AveragePartTimeJob(BudgetPensionEmployee employee)
+    {
+        return AveragePartTimeJob(employee.WorkPeriods);
+    }
+    protected static double AveragePartTimeJob(DataTable table)
     {
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
@@ -333,13 +331,12 @@ public class BudgetPensionService : IPensionService
         }
         return Math.Round(sumOfPeriods, 2);
     }
-
     // Calculating the allowance
     // חישוב הקצבה
 
-    public double SalaryDetermines()
+    public static double SalaryDetermines(BudgetPensionEmployee employee)
     {
-        var salary = this.Employee.SalaryDetermines;
+        var salary =  employee.SalaryDetermines;
         // fix:
         // יופיע הסכום כפי שהזינו במסך 4,
         // בניכוי תוספת פנסיונית שלא מהווה בסיס לפנסיה
@@ -354,10 +351,10 @@ public class BudgetPensionService : IPensionService
     /// <param name="fixedSalaryForAFullTimePosition">Salary Determines At Age 60</param>
     /// <param name="pensionSupplement">Salary Increases That Are Not Calculated</param>
     /// <returns>A fixed salary for a full-time budget pension</returns>
-    public double FixedSalaryForAFullTimePosition(double fixedSalaryForAFullTimePosition, double pensionSupplement)
+    public static double FixedSalaryForAFullTimePosition(BudgetPensionEmployee employee)
     {
         // well done ...
-        return fixedSalaryForAFullTimePosition - pensionSupplement;
+        return 0;// fixedSalaryForAFullTimePosition - pensionSupplement;
     }
     /*
     /// <summary>
@@ -366,7 +363,7 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <param name="yearsOfWork"> sum of years that the employee worked</param>
     /// <returns>full pension percentage</returns>
-    public double FullPensionPercentage(double yearsOfWork) => Math.Round(yearsOfWork * 0.2, 2);
+    public static double FullPensionPercentage(double yearsOfWork) => Math.Round(yearsOfWork * 0.2, 2);
 
     /// <summary>
     /// calculate the annuity percentage calculated
@@ -375,7 +372,7 @@ public class BudgetPensionService : IPensionService
     /// <param name="fullPensionPercentage"> full pension percentage </param>
     /// <param name="averagePartTimeJob"> average part-time job </param>
     /// <returns> annuity percentage calculated </returns>
-    public double AnnuityPercentageCalculated(double fullPensionPercentage, double averagePartTimeJob, bool isIDFRetires)
+    public static double AnnuityPercentageCalculated(double fullPensionPercentage, double averagePartTimeJob, bool isIDFRetires)
     {
         double annuity = fullPensionPercentage * averagePartTimeJob;
         if (annuity > 0.7)
@@ -398,7 +395,7 @@ public class BudgetPensionService : IPensionService
     /// <param name="allowancePercentage"> Annuity percentage calculated </param>
     /// <param name="fixedSalary"> fixed salary</param>
     /// <returns>sum of the allowance</returns>
-    public double AllowanceAmount(double allowancePercentage, double fixedSalary) => allowancePercentage * fixedSalary;
+    public static double AllowanceAmount(double allowancePercentage, double fixedSalary) => allowancePercentage * fixedSalary;
 
     /// <summary>
     /// cost of living allowance
@@ -406,7 +403,7 @@ public class BudgetPensionService : IPensionService
     /// </summary>
     /// <param name="fixedSalary">fixed salary</param>
     /// <returns>cost of living allowance</returns>
-    public double CostOfLivingAllowance(double fixedSalary)
+    public static double CostOfLivingAllowance(double fixedSalary)
         => Math.Round(fixedSalary * 0.382);
 
     /// <summary>

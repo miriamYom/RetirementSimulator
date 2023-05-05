@@ -11,6 +11,7 @@ namespace UI.Controllers;
 public class RentiermentSimulatorController : ControllerBase
 {
     IUserServiceBL userServiceBL;
+
     IPensionFactory pensionFactory;
     public RentiermentSimulatorController(IUserServiceBL us, IPensionFactory pf)
     {
@@ -64,6 +65,12 @@ public class RentiermentSimulatorController : ControllerBase
         {
             throw ex;
         }
+    }
+
+    [HttpPost("!!!")]
+    public Employee GetEmp()
+    {
+        return new Employee();
     }
 
 }

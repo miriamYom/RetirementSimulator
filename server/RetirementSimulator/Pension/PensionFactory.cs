@@ -1,5 +1,5 @@
 ﻿using BL.DTO;
-using BL.PensionService;
+using BL.PensionServices;
 using System.Text.Json;
 
 namespace BL.Pension;
@@ -15,16 +15,16 @@ public class PensionFactory : IPensionFactory
 
         switch (pensionType)
         {
-            case "AccrualPensionService":
+            case "AccrualPension":
                 pensionEmploee = new Employee();
                 break;
-            case "BudgetPensionService":
+            case "BudgetPension":
                 var temp = JsonSerializer.Serialize(employee);
                 var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(temp);
                 pensionEmploee = current;
                 //pensionEmploee = new BudgetPensionEmployee();
                 break;
-            case "BPSForSeniorSalarye":
+            case "BPSForSenior":
                 pensionEmploee = new BudgetPensionEmployee();
                 break;
             default:
@@ -34,21 +34,6 @@ public class PensionFactory : IPensionFactory
        return pensionEmploee.Clculates();
         //pensionService.SetEmployee(jsonEmployee);
         //return GetCalculates(pensionService);
-    }
-
-    public string GetCalculates(IPensionService pensionService)
-    {
-        string json = "{";
-        foreach (var methodInfo in pensionService.GetType().GetMethods())
-        {
-            if (methodInfo.GetParameters().Length == 0)
-            {
-                var result = methodInfo.Invoke(pensionService, null);
-                json += $" '{methodInfo.Name}' : '{result}'";
-            }
-        }
-        json += "}";
-        return json.Replace("'", "\"");
     }
 
 }
