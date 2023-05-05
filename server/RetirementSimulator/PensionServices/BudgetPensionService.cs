@@ -1,9 +1,9 @@
 ﻿using BL.DTO;
 using System.Data;
 using System.Text.Json;
-using static BL.PensionService.Consts;
+using static BL.PensionServices.Consts;
 
-namespace BL.PensionService;
+namespace BL.PensionServices;
 
 internal class BudgetPensionService : PensionService
 //תקציבית

@@ -1,7 +1,7 @@
 ﻿using BL.DTO;
 using System.Text.Json;
 
-namespace BL.PensionService;
+namespace BL.PensionServices;
 
 /// <summary>
 /// Budget Pension Service for Senior salary

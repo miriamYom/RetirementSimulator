@@ -1,4 +1,4 @@
-﻿namespace BL.PensionService;
+﻿namespace BL.PensionServices;
 public static class Consts
 {
     public const int Months = 12;

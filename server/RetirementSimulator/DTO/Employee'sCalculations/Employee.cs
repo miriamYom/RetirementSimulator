@@ -1,5 +1,5 @@
 ﻿using BL.Enums;
-using BL.PensionService;
+using BL.PensionServices;
 using System.Reflection;
 
 namespace BL.DTO;
@@ -14,14 +14,11 @@ public class Employee
     public virtual string Clculates()
     {
         string json = "{";
-        foreach (var methodInfo in (typeof(BudgetPensionService)).GetMethods(BindingFlags.Static | BindingFlags.Public))
+        object[] perems = { this};
+        foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-            if (methodInfo.GetParameters().Length == 0)
-            {
-                var result = methodInfo.Invoke(null, null);
-                //var result = methodInfo.Invoke(null, this);
+                var result = methodInfo.Invoke(null, perems);
                 json += $" '{methodInfo.Name}' : '{result}'";
-            }
         }
         json += "}";
         return json.Replace("'", "\"");

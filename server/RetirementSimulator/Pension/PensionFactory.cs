@@ -1,5 +1,5 @@
 ﻿using BL.DTO;
-using BL.PensionService;
+using BL.PensionServices;
 using System.Text.Json;
 
 namespace BL.Pension;
@@ -15,16 +15,16 @@ public class PensionFactory : IPensionFactory
 
         switch (pensionType)
         {
-            case "AccrualPensionService":
+            case "AccrualPension":
                 pensionEmploee = new Employee();
                 break;
-            case "BudgetPensionService":
+            case "BudgetPension":
                 var temp = JsonSerializer.Serialize(employee);
                 var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(temp);
                 pensionEmploee = current;
                 //pensionEmploee = new BudgetPensionEmployee();
                 break;
-            case "BPSForSeniorSalarye":
+            case "BPSForSenior":
                 pensionEmploee = new BudgetPensionEmployee();
                 break;
             default:
