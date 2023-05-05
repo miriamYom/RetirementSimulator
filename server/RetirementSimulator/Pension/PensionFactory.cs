@@ -19,10 +19,10 @@ public class PensionFactory : IPensionFactory
                 pensionEmploee = new Employee();
                 break;
             case "BudgetPension":
-                var temp = JsonSerializer.Serialize(employee);
-                var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(temp);
-                pensionEmploee = current;
-                //pensionEmploee = new BudgetPensionEmployee();
+                //var temp = JsonSerializer.Serialize(employee);
+                //var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(temp);
+                //pensionEmploee = current;
+                pensionEmploee = new BudgetPensionEmployee();
                 break;
             case "BPSForSenior":
                 pensionEmploee = new BudgetPensionEmployee();
