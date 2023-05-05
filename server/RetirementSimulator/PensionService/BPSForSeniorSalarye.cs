@@ -6,7 +6,7 @@ namespace BL.PensionService;
 /// <summary>
 /// Budget Pension Service for Senior salary
 /// </summary>
-public  class BPSForSeniorSalarye : BudgetPensionService
+internal  class BPSForSeniorSalarye : BudgetPensionService
 {
     public BPSForSeniorSalarye()
     {
