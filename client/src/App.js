@@ -10,8 +10,8 @@ function App() {
   return (
     <div className='App-header'>
      <BrowserRouter>
-     {/* <Api></Api> */}
-     <CreateEmployee></CreateEmployee>
+     <Api></Api>
+     {/* <CreateEmployee></CreateEmployee> */}
         {/* <Routes>
         <Route exact path="/" element={<LoginPage></LoginPage>}/>
          <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
