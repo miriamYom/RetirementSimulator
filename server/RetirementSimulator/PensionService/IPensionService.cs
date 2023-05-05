@@ -1,8 +1,9 @@
-﻿using System.Text.Json;
+﻿//using System.Text.Json;
 
-namespace BL.PensionService;
+//namespace BL.PensionService;
 
-public interface IPensionService
-{
-    public void SetEmployee(string employee);
-}
+//public interface IPensionService
+//{
+//}
+
+// לכאורה אין צורך במחלקה זו :(

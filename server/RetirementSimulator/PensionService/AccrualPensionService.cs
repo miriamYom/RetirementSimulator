@@ -3,24 +3,22 @@ using System.Text.Json;
 
 namespace BL.PensionService;
 
-internal class AccrualPensionService : IPensionService
+internal  class AccrualPensionService : PensionService
 {
-    public Employee Employee { get; set; }
     public AccrualPensionService()
     {
-        Employee= new Employee();
     }
-    public void SetEmployee(string employee)
-    {
-        var current  = JsonSerializer.Deserialize<Employee>(employee);
-        this.Employee = current;
-    }
+    //public void SetEmployee(string employee)
+    //{
+    //    var current  = JsonSerializer.Deserialize<Employee>(employee);
+    //    this.Employee = current;
+    //}
     /// <summary>
     /// חישוב הקצבה 
     /// סכום הקצבה יהיה: משכורת אחרונה * 2% לכל שנת עבודה * חלקיות המשרה
     /// </summary>
     /// <returns></returns>
-    public Dictionary<string, double> CalculatingAllowance(Employee employee)
+    public static Dictionary<string, double> CalculatingAllowance(Employee employee)
     {
         //double lastSalary = employee.PensionSalaryFor100PercentPosition;
         double lastSalary = 12;

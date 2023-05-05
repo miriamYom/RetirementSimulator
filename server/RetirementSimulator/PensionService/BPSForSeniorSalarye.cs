@@ -6,29 +6,27 @@ namespace BL.PensionService;
 /// <summary>
 /// Budget Pension Service for Senior salary
 /// </summary>
-public class BPSForSeniorSalarye : BudgetPensionService
+public  class BPSForSeniorSalarye : BudgetPensionService
 {
-    BPEForSeniorSalary Employee { get; set; }
     public BPSForSeniorSalarye()
     {
-        this.Employee = new BPEForSeniorSalary();
     }
-    public void SetEmployee(string employee)
-    {
-        var current = JsonSerializer.Deserialize<BPEForSeniorSalary>(employee);
-        this.Employee = current;
-    }
+    //public void SetEmployee(string employee)
+    //{
+    //    var current = JsonSerializer.Deserialize<BPEForSeniorSalary>(employee);
+    //    this.Employee = current;
+    //}
     /// <summary>
     /// 
     /// לא נבדקו מקרי קצה :(
     /// </summary>
     /// <returns></returns>
-    public double TotalEstimatedAllowanceAmount()
+    public static double TotalEstimatedAllowanceAmount(BPEForSeniorSalary employee)
     {
-        double collectiveAgreementSalary = Employee.DeterminedSalaryByCollectiveAgreement;
-        double seniorSalary = Employee.SalaryDeterminesBySeniorSalary;
-        double yearsInSeniorSalary = Employee.YersInSeniorSalary;
-        double yearsInACollectiveAgreement = Employee.YersInACollectiveAgreement;
+        double collectiveAgreementSalary = employee.DeterminedSalaryByCollectiveAgreement;
+        double seniorSalary = employee.SalaryDeterminesBySeniorSalary;
+        double yearsInSeniorSalary = employee.YersInSeniorSalary;
+        double yearsInACollectiveAgreement = employee.YersInACollectiveAgreement;
         // פונקציה לא גמורה. מחשבת את הקיצבה לעובד המועסק בהסכם קיבוצי + שכר בכירים
         if (yearsInACollectiveAgreement + yearsInSeniorSalary > 35)
         {
@@ -44,21 +42,21 @@ public class BPSForSeniorSalarye : BudgetPensionService
         }
     }
 
-    public double PercentagOfAllowanceInACollectiveAgreement()
+    public static double PercentagOfAllowanceInACollectiveAgreement(BPEForSeniorSalary employee)
     {
-        return TotalPeriodOfWorkAtTheAuthority() * AveragePartTimeJobForRetirement();
+        return TotalPeriodOfWorkAtTheAuthority(employee) * AveragePartTimeJobForRetirement(employee);
     }
-    public double AveragePartTimeJobForRetirement()
+    public static double AveragePartTimeJobForRetirement(BPEForSeniorSalary employee)
     {
-        return AveragePartTimeJob(Employee.WorkPriodsForSeniorSalary);
+        return AveragePartTimeJob(employee.WorkPriodsForSeniorSalary);
     }
-    public double PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty()
+    public static double PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty(BPEForSeniorSalary employee)
     {
-        return Employee.YersInSeniorSalary * AveragePartTimeJobForRetirement();
+        return employee.YersInSeniorSalary * AveragePartTimeJobForRetirement(employee);
     }
-    public double SumOfAlowance()
+    public static double SumOfAlowance(BPEForSeniorSalary employee)
     {
-        return PercentagOfAllowanceInACollectiveAgreement() * TotalWorkingPeriodForRetirement() +
-            PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty() * TotalPeriodOfWork(Employee.WorkPriodsForSeniorSalary);
+        return PercentagOfAllowanceInACollectiveAgreement(employee) * TotalWorkingPeriodForRetirement(employee) +
+            PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty(employee) * TotalPeriodOfWork(employee.WorkPriodsForSeniorSalary);
     }
 }

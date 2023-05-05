@@ -36,19 +36,4 @@ public class PensionFactory : IPensionFactory
         //return GetCalculates(pensionService);
     }
 
-    public string GetCalculates(IPensionService pensionService)
-    {
-        string json = "{";
-        foreach (var methodInfo in pensionService.GetType().GetMethods())
-        {
-            if (methodInfo.GetParameters().Length == 0)
-            {
-                var result = methodInfo.Invoke(pensionService, null);
-                json += $" '{methodInfo.Name}' : '{result}'";
-            }
-        }
-        json += "}";
-        return json.Replace("'", "\"");
-    }
-
 }

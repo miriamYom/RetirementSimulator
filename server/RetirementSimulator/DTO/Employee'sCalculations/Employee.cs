@@ -10,10 +10,11 @@ public class Employee
     {
 
     }
+
     public virtual string Clculates()
     {
         string json = "{";
-        foreach (var methodInfo in (typeof(BudgetPensionService)).GetMethods(BindingFlags.Static))//?
+        foreach (var methodInfo in (typeof(BudgetPensionService)).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
             if (methodInfo.GetParameters().Length == 0)
             {
@@ -25,6 +26,7 @@ public class Employee
         json += "}";
         return json.Replace("'", "\"");
     }
+
     public string Name { get; set; }
     public int ID { get; set; }
     public DateTime BirthDate { get; set; }
