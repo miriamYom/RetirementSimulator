@@ -12,8 +12,9 @@ public class Employee
     }
     public Employee(Dictionary<string, object> dict)
     {
+        #region ctor
         Name = dict.ContainsKey("name") ? dict["name"].ToString()
-            :throw new InvalidParameterException("emeployee Name is not defined.");
+            : throw new InvalidParameterException("emeployee Name is not defined.");
         BirthDate = dict.ContainsKey("birthDate") ? DateTime.Parse(dict["birthDate"].ToString())
             : throw new InvalidParameterException("emeployee BirthDate is not defined.");
         StartWorkDate = dict.ContainsKey("startWorkDate") ? DateTime.Parse(dict["startWorkDate"].ToString())
@@ -21,17 +22,46 @@ public class Employee
         RetirementDate = dict.ContainsKey("retirementDate") ? DateTime.Parse(dict["retirementDate"].ToString())
             : throw new InvalidParameterException("emeployee RetirementDate is not defined.");
         Reason = dict.ContainsKey("reason") ?
-            Enum.TryParse(RetirementReason,dict["reason"].ToString())
-            : throw new InvalidParameterException("emeployee RetirementReason is not defined");
+            (RetirementReason)Enum.Parse(typeof(RetirementReason), dict["reason"].ToString())
+            : throw new InvalidParameterException("emeployee RetirementReason is not defined.");
+        AdvanceNotice = dict.ContainsKey("advanceNotice") ?
+            (MonthOrTwoOrTree)Enum.Parse(typeof(MonthOrTwoOrTree), dict["advanceNotice"].ToString())
+            : throw new InvalidParameterException("emeployee AdvanceNotice is not defined.");
+        MonthOfClothingPayment = dict.ContainsKey("monthOfClothingPayment") ?
+           (Months)Enum.Parse(typeof(Months), dict["monthOfClothingPayment"].ToString())
+           : throw new InvalidParameterException("emeployee MonthOfClothingPayment is not defined.");
+        RecoveryPaymentMonth = dict.ContainsKey("recoveryPaymentMonth") ?
+           (Months)Enum.Parse(typeof(Months), dict["recoveryPaymentMonth"].ToString())
+           : throw new InvalidParameterException("emeployee RecoveryPaymentMonth is not defined.");
+        IsClothingForAudienceMembers = dict.ContainsKey("isClothingForAudienceMembers") ?
+           bool.Parse(dict["isClothingForAudienceMembers"].ToString())
+           : throw new InvalidParameterException("emeployee IsClothingForAudienceMembers is not defined.");
+        IsMonthlyClothingPayment = dict.ContainsKey("isMonthlyClothingPayment") ?
+           bool.Parse(dict["isMonthlyClothingPayment"].ToString())
+           : throw new InvalidParameterException("emeployee IsMonthlyClothingPayment is not defined.");
+        IsThreeLevel = dict.ContainsKey("isThreeLevel") ?
+           bool.Parse(dict["isThreeLevel"].ToString())
+           : throw new InvalidParameterException("emeployee IsThreeLevel is not defined.");
+        IsCurrentYear = dict.ContainsKey("isCurrentYear") ?
+           bool.Parse(dict["isCurrentYear"].ToString())
+           : throw new InvalidParameterException("emeployee IsCurrentYear is not defined.");
+        IsMonthlyRecoveryPayment = dict.ContainsKey("isMonthlyRecoveryPayment") ?
+           bool.Parse(dict["isMonthlyRecoveryPayment"].ToString())
+           : throw new InvalidParameterException("emeployee IsMonthlyRecoveryPayment is not defined.");
+        NumberOfDaysOfRecoveryToBePaid = dict.ContainsKey("numberOfDaysOfRecoveryToBePaid") ?
+           Int32.Parse(dict["numberOfDaysOfRecoveryToBePaid"].ToString())
+           : throw new InvalidParameterException("emeployee NumberOfDaysOfRecoveryToBePaid is not defined.");
+        #endregion
     }
+
     public virtual string Clculates()
     {
         string json = "{";
-        object[] perems = { this};
+        object[] perems = { this };
         foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-                var result = methodInfo.Invoke(null, perems);
-                json += $" '{methodInfo.Name}' : '{result}'";
+            var result = methodInfo.Invoke(null, perems);
+            json += $" '{methodInfo.Name}' : '{result}'";
         }
         json += "}";
         return json.Replace("'", "\"");
