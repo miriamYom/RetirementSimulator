@@ -14,13 +14,15 @@ public class Employee
     {
         Name = dict.ContainsKey("name") ? dict["name"].ToString()
             :throw new InvalidParameterException("emeployee Name is not defined.");
-        BirthDate = dict.ContainsKey("BirthDate") ? DateTime.Parse(dict["birthDate"].ToString())
+        BirthDate = dict.ContainsKey("birthDate") ? DateTime.Parse(dict["birthDate"].ToString())
             : throw new InvalidParameterException("emeployee BirthDate is not defined.");
         StartWorkDate = dict.ContainsKey("startWorkDate") ? DateTime.Parse(dict["startWorkDate"].ToString())
             : throw new InvalidParameterException("emeployee StartWorkDate is not defined.");
         RetirementDate = dict.ContainsKey("retirementDate") ? DateTime.Parse(dict["retirementDate"].ToString())
             : throw new InvalidParameterException("emeployee RetirementDate is not defined.");
-
+        Reason = dict.ContainsKey("reason") ?
+            Enum.TryParse(RetirementReason,dict["reason"].ToString())
+            : throw new InvalidParameterException("emeployee RetirementReason is not defined");
     }
     public virtual string Clculates()
     {
