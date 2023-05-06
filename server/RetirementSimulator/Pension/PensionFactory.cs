@@ -1,6 +1,8 @@
 ﻿using BL.DTO;
 using BL.PensionServices;
+using MongoDB.Bson.IO;
 using System.Text.Json;
+using static MongoDB.Driver.WriteConcern;
 
 namespace BL.Pension;
 public class PensionFactory : IPensionFactory
@@ -13,10 +15,13 @@ public class PensionFactory : IPensionFactory
     {
         Employee pensionEmploee;
 
+        var json = JsonSerializer.Serialize(employee);
+        var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+
         switch (pensionType)
         {
             case "AccrualPension":
-                pensionEmploee = new Employee();
+                pensionEmploee = new Employee(dictionary);
                 break;
             case "BudgetPension":
                 //var temp = JsonSerializer.Serialize(employee);

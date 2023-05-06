@@ -10,7 +10,18 @@ public class Employee
     {
 
     }
+    public Employee(Dictionary<string, object> dict)
+    {
+        Name = dict.ContainsKey("name") ? dict["name"].ToString()
+            :throw new InvalidParameterException("emeployee Name is not defined.");
+        BirthDate = dict.ContainsKey("BirthDate") ? DateTime.Parse(dict["birthDate"].ToString())
+            : throw new InvalidParameterException("emeployee BirthDate is not defined.");
+        StartWorkDate = dict.ContainsKey("startWorkDate") ? DateTime.Parse(dict["startWorkDate"].ToString())
+            : throw new InvalidParameterException("emeployee StartWorkDate is not defined.");
+        RetirementDate = dict.ContainsKey("retirementDate") ? DateTime.Parse(dict["retirementDate"].ToString())
+            : throw new InvalidParameterException("emeployee RetirementDate is not defined.");
 
+    }
     public virtual string Clculates()
     {
         string json = "{";
@@ -23,7 +34,6 @@ public class Employee
         json += "}";
         return json.Replace("'", "\"");
     }
-
     public string Name { get; set; }
     public int ID { get; set; }
     public DateTime BirthDate { get; set; }
