@@ -34,7 +34,6 @@ public class Employee
     /// <summary>
     /// סוג הפרישה
     /// </summary>
-    //public RetirementReason Reason { get; set; }
     private RetirementReason reason;
     public RetirementReason Reason
     {
