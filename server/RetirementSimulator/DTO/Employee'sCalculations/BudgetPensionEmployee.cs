@@ -109,7 +109,7 @@ public class BudgetPensionEmployee : Employee
     public DataTable WorkPeriods
     {
         get { return workPeriods; }
-        set { workPeriods = convertToDataTable(value.ToString()); }
+        set { workPeriods = value; }//.ToDataTable(); }
     }
 
 
@@ -146,27 +146,4 @@ public class BudgetPensionEmployee : Employee
     /// </summary>
     public bool IsAggregationByParts { get; set; }
 
-
-    public static DataTable convertToDataTable(string data)
-    {
-        DataTable dataTable = new DataTable();
-        bool columnsAdded = false;
-        foreach (string row in data.Split('$'))
-        {
-            DataRow dataRow = dataTable.NewRow();
-            foreach (string cell in row.Split('|'))
-            {
-                string[] keyValue = cell.Split('~');
-                if (!columnsAdded)
-                {
-                    DataColumn dataColumn = new DataColumn(keyValue[0]);
-                    dataTable.Columns.Add(dataColumn);
-                }
-                dataRow[keyValue[0]] = keyValue[1];
-            }
-            columnsAdded = true;
-            dataTable.Rows.Add(dataRow);
-        }
-        return dataTable;
-    }
 }

@@ -11,7 +11,7 @@ public class BPEForSeniorSalary : BudgetPensionEmployee
     public DataTable WorkPriodsForSeniorSalary
     {
         get { return workPriodsForSeniorSalary; }
-        set { workPriodsForSeniorSalary = convertToDataTable(value.ToString()); }
+        set { workPriodsForSeniorSalary = value; }
     }
 
     /// <summary>
