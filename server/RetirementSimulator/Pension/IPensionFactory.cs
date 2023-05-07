@@ -1,4 +1,6 @@
-﻿namespace BL.Pension;
+﻿using BL.DTO;
+
+namespace BL.Pension;
 
 public interface IPensionFactory
 {

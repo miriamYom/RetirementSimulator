@@ -13,7 +13,7 @@ public class Employee
     public Employee(Dictionary<string, object> dict)
     {
         #region ctor
-        Name = dict.ContainsKey("name") ? dict["name"].ToString()
+        Name = dict.ContainsKey("name")? dict["name"].ToString()
             : throw new InvalidParameterException("emeployee Name is not defined.");
         BirthDate = dict.ContainsKey("birthDate") ? DateTime.Parse(dict["birthDate"].ToString())
             : throw new InvalidParameterException("emeployee BirthDate is not defined.");

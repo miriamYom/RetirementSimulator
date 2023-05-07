@@ -9,6 +9,10 @@ public class BudgetPensionEmployee : Employee
     {
 
     }
+    public BudgetPensionEmployee(Dictionary<string,object> dict):base(dict)
+    {
+
+    }
     // הבראה- מסך 4--------------------------------------------------------------------
     /// <summary>
     /// אחוז הפרשה לפיצויים
