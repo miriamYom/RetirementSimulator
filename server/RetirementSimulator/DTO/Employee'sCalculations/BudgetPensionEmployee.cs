@@ -1,5 +1,7 @@
 ﻿using BL.Enums;
+using BL.PensionServices;
 using System.Data;
+using System.Reflection;
 
 namespace BL.DTO;
 
@@ -9,9 +11,17 @@ public class BudgetPensionEmployee : Employee
     {
 
     }
-    public BudgetPensionEmployee(Dictionary<string,object> dict):base(dict)
+    public override string Clculates()
     {
-
+        string json = "{";
+        object[] param = { this };
+        foreach (var methodInfo in typeof(BudgetPensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
+        {
+            var result = methodInfo.Invoke(null, param);
+            json += $" '{methodInfo.Name}' : '{result}'";
+        }
+        json += "}";
+        return json.Replace("'", "\"");
     }
     // הבראה- מסך 4--------------------------------------------------------------------
     /// <summary>
@@ -19,7 +29,14 @@ public class BudgetPensionEmployee : Employee
     /// Percentage provision for compensation
     /// 6% or 8.33%
     /// </summary>
-    public PercentageProvisionForCompensation PercentageProvisionForCompensation { get; set; }
+    //public PercentageProvisionForCompensation PercentageProvisionForCompensation { get; set; }
+    private PercentageProvisionForCompensation percentageProvisionForCompensation;
+    public PercentageProvisionForCompensation PercentageProvisionForCompensation
+    {
+        get { return percentageProvisionForCompensation; }
+        set { percentageProvisionForCompensation = (PercentageProvisionForCompensation)Enum.Parse(typeof(PercentageProvisionForCompensation), value.ToString()); }
+    }
+
     /// <summary>
     /// יתרת פיצויים בקופה
     /// </summary>
@@ -74,13 +91,28 @@ public class BudgetPensionEmployee : Employee
     /// </summary>
     public double DisabilityPercentages { get; set; }
 
-    public FamilyStatus FamilyStatus { get; set; }
+    //public FamilyStatus FamilyStatus { get; set; }
+    private FamilyStatus familyStatus;
+    public FamilyStatus FamilyStatus
+    {
+        get { return familyStatus; }
+        set { familyStatus = (FamilyStatus)Enum.Parse(typeof(FamilyStatus), value.ToString()); }
+    }
+
     /// <summary>
     /// תקופות עבודה- טבלה בעלת 4 עמודות-
     /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה ממצועת 
     /// </summary>
-    public DataTable? WorkPeriods { get; set; } 
-    
+    //public DataTable? WorkPeriods { get; set; } 
+    private DataTable? workPeriods;
+
+    public DataTable WorkPeriods
+    {
+        get { return workPeriods; }
+        set { workPeriods = convertToDataTable(value.ToString()); }
+    }
+
+
     /// <summary>
     /// משכורת קובעת
     /// </summary>
@@ -114,4 +146,27 @@ public class BudgetPensionEmployee : Employee
     /// </summary>
     public bool IsAggregationByParts { get; set; }
 
+
+    public static DataTable convertToDataTable(string data)
+    {
+        DataTable dataTable = new DataTable();
+        bool columnsAdded = false;
+        foreach (string row in data.Split('$'))
+        {
+            DataRow dataRow = dataTable.NewRow();
+            foreach (string cell in row.Split('|'))
+            {
+                string[] keyValue = cell.Split('~');
+                if (!columnsAdded)
+                {
+                    DataColumn dataColumn = new DataColumn(keyValue[0]);
+                    dataTable.Columns.Add(dataColumn);
+                }
+                dataRow[keyValue[0]] = keyValue[1];
+            }
+            columnsAdded = true;
+            dataTable.Rows.Add(dataRow);
+        }
+        return dataTable;
+    }
 }

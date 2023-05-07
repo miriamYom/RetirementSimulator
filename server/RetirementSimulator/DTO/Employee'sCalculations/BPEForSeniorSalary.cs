@@ -5,7 +5,15 @@ namespace BL.DTO;
 
 public class BPEForSeniorSalary : BudgetPensionEmployee
 {
-    public DataTable WorkPriodsForSeniorSalary { get; set; }
+    //public DataTable WorkPriodsForSeniorSalary { get; set; }
+    private DataTable workPriodsForSeniorSalary;
+
+    public DataTable WorkPriodsForSeniorSalary
+    {
+        get { return workPriodsForSeniorSalary; }
+        set { workPriodsForSeniorSalary = convertToDataTable(value.ToString()); }
+    }
+
     /// <summary>
     /// האם חתם על רציפות זכויות
     /// </summary>ly TransitionDateForSeniorSalaries { get; set; }
@@ -14,7 +22,15 @@ public class BPEForSeniorSalary : BudgetPensionEmployee
     /// <summary>
     /// אם חתם על רציפות זכויות:
     /// </summary>
-    public TheSignedOwnership Ownership { get; set; }
+    //public TheSignedOwnership Ownership { get; set; }
+    private TheSignedOwnership ownership;
+
+    public TheSignedOwnership Ownership
+    {
+        get { return ownership; }
+        set { ownership = (TheSignedOwnership)Enum.Parse(typeof(TheSignedOwnership),value.ToString()); }
+    }
+
     /// <summary>
     /// אם בחרו בהסכם קיבוצי ושכר בכירים יש למלא גם את הנתון הבא
     /// </summary>
