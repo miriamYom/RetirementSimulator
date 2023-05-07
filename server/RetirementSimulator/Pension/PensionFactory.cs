@@ -7,7 +7,7 @@ public class PensionFactory : IPensionFactory
     public PensionFactory()
     {
     }
-    public string Create(string pensionType, object employee)
+    public string Create(string pensionType, Employee employee)
     {
         Employee pensionEmployee;
 
@@ -21,6 +21,7 @@ public class PensionFactory : IPensionFactory
                 break;
             case "BudgetPension":
                 pensionEmployee = new BudgetPensionEmployee();
+                //pensionEmployee = employee;
                 pensionEmployee = (BudgetPensionEmployee)employee;
                 break;
             case "BPSForSenior":

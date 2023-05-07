@@ -41,9 +41,10 @@ public class BudgetPensionEmployee : Employee
     /// אם נבחר המדינה \ הרשות המקומית \צה"ל \ כוחות בטחון
     /// </summary>uble percentagePensionFromPreviousWorkplace;
 
+    private double percentagePensionFromPreviousWorkplace; 
     public double PercentagePensionFromPreviousWorkplace 
     {
-        get { return 12; }// PercentagePensionFromPreviousWorkplace; }
+        get { return percentagePensionFromPreviousWorkplace; }// PercentagePensionFromPreviousWorkplace; }
         set
         {
             if (value > 70)
@@ -54,7 +55,7 @@ public class BudgetPensionEmployee : Employee
             {
                 throw new InvalidParameterException("Pension percentage from the previous workplace cannot be less than 0.");
             }
-            PercentagePensionFromPreviousWorkplace = value;
+            percentagePensionFromPreviousWorkplace = value;
         }
     }
     /// <summary>

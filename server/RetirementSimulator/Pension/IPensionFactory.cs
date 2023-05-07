@@ -4,5 +4,5 @@ namespace BL.Pension;
 
 public interface IPensionFactory
 {
-    string Create(string pensionType, object employee);
+    string Create(string pensionType, Employee employee);
 }

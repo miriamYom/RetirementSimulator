@@ -57,10 +57,10 @@ public class Employee
     public virtual string Clculates()
     {
         string json = "{";
-        object[] perems = { this };
+        object[] param = { this };
         foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
-            var result = methodInfo.Invoke(null, perems);
+            var result = methodInfo.Invoke(null, param);
             json += $" '{methodInfo.Name}' : '{result}'";
         }
         json += "}";
