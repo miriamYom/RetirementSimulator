@@ -7,33 +7,27 @@ public class PensionFactory : IPensionFactory
     public PensionFactory()
     {
     }
-    public string Create(string pensionType, Employee employee)
+    public string Create(string pensionType, object employee)
     {
         Employee pensionEmployee;
 
         var json = JsonSerializer.Serialize(employee);
-        var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+        //var dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
 
         switch (pensionType)
         {
             case "AccrualPension":
-                pensionEmployee = new Employee(dictionary);
+                pensionEmployee = JsonSerializer.Deserialize<Employee>(json);
                 break;
             case "BudgetPension":
-                pensionEmployee = new BudgetPensionEmployee();
-                //pensionEmployee = employee;
-                pensionEmployee = (BudgetPensionEmployee)employee;
+                pensionEmployee  = JsonSerializer.Deserialize<BudgetPensionEmployee>(json);
                 break;
             case "BPSForSenior":
-                pensionEmployee = new BudgetPensionEmployee();
+                pensionEmployee = JsonSerializer.Deserialize<BPEForSeniorSalary>(json);
                 break;
             default:
                 throw new InvalidParameterException();
         }
-        string jsonEmployee = JsonSerializer.Serialize(employee);
         return pensionEmployee.Clculates();
-        //pensionService.SetEmployee(jsonEmployee);
-        //return GetCalculates(pensionService);
     }
-
 }

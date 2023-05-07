@@ -54,20 +54,8 @@ public class RentiermentSimulatorController : ControllerBase
     {
         return userServiceBL.Login(email, pass);
     }
-    [HttpPost("GetBudgetPensionCalculates")]
-    public string CreatePensionService(string pensionType, [FromBody] BudgetPensionEmployee employee)
-    {
-        try
-        {
-            return pensionFactory.Create(pensionType, employee);
-        }
-        catch (InvalidParameterException ex)
-        {
-            throw ex;
-        }
-    }
-    [HttpPost("GetAcrualPensionCalculates")]
-    public string CreatePensionService(string pensionType, [FromBody] Employee employee)
+    [HttpPost("GetPensionCalculates")]
+    public string CreatePensionService(string pensionType, [FromBody] object employee)
     {
         try
         {

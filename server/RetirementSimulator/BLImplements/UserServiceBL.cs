@@ -79,15 +79,19 @@ public class UserServiceBL : IUserServiceBL
         try
         {
             UserDTO u = new UserDTO() { Password = pas };
-            var filter = Builders<User>.Filter.Eq("Email", email); ;
+            var filter = Builders<User>.Filter.Eq("Email", email);
             User theUser = userService.GetAsync(filter).Result;
             if (theUser.Password.Equals(pas))
             {
-                return userMapper.Map<UserDTO>(theUser);
-            }
-            if (theUser.SubscriptionPeriodDate < DateTime.Now)
-            {
-                throw new SubscriptionIsNotValid();
+                if (theUser.SubscriptionPeriodDate >= DateTime.Now)
+                {
+                    return userMapper.Map<UserDTO>(theUser);
+                }
+                else
+                {
+                    throw new SubscriptionIsNotValid();
+
+                }
             }
         }
         catch (Exception ex)

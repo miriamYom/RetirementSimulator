@@ -121,6 +121,7 @@ internal class BudgetPensionService : PensionService
     {
         DataTable table = employee.WorkPeriods;
         // well done!!!
+        /*
         try
         {
             DataColumn column = table.Columns.Add("Total work period", typeof(double));
@@ -135,6 +136,7 @@ internal class BudgetPensionService : PensionService
         }
         catch (Exception ex) { }
         employee.WorkPeriods = table;
+        */
         return table;
 
     }
@@ -153,6 +155,7 @@ internal class BudgetPensionService : PensionService
     protected static double TotalPeriodOfWork(DataTable table)
     {
         // well done!!!
+        /*
         var numOfRows = table.Rows.Count;
         double sumOfWorkPeriods = 0;
 
@@ -170,6 +173,8 @@ internal class BudgetPensionService : PensionService
             }
         }
         return Math.Round(sumOfWorkPeriods, 2);
+        */
+        return 0;
     }
     /// <summary>
     /// function to calculate full work period according to partiality
@@ -191,6 +196,7 @@ internal class BudgetPensionService : PensionService
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
     public static double TotalWorkingPeriodForRetirement(BudgetPensionEmployee employee)
     {
+        /*
         DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
@@ -217,6 +223,8 @@ internal class BudgetPensionService : PensionService
             }
         }
         return Math.Round(sumOfPeriods, 2);
+        */
+        return 1;
     }
 
     /// <summary>
@@ -226,6 +234,7 @@ internal class BudgetPensionService : PensionService
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
     public static double UnpaidVacation(BudgetPensionEmployee employee)
     {
+        /*
         DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
@@ -252,6 +261,8 @@ internal class BudgetPensionService : PensionService
             }
         }
         return Math.Round(sumOfPeriods, 2);
+        */
+        return 2;
     }
 
     /// <summary>
@@ -261,6 +272,7 @@ internal class BudgetPensionService : PensionService
     /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
     public static double WorkingPeriodForCompensation(BudgetPensionEmployee employee)
     {
+        /*
         DataTable table = employee.WorkPeriods;
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
@@ -287,6 +299,8 @@ internal class BudgetPensionService : PensionService
             }
         }
         return Math.Round(sumOfPeriods, 2);
+        */
+        return 3;
     }
 
     /// <summary>
@@ -297,7 +311,7 @@ internal class BudgetPensionService : PensionService
     /// 
     public static double AveragePartTimeJobForRetirement(BudgetPensionEmployee employee)
     {
-        return AveragePartTimeJob(employee.WorkPeriods);
+        return 4;//AveragePartTimeJob(employee.WorkPeriods);
     }
     public static double AveragePartTimeJob(BudgetPensionEmployee employee)
     {
@@ -305,6 +319,7 @@ internal class BudgetPensionService : PensionService
     }
     protected static double AveragePartTimeJob(DataTable table)
     {
+        /*
         var numOfRows = table.Rows.Count;
         double sumOfPeriods = 0;
         double doubleValue;
@@ -330,6 +345,8 @@ internal class BudgetPensionService : PensionService
             }
         }
         return Math.Round(sumOfPeriods, 2);
+        */
+        return 5;
     }
     // Calculating the allowance
     // חישוב הקצבה
