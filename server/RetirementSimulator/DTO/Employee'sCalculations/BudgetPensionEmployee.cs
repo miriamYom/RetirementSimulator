@@ -1,6 +1,5 @@
 ﻿using BL.Enums;
 using BL.PensionServices;
-using System.Data;
 using System.Reflection;
 
 namespace BL.DTO;
@@ -23,42 +22,44 @@ public class BudgetPensionEmployee : Employee
         json += "}";
         return json.Replace("'", "\"");
     }
-    // הבראה- מסך 4--------------------------------------------------------------------
-    /// <summary>
-    /// אחוז הפרשה לפיצויים
-    /// Percentage provision for compensation
-    /// 6% or 8.33%
-    /// </summary>
-    /*private PercentageProvisionForCompensation percentageProvisionForCompensation;
-    public PercentageProvisionForCompensation PercentageProvisionForCompensation
-    {
-        get { return percentageProvisionForCompensation; }
-        set { percentageProvisionForCompensation = (PercentageProvisionForCompensation)Enum.Parse(typeof(PercentageProvisionForCompensation), value.ToString()); }
-    }
-    */
-    /// <summary>
-    /// יתרת פיצויים בקופה
-    /// </summary>
-    //public double CompensationBalanceInTheCashRegister { get; set; }
     /// <summary>
     /// משכורת קובעת בגיל 60
     /// Determined salary
     /// </summary>
-    //public double SalaryDeterminesAtAge60 { get; set; }
+    public double SalaryDeterminesAtAge60 { get; set; }
+    /// <summary>
+    /// האם חתם על רציפות זכויות
+    /// </summary>ly TransitionDateForSeniorSalaries { get; set; }
+    public bool SignedCopyrightContinuity { get; set; }
+    /// <summary>
+    /// אם חתם על רציפות זכויות:
+    /// </summary>
+    private TheSignedOwnership ownership;
+    public TheSignedOwnership Ownership
+    {
+        get { return ownership; }
+        set { ownership = (TheSignedOwnership)Enum.Parse(typeof(TheSignedOwnership), value.ToString()); }
+    }
+
+    /// <summary>
+    /// האם בחוזה העסקה נקבע כי פדיון ימי המחלה ישולם לפי משכורת אחרונה?
+    /// Does the employment contract stipulate that sick pay will be paid according to the last salary?
+    /// </summary>
+    public bool IsSickDayPaidAccordingToLastSalary { get; set; }
+
     /// <summary>
     /// מתוך המשכורת הקובעת, סך תוספות השכר הפנסיוניות שאינן מחושבות לפנסיה התקציבית
     /// nullable
     /// From the determining salary, the total pensionable salary increases that are not calculated for the budget pension
     /// </summary>
-    //public double SalaryIncreasesThatAreNotCalculated { get; set; } = 0;
+    public double SalaryIncreasesThatAreNotCalculated { get; set; }
 
-    //public double SalaryDetermines { get; set; }
+
     /// <summary>
     /// אם נבחר המדינה \ הרשות המקומית \צה"ל \ כוחות בטחון
-    /// </summary>uble percentagePensionFromPreviousWorkplace;
-
-    /*private double percentagePensionFromPreviousWorkplace; 
-    public double PercentagePensionFromPreviousWorkplace 
+    /// <summary>
+    private double percentagePensionFromPreviousWorkplace;
+    public double PercentagePensionFromPreviousWorkplace
     {
         get { return percentagePensionFromPreviousWorkplace; }// PercentagePensionFromPreviousWorkplace; }
         set
@@ -74,76 +75,32 @@ public class BudgetPensionEmployee : Employee
             percentagePensionFromPreviousWorkplace = value;
         }
     }
-    */
     /// <summary>
     /// אם נבחר צה"ל / כוחות בטחון
     /// השכר קובע את הפנסיה בצה"ל:
     /// </summary>
-    //public double SalaryDeterminesPensionInIDF { get; set; }
+    public double SalaryDeterminesPensionInIDF { get; set; }
 
     /// <summary>
     /// אם בחרו קרנות ותיקות:
     /// סכום הקצבה
     /// </summary>
-    //public double AmountOfAllowance { get; set; }
+    public double AmountOfAllowance { get; set; }
     /// <summary>
     /// אחוזי נכות- רק אם פורש מסיבות רפואיות
     /// </summary>
-    //public double DisabilityPercentages { get; set; }
+    public double DisabilityPercentages { get; set; }
 
-    /*
+
     private FamilyStatus familyStatus;
     public FamilyStatus FamilyStatus
     {
         get { return familyStatus; }
         set { familyStatus = (FamilyStatus)Enum.Parse(typeof(FamilyStatus), value.ToString()); }
     }
-    */
-    /// <summary>
-    /// תקופות עבודה- טבלה בעלת 4 עמודות-
-    /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה ממצועת 
-    /// </summary>
-   /*
-    private DataTable? workPeriods;
 
-    public DataTable WorkPeriods
-    {
-        get { return workPeriods; }
-        set { workPeriods = value; }//.ToDataTable(); }
-    }
-   */
 
-    /// <summary>
-    /// משכורת קובעת
-    /// </summary>
-    //public double DeterminedSalaryByCollectiveAgreement { get; set; }
-   
-    // מחלה--------------------------------------------------------------------------------------------------------------------------------------------
-    /// <summary>
-    /// יתרת ימי מחלה בפרישה
-    /// </summary>
-   // public int RemainingSickDaysInRetirement { get; set; }
-    /// <summary>
-    /// אופן צבירת המחלה - צבירה מלאה / צבירה לפי חלקיות
-    /// Full accrual / partial accrual
-    /// </summary>
-    //public bool IsFullAccrual { get; set; }
-   
-    // חופשה---------------------------------------------------------------------------------------------------------------------------------------------
-    /// <summary>
-    /// יתרת ימי חופשה בפרישה
-    /// </summary>
-    //public int RemainingVacationDaysInRetirement { get; set; }
-    /// <summary>
-    /// מספר ימי העסקה בשבוע
-    ///Number of business days per week
-    /// 6 or 5
-    /// </summary>
-    //public bool IsFiveBusinessDays { get; set; }
-    /// <summary>
-    /// אופן צבירת החופשה- צבירה מלאה  - ללא קשר לחלקיות / צבירה לפי חלקיות
-    /// How the vacation is accrued
-    /// </summary>
-    //public bool IsAggregationByParts { get; set; }
+
+
 
 }

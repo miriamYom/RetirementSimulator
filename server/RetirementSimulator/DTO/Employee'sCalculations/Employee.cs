@@ -1,5 +1,6 @@
 ﻿using BL.Enums;
 using BL.PensionServices;
+using System.Data;
 using System.Reflection;
 
 namespace BL.DTO;
@@ -23,38 +24,38 @@ public class Employee
         json += "}";
         return json.Replace("'", "\"");
     }
-    //public string Name { get; set; }
-    //public int ID { get; set; }
-    //public DateTime BirthDate { get; set; }
-    //public DateTime StartWorkDate { get; set; }
+    public string Name { get; set; }
+    public int ID { get; set; }
+    public DateTime BirthDate { get; set; }
+    public DateTime StartWorkDate { get; set; }
     /// <summary>
     /// תאריך פרישה צפוי
     /// </summary>
-    //public DateTime RetirementDate { get; set; }
+    public DateTime RetirementDate { get; set; }
     /// <summary>
     /// סוג הפרישה
     /// </summary>
-    /*
+    
     private RetirementReason reason;
     public RetirementReason Reason
     {
         get { return reason; }
         set { reason = (RetirementReason)Enum.Parse(typeof(RetirementReason), value.ToString()); }
     }
-    */
+    
 
     /// <summary>
     /// בפיטורין
     /// חלף הודעה מוקדמת
     /// </summary>
-    /*
+    
     private MonthOrTwoOrTree advanceNotice;
     public MonthOrTwoOrTree AdvanceNotice
     {
         get { return advanceNotice; }
         set { advanceNotice = (MonthOrTwoOrTree)Enum.Parse(typeof(MonthOrTwoOrTree), value.ToString()); }
     }
-    */
+    
 
     //ביגוד
     /// <summary>
@@ -62,7 +63,7 @@ public class Employee
     ///   ביגוד למקבלי קהל או ביגוד לפועלים
     /// </summary>
 
-    //public bool IsClothingForAudienceMembers { get; set; }
+    public bool IsClothingForAudienceMembers { get; set; }
     /// <summary>
     /// אופן תשלום הביגוד
     /// monthly / yearly
@@ -73,32 +74,32 @@ public class Employee
     /// רמת הביגוד
     /// רמה 3 או רמה 4
     /// </summary>
-    //public bool IsThreeLevel { get; set; }
+    public bool IsThreeLevel { get; set; }
     /// <summary>
     /// חודש תשלום הביגוד
     /// </summary>
-    /*
+    
     private Months monthOfClothingPayment;
     public Months MonthOfClothingPayment
     {
         get { return monthOfClothingPayment; }
         set { monthOfClothingPayment = (Months)Enum.Parse(typeof(Months), value.ToString()); }
-    }*/
+    }
 
     /// <summary>
     /// השנה עבורה משולם הביגוד
     /// שנה נוכחית או שנה קנדרית קודמת
     /// </summary>
-    //public bool IsCurrentYear { get; set; }
+    public bool IsCurrentYear { get; set; }
     //הבראה
     /// <summary>
     /// monthly / yearly
     /// </summary>
-    //public bool IsMonthlyRecoveryPayment { get; set; }
+    public bool IsMonthlyRecoveryPayment { get; set; }
     /// <summary>
     /// מספר ימי הבראה לתשלום
     /// </summary>
-    /*
+    
     private int numberOfDaysOfRecoveryToBePaid;
     public int NumberOfDaysOfRecoveryToBePaid
     {
@@ -112,8 +113,8 @@ public class Employee
             numberOfDaysOfRecoveryToBePaid = value;
         }
     }
-    */
-    /*
+    
+    
     private Months recoveryPaymentMonth;
 
     public Months RecoveryPaymentMonth
@@ -121,7 +122,38 @@ public class Employee
         get { return recoveryPaymentMonth; }
         set { recoveryPaymentMonth = (Months)Enum.Parse(typeof(Months), value.ToString()); } 
     }
-    */
 
 
+    /// <summary>
+    /// תקופות עבודה- טבלה בעלת 4 עמודות-
+    /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה ממצועת 
+    /// </summary>
+     private DataTable workPeriods;
+
+     public DataTable WorkPeriods
+     {
+         get { return workPeriods; }
+         set { workPeriods = value; }//.ToDataTable(); }
+     }
+
+    public double SalaryDetermines { get; set; }
+    /// <summary>
+    /// יתרת ימי מחלה 
+    /// </summary>
+    public int RemainingSickDays { get; set; }
+    /// <summary>
+    /// יתרת ימי חופשה בפרישה
+    /// </summary>
+    public int RemainingVacationDaysInRetirement { get; set; }
+    /// <summary>
+    /// מספר ימי העסקה בשבוע
+    ///Number of business days per week
+    /// 6 or 5
+    /// </summary>
+    public bool IsFiveBusinessDays { get; set; }
+    /// <summary>
+    /// אופן צבירת החופשה- צבירה מלאה  - ללא קשר לחלקיות / צבירה לפי חלקיות
+    /// How the vacation is accrued
+    /// </summary>
+    public bool IsAggregationByParts { get; set; }
 }

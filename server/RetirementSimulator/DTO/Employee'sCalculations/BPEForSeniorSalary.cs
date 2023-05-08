@@ -5,6 +5,23 @@ namespace BL.DTO;
 
 public class BPEForSeniorSalary : BudgetPensionEmployee
 {
+
+    public DateTime TransitionDateForSeniorSalaries { get; set; }
+    /// <summary>
+    /// משכורת קובעת
+    /// </summary>
+    public double DeterminedSalaryByCollectiveAgreement { get; set; }
+    /// <summary>
+    /// אופן צבירת המחלה - צבירה מלאה / צבירה לפי חלקיות
+    /// Full accrual / partial accrual
+    /// </summary>
+    public bool IsFullAccrual { get; set; }
+    /// <summary>
+    /// יתרת ימי מחלה במועד המעבר לשכר בכירים
+    /// </summary>
+    public int RemainingSickDaysAtTheTimeOfTransitionToSeniorSalary { get; set; }
+
+
     /*
     private DataTable workPriodsForSeniorSalary;
 
@@ -14,41 +31,14 @@ public class BPEForSeniorSalary : BudgetPensionEmployee
         set { workPriodsForSeniorSalary = value; }
     }
     */
-    /// <summary>
-    /// האם חתם על רציפות זכויות
-    /// </summary>ly TransitionDateForSeniorSalaries { get; set; }
-    //public bool SignedCopyrightContinuity { get; set; }
 
-    /// <summary>
-    /// אם חתם על רציפות זכויות:
-    /// </summary>
     /*
-    private TheSignedOwnership ownership;
-
-    public TheSignedOwnership Ownership
-    {
-        get { return ownership; }
-        set { ownership = (TheSignedOwnership)Enum.Parse(typeof(TheSignedOwnership),value.ToString()); }
-    }
-    */
-    /// <summary>
-    /// אם בחרו בהסכם קיבוצי ושכר בכירים יש למלא גם את הנתון הבא
-    /// </summary>
-    //public double SalaryDeterminesBySeniorSalary { get; set; }
-    /// <summary>
-    /// האם בחוזה העסקה נקבע כי פדיון ימי המחלה ישולם לפי משכורת אחרונה?
-    /// Does the employment contract stipulate that sick pay will be paid according to the last salary?
-    /// </summary>
-    //public bool IsSickDayPaidAccordingToLastSalary { get; set; }
-    /// <summary>
-    /// אם כן- אין צורך בשאלה הבאה
-    /// יתרת ימי מחלה במועד המעבר לשכר בכירים
-    /// </summary>
-    //public int RemainingSickDaysAtTheTimeOfTransitionToSeniorSalary { get; set; }
+     *  לכאורה כל הנ"ל זה חישובים שיחזרו מפונקציות 
     /// <summary>
     /// נתון שיואתחל מהטבלה
     /// </summary>
     //public double YersInSeniorSalary { get; set; }
     //public double YersInACollectiveAgreement { get; set; }
+    */
 }
 
