@@ -1,0 +1,18 @@
+.header {
+    position: absolute;
+    width: 1728px;
+    height: 76px;
+    left: 0px;
+    top: 0px;
+}
+
+.rec79 {
+    position: absolute;
+    width: 1732px;
+    height: 65px;
+    left: 0px;
+    top: 0px;
+
+    background: #457FF0;
+    box-shadow: 0px -1px 19px rgba(0, 0, 0, 0.11);
+}
