@@ -3,16 +3,16 @@
 .header {
     /* הידר */
     position: absolute;
-    width: 1728px;
-    height: 76px;
+    width: 100%;
+    height: 12%;
     left: 0px;
     top: 0px;
 }
 
 .rec79 {
     position: absolute;
-    width: 1732px;
-    height: 65px;
+    width: inherit;
+    height: 100%;
     left: 0px;
     top: 0px;
 
@@ -23,12 +23,31 @@
 .logo-header {
     /* לבן לוגו מיכל לוי (1) 2 */
     position: absolute;
-    width: 120.29px;
-    height: 43.59px;
-    left: 1561px;
+    left: 90%;
     top: 12px;
+    padding-top: 0.5%;
     /* if you add the url below it adds with white border */
     /* background: url("../img/לבן לוגו מיכל לוי (1) 2.png"); */
+}
+
+.click-to-home-web {
+    /* מעבר לאתר הבית */
+    width: 118px;
+    height: 19px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+    text-align: right;
+    color: #FFFFFF;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    text-decoration: none;
+    z-index: 2;
 }
 
 .frame39 {
@@ -49,137 +68,74 @@
 
     background: #3678CE;
     border-radius: 3.49992px;
-}
-
-.click-to-home-web {
-    /* מעבר לאתר הבית */
-    width: 118px;
-    height: 19px;
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    /* identical to box height */
-    text-align: right;
-    color: #FFFFFF;
-    /* Inside auto layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+    z-index: 1;
 }
 
 .group-289327 {
     /* Group 289327 */
     position: absolute;
-    width: 82.96px;
-    height: 21.66px;
-    left: 211px;
-    top: 19.74px;
+    width: 100%;
+    height: 100%;
+    left: 2%;
 }
 
 .vector-phone {
-    /* Vector */
     position: absolute;
-    left: 15.97%;
-    right: 82.99%;
-    top: 30.06%;
-    bottom: 45.52%;
-
-    /* background: #FFFFFF; */
-}
-
-.group {
-    position: absolute;
-    left: 15.97%;
-    right: 82.99%;
-    top: 30.06%;
-    bottom: 45.52%;
+    left: 75px;
+    top: 35%;
 }
 
 .contact-us {
-/* צור קשר */
-position: absolute;
-left: 12.21%;
-right: 84.49%;
-top: 25.97%;
-bottom: 48.15%;
+    /* צור קשר */
+    position: absolute;
+    left: 0%;
+    top: 17%;
 
-font-family: 'Rubik';
-font-style: normal;
-font-weight: 600;
-font-size: 16px;
-line-height: 19px;
-text-align: right;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: left;
 
-color: #FFFFFF;
+    color: #FFFFFF;
 }
 
 .line11 {
     /* Line 11 */
     position: absolute;
     width: 0px;
-    height: 27px;
-    left: 189px;
-    top: 17px;
-
+    height: 30%;
+    left: 150px;
+    top: 35%;
     border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.welcom {
-    /* שלום דוד */
-    position: absolute;
-    left: 3.94%;
-    right: 92.53%;
-    top: 25.97%;
-    bottom: 48.15%;
-
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: right;
-
-    color: #FFFFFF;
-}
-
-.personIcon1 {
-    /* Vector */
-    position: absolute;
-    left: 8.56%;
-    right: 90.79%;
-    top: 25.97%;
-    bottom: 59.73%;
-
-    /* background: #FFFFFF; */
-}
-
-.personIcon2 {
-    /* Vector */
-    position: absolute;
-    left: 8.39%;
-    right: 90.62%;
-    top: 42.66%;
-    bottom: 45.43%;
-
-    /* background: #FFFFFF; */
 }
 
 .group-289328 {
     /* Group 289328 */
     position: absolute;
-    width: 94px;
-    height: 21.74px;
-    left: 68px;
-    top: 19.74px;
+    width: 100%;
+    /* height: 100%; */
+    left: 180px;
 }
 
-.group-welcom {
-    /* Group */
+.welcome {
+    /* שלום דוד */
     position: absolute;
-    left: 8.39%;
-    right: 90.62%;
-    top: 25.97%;
-    bottom: 45.43%;
+    top: 17px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    /* line-height: 19px; */
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.personIcon {
+    /* Vector */
+    position: absolute;
+    /* top: 35%; */
+    float: right;
+    left: 120px;
 }
