@@ -1,6 +1,7 @@
 /* npm rebuild node-sass */
 
 .header {
+    /* הידר */
     position: absolute;
     width: 1728px;
     height: 76px;
@@ -20,19 +21,19 @@
 }
 
 .logo-header {
+    /* לבן לוגו מיכל לוי (1) 2 */
     position: absolute;
     width: 120.29px;
     height: 43.59px;
     left: 1561px;
     top: 12px;
-
-    /* background: url("לבן לוגו מיכל לוי (1).png"); */
+    /* if you add the url below it adds with white border */
+    /* background: url("../img/לבן לוגו מיכל לוי (1) 2.png"); */
 }
 
 .frame39 {
-
+    /* Frame 39 */
     /* Auto layout */
-
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -50,30 +51,26 @@
     border-radius: 3.49992px;
 }
 
-.click-to-home-page {
+.click-to-home-web {
+    /* מעבר לאתר הבית */
     width: 118px;
     height: 19px;
-
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
     line-height: 19px;
     /* identical to box height */
-
     text-align: right;
-
     color: #FFFFFF;
-
-
     /* Inside auto layout */
-
     flex: none;
     order: 0;
     flex-grow: 0;
 }
 
 .group-289327 {
+    /* Group 289327 */
     position: absolute;
     width: 82.96px;
     height: 21.66px;
@@ -82,53 +79,35 @@
 }
 
 .vector-phone {
+    /* Vector */
     position: absolute;
     left: 15.97%;
     right: 82.99%;
     top: 30.06%;
     bottom: 45.52%;
 
-    background: #FFFFFF;
+    /* background: #FFFFFF; */
+}
+
+.group {
+    position: absolute;
+    left: 15.97%;
+    right: 82.99%;
+    top: 30.06%;
+    bottom: 45.52%;
 }
 
 .contact-us {
-    position: absolute;
-    left: 12.21%;
-    right: 84.49%;
-    top: 25.97%;
-    bottom: 48.15%;
-
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: right;
-
-    color: #FFFFFF;
-}
-
-.line11 {
-    position: absolute;
-    width: 27px;
-    height: 0px;
-    left: 189px;
-    top: 17px;
-
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.welcom{
-    
+/* צור קשר */
 position: absolute;
-left: 3.94%;
-right: 92.53%;
+left: 12.21%;
+right: 84.49%;
 top: 25.97%;
 bottom: 48.15%;
 
 font-family: 'Rubik';
 font-style: normal;
-font-weight: 500;
+font-weight: 600;
 font-size: 16px;
 line-height: 19px;
 text-align: right;
@@ -136,3 +115,71 @@ text-align: right;
 color: #FFFFFF;
 }
 
+.line11 {
+    /* Line 11 */
+    position: absolute;
+    width: 0px;
+    height: 27px;
+    left: 189px;
+    top: 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.welcom {
+    /* שלום דוד */
+    position: absolute;
+    left: 3.94%;
+    right: 92.53%;
+    top: 25.97%;
+    bottom: 48.15%;
+
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+
+    color: #FFFFFF;
+}
+
+.personIcon1 {
+    /* Vector */
+    position: absolute;
+    left: 8.56%;
+    right: 90.79%;
+    top: 25.97%;
+    bottom: 59.73%;
+
+    /* background: #FFFFFF; */
+}
+
+.personIcon2 {
+    /* Vector */
+    position: absolute;
+    left: 8.39%;
+    right: 90.62%;
+    top: 42.66%;
+    bottom: 45.43%;
+
+    /* background: #FFFFFF; */
+}
+
+.group-289328 {
+    /* Group 289328 */
+    position: absolute;
+    width: 94px;
+    height: 21.74px;
+    left: 68px;
+    top: 19.74px;
+}
+
+.group-welcom {
+    /* Group */
+    position: absolute;
+    left: 8.39%;
+    right: 90.62%;
+    top: 25.97%;
+    bottom: 45.43%;
+}
