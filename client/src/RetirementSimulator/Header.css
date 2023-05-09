@@ -1,0 +1,138 @@
+/* npm rebuild node-sass */
+
+.header {
+    position: absolute;
+    width: 1728px;
+    height: 76px;
+    left: 0px;
+    top: 0px;
+}
+
+.rec79 {
+    position: absolute;
+    width: 1732px;
+    height: 65px;
+    left: 0px;
+    top: 0px;
+
+    background: #457FF0;
+    box-shadow: 0px -1px 19px rgba(0, 0, 0, 0.11);
+}
+
+.logo-header {
+    position: absolute;
+    width: 120.29px;
+    height: 43.59px;
+    left: 1561px;
+    top: 12px;
+
+    /* background: url("לבן לוגו מיכל לוי (1).png"); */
+}
+
+.frame39 {
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 6.27386px 18.1996px;
+    gap: 7px;
+
+    position: absolute;
+    width: 154.4px;
+    height: 31.55px;
+    left: calc(50% - 154.4px/2 + 4.2px);
+    top: 20px;
+
+    background: #3678CE;
+    border-radius: 3.49992px;
+}
+
+.click-to-home-page {
+    width: 118px;
+    height: 19px;
+
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    text-align: right;
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.group-289327 {
+    position: absolute;
+    width: 82.96px;
+    height: 21.66px;
+    left: 211px;
+    top: 19.74px;
+}
+
+.vector-phone {
+    position: absolute;
+    left: 15.97%;
+    right: 82.99%;
+    top: 30.06%;
+    bottom: 45.52%;
+
+    background: #FFFFFF;
+}
+
+.contact-us {
+    position: absolute;
+    left: 12.21%;
+    right: 84.49%;
+    top: 25.97%;
+    bottom: 48.15%;
+
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: right;
+
+    color: #FFFFFF;
+}
+
+.line11 {
+    position: absolute;
+    width: 27px;
+    height: 0px;
+    left: 189px;
+    top: 17px;
+
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.welcom{
+    
+position: absolute;
+left: 3.94%;
+right: 92.53%;
+top: 25.97%;
+bottom: 48.15%;
+
+font-family: 'Rubik';
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+text-align: right;
+
+color: #FFFFFF;
+}
+
