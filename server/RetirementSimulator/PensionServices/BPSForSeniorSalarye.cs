@@ -1,4 +1,5 @@
 ﻿using BL.DTO;
+using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
 
@@ -10,47 +11,34 @@ internal class BPSForSeniorSalarye : BudgetPensionService
     public BPSForSeniorSalarye()
     {
     }
-    /// <summary>
-    /// 
-    /// לא נבדקו מקרי קצה :(
-    /// </summary>
-    /// <returns></returns>
-    public static double TotalEstimatedAllowanceAmount(BPEForSeniorSalary employee)
+
+    public static double WorkingPeriodInACollectiveAgreement(BPEForSeniorSalary employee)
     {
-        double collectiveAgreementSalary = employee.DeterminedSalaryByCollectiveAgreement;
-        double seniorSalary = employee.SalaryDeterminesBySeniorSalary;
-        double yearsInSeniorSalary = employee.YersInSeniorSalary;
-        double yearsInACollectiveAgreement = employee.YersInACollectiveAgreement;
-        // פונקציה לא גמורה. מחשבת את הקיצבה לעובד המועסק בהסכם קיבוצי + שכר בכירים
-        if (yearsInACollectiveAgreement + yearsInSeniorSalary > 35)
-        {
-            double allowancePercentageSalary = yearsInSeniorSalary * 0.02;
-            double allowancePercentageCollective = (35 - yearsInACollectiveAgreement) * 0.02;
-            return allowancePercentageSalary + allowancePercentageCollective;
-        }
-        else
-        {
-            double allowancePercentageSalary = yearsInSeniorSalary * 0.02;
-            double allowancePercentageCollective = yearsInACollectiveAgreement * 0.02;
-            return allowancePercentageSalary * seniorSalary + allowancePercentageCollective * collectiveAgreementSalary;
-        }
+        return TotalYears(employee.StartWorkDate, employee.TransitionDateForSeniorSalaries);
     }
 
-    public static double PercentagOfAllowanceInACollectiveAgreement(BPEForSeniorSalary employee)
+    public static double SeniorPaidWorkPeriod(BPEForSeniorSalary employee)
     {
-        return TotalPeriodOfWorkAtTheAuthority(employee) * AveragePartTimeJobForRetirement(employee);
+        return TotalYears(employee.TransitionDateForSeniorSalaries, employee.RetirementDate);
     }
-    public static double AveragePartTimeJobForRetirement(BPEForSeniorSalary employee)
+
+    public static double AnnuityPercentageInACollectiveAgreement(BPEForSeniorSalary employee)
     {
-        return AveragePartTimeJob(employee.WorkPriodsForSeniorSalary);
+        return (WorkingPeriodInACollectiveAgreement(employee) * AnnualAnnuityPercentage);
     }
-    public static double PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty(BPEForSeniorSalary employee)
+
+    public static double PensionPercentageInSeniorSalaries(BPEForSeniorSalary employee)
     {
-        return employee.YersInSeniorSalary * AveragePartTimeJobForRetirement(employee);
+        return SeniorPaidWorkPeriod(employee) * AnnualAnnuityPercentage;
     }
-    public static double SumOfAlowance(BPEForSeniorSalary employee)
+
+    public static double AllowanceAmount(BPEForSeniorSalary employee)
     {
-        return PercentagOfAllowanceInACollectiveAgreement(employee) * TotalWorkingPeriodForRetirement(employee) +
-            PercentagOfAllowanceInACollectiveAgreementForSeniorSalaty(employee) * TotalPeriodOfWork(employee.WorkPriodsForSeniorSalary);
+        return (employee.SalaryDetermines * AnnuityPercentageInACollectiveAgreement(employee)) + (employee.DeterminedSalaryByCollectiveAgreement * PensionPercentageInSeniorSalaries(employee));
+    }
+
+    public static double CostOfLivingAllowance(BPEForSeniorSalary employee)
+    {
+        return (employee.SalaryDetermines * AnnuityPercentageInACollectiveAgreement(employee) * CostOfLiving);
     }
 }

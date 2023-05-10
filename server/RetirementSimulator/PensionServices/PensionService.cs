@@ -34,7 +34,7 @@ internal class PensionService
         }
 
     }
-    protected static double TotalYears(DateTime date_1, DateTime date_2)
+    protected static double TotalYears(DateTime start, DateTime end)
     {
         // well done
         try
@@ -42,7 +42,7 @@ internal class PensionService
             //double result;
             //var date1 = DateTime.Parse(date_1);
             //var date2 = DateTime.Parse(date_2);
-            TimeSpan interval = date_2 - date_1;
+            TimeSpan interval = start - end;
             double result = interval.TotalDays / DaysAYear;
             return Math.Round(result, 5);
         }

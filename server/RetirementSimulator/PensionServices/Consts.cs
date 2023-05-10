@@ -6,5 +6,6 @@ public static class Consts
     public const double CostOfLiving = 0.382; // תוספת יוקר
     public const double SalaryLimitedToCostIncrease = 45000; // גובה משכורת שממנה ומעלה הקצבה מוגבלת
     public const double AllowanceLimitedToCostOfLiving = 7824; // הגבלת הקצבה
+    public const double AnnualAnnuityPercentage = 0.02; //  עבור אחוז קיצבה שנתי 2%  
 }
 
