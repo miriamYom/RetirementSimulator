@@ -9,6 +9,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import BudgetPensionForSeniorSalary from './RetirementSimulator/UserSee/BudgetPensionForSeniorSalary';
 // import GeneralData from './RetirementSimulator/UserSee/GeneralData';
 import Header from './RetirementSimulator/Header';
+import PreviousNext from './RetirementSimulator/PreviousNext';
+
 function App() {
   return (
     <div>
@@ -16,6 +18,7 @@ function App() {
      {/* <Api></Api> */}
      {/* <CreateEmployee></CreateEmployee> */}
      <Header></Header>
+
         {/* <Routes>
         <Route exact path="/" element={<LoginPage></LoginPage>}/>
          <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
@@ -24,9 +27,8 @@ function App() {
          <Route exact path='BudgetPensionForSeniorSalary' element = {<BudgetPensionForSeniorSalary></BudgetPensionForSeniorSalary>}></Route>
          <Route exact path='GeneralData' element = {<GeneralData></GeneralData>}></Route>
          </Routes> */}
+         <PreviousNext></PreviousNext>
       </BrowserRouter>
-
-
      
     </div>
   );
