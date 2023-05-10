@@ -344,5 +344,4 @@ internal class BudgetPensionService : PensionService
     public virtual double TotalEstimatedAllowanceAmount(BudgetPensionEmployee employee)
         => CostOfLivingAllowance(employee) * AllowanceAmount(employee);
 
-
 }
