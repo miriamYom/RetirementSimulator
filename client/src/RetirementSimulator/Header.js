@@ -14,16 +14,14 @@ function Header() {
                 </a>
             </div>
             <div className="group-289328">
-
-                <p className="welcome">
-                    <img className='personIcon' src={personIcon}></img>
-                    היי someone</p>
+                <img className='personIcon' src={personIcon}></img>
+                <p className="welcome">היי someone</p>
             </div>
             <div className="group-289327">
                 <img className="vector-phone" src={phoneIcon}></img>
                 <p className="contact-us">צור קשר</p>
             </div>
-            <img className="logo-header" src={logo}></img>
+            <img className="logo-header" src={logo} onClick={() => { window.location.href = "https://simulator.michallcpa.co.il/HomeComponent" }}></img>
             <div className="line11"></div>
         </div>
     );

@@ -328,7 +328,7 @@ internal class BudgetPensionService : PensionService
     public static double CostOfLivingAllowance(BudgetPensionEmployee employee)
     {
         double allowance;
-
+        
         if (SalaryDetermines(employee) < SalaryLimitedToCostIncrease)
         {
             allowance = Math.Round(SalaryDetermines(employee) * CostOfLiving, 2);
@@ -336,7 +336,6 @@ internal class BudgetPensionService : PensionService
         else allowance = Math.Round(AllowanceLimitedToCostOfLiving * CostOfLiving, 2);
         return allowance;
     }
-
     /// <summary>
     /// Total estimated allowance amount
     /// סה"כ סכום הקצבה המשוערת
