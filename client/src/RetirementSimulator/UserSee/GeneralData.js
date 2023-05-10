@@ -14,6 +14,15 @@ const schema = yup.object().shape({
     id: yup.string().required(),
     birthDate: yup.date(),//min, max...
     startWorkDate: yup.date(),
+    retirementDate: yup.date().required(),
+    // reason:  enum
+    //isClothingForAudienceMembers: radio button
+    // IsThreeLevel: radio
+    // monthOfClothingPayment: enum
+    // IsCurrentYear: radio
+    //IsMonthlyRecoveryPayment: radio
+    numberOfDaysOfRecoveryToBePaid: yup.number().integer().min(8).max(13).required(),
+    //recoveryPaymentMonth: enum
 
 });
 
