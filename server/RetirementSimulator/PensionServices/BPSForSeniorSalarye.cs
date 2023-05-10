@@ -1,21 +1,15 @@
 ﻿using BL.DTO;
-using System.Text.Json;
 
 namespace BL.PensionServices;
 
 /// <summary>
 /// Budget Pension Service for Senior salary
 /// </summary>
-internal  class BPSForSeniorSalarye : BudgetPensionService
+internal class BPSForSeniorSalarye : BudgetPensionService
 {
     public BPSForSeniorSalarye()
     {
     }
-    //public void SetEmployee(string employee)
-    //{
-    //    var current = JsonSerializer.Deserialize<BPEForSeniorSalary>(employee);
-    //    this.Employee = current;
-    //}
     /// <summary>
     /// 
     /// לא נבדקו מקרי קצה :(
