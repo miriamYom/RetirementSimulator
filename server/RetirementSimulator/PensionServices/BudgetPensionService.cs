@@ -1,6 +1,5 @@
 ﻿using BL.DTO;
-using System.Data;
-using System.Text.Json;
+using BL.Enums;
 using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
@@ -12,67 +11,49 @@ internal class BudgetPensionService : PensionService
     {
 
     }
-    //public void SetEmployee(string employee)
-    //{
-    //    var current = JsonSerializer.Deserialize<BudgetPensionEmployee>(employee);
-    //    // Employee = current;
-    //}
 
-    
 
-    
-
-    
-    
     /// <summary>
     /// משכורת קובעת לפנסיה תקציבית למשרה מלאה
     /// במקרה שהזינו סכום תוספת שכר פנסיוני שלא מחושב לתקציבית,
-    /// אז יהי שנוי.
     /// </summary>
     /// <returns></returns>
     public static double SalaryDetermines(BudgetPensionEmployee employee)
     {
-        if(employee.)
-        employee.SalaryDetermines -= employee.SalaryIncreasesThatAreNotCalculated;
+        if (employee.SalaryIncreasesThatAreNotCalculated > 0)
+        {
+            employee.SalaryDetermines -= employee.SalaryIncreasesThatAreNotCalculated;
+        }
         return employee.SalaryDetermines;
     }
 
-    /// <summary>
-    /// function to calculate work period between 2 days
-    /// </summary>
-    /// <returns>Total working time</returns>
-    /// 
-    protected static double WorkPeriod(string start, string end)
-    {
-        //????????????????????????????????
-        return TotalYears(start, end);
-    }
+
 
     /// <summary>
     /// get data table with start date, end date and part time job and calculate the work periods.
     /// </summary>
     /// <returns> data table with the calculated column</returns>
-    public static DataTable TotalWorkPeriods(BudgetPensionEmployee employee)
+    public static void TotalWorkPeriods(BudgetPensionEmployee employee)
     {
-        DataTable table = employee.WorkPeriods;
-        // well done!!!
-        /*
-        try
-        {
-            DataColumn column = table.Columns.Add("Total work period", typeof(double));
-            //column.AllowDBNull = false;
+        //שהפונקציה תעדכן את הטבלה (שנמצאת בפרופרטיז של האמפלויי), אין צורך בהחזרתה
+        //DataTable table = employee.WorkPeriods;
 
-            var numOfRows = table.Rows.Count;
-            for (int i = 0; i < numOfRows; i++)
-            {
-                var TotalWorkPeriod = WorkPeriod(table.Rows[i][0].ToString(), table.Rows[i][1].ToString());
-                table.Rows[i][3] = Math.Round(TotalWorkPeriod, 2);
-            }
-        }
-        catch (Exception ex) { }
-        employee.WorkPeriods = table;
-        */
-        return table;
+        //try
+        //{
+        //    datacolumn column = table.columns.add("total work period", typeof(double));
+        //    //column.allowdbnull = false;
+
+        //    var numofrows = table.rows.count;
+        //    for (int i = 0; i < numofrows; i++)
+        //    {
+        //        var totalworkperiod = workperiod(table.rows[i][0].tostring(), table.rows[i][1].tostring());
+        //        table.rows[i][3] = math.round(totalworkperiod, 2);
+        //    }
+        //}
+        //catch (exception ex) { }
+        //employee.workperiods = table;
+
+        //return table;
 
     }
 
@@ -81,15 +62,8 @@ internal class BudgetPensionService : PensionService
     /// </summary>
     /// <returns>sum of work periods work</returns>
     /// <exception cref="InvalidDataException">if the value in the table is not a number</exception>
-    public static double TotalPeriodOfWorkAtTheAuthority(BudgetPensionEmployee employee)
+    public static double TotalPeriodAtTheAuthority(BudgetPensionEmployee employee)
     {
-        DataTable table = employee.WorkPeriods;
-        // well done!!!
-        return TotalPeriodOfWork(table);
-    }
-    protected static double TotalPeriodOfWork(DataTable table)
-    {
-        // well done!!!
         /*
         var numOfRows = table.Rows.Count;
         double sumOfWorkPeriods = 0;
@@ -111,16 +85,16 @@ internal class BudgetPensionService : PensionService
         */
         return 0;
     }
+
     /// <summary>
     /// function to calculate full work period according to partiality
     /// </summary>
     /// <param name="totalWorkPeriod"> work period in current job</param>
     /// <param name="partTimeJob">part time job</param>
     /// <returns></returns>
-    public static double FullWorkPeriodAccordingToPartiality(BudgetPensionEmployee employee)
+    public static void FullWorkPeriodAccordingToPartiality(BudgetPensionEmployee employee)
     {
-        // change this func
-        return TotalPeriodOfWorkAtTheAuthority(employee) * AveragePartTimeJobForRetirement(employee);
+        //שהפונקציה תעדכן את הטבלה (שנמצאת בפרופרטיז של האמפלויי), אין צורך בהחזרתה
     }
 
     /// <summary>
@@ -248,88 +222,87 @@ internal class BudgetPensionService : PensionService
     {
         return 4;//AveragePartTimeJob(employee.WorkPeriods);
     }
-    public static double AveragePartTimeJob(BudgetPensionEmployee employee)
-    {
-        return AveragePartTimeJob(employee.WorkPeriods);
-    }
-    protected static double AveragePartTimeJob(DataTable table)
-    {
-        /*
-        var numOfRows = table.Rows.Count;
-        double sumOfPeriods = 0;
-        double doubleValue;
-        double workPreiod;
-        for (int i = 0; i < numOfRows; i++)
-        {
-            string cellValue = table.Rows[i][2].ToString();
-            if (double.TryParse(cellValue, out doubleValue))
-            {
-                if (doubleValue >= 0.3329)
-                {
-                    if (double.TryParse(table.Rows[i][3].ToString(), out workPreiod))
-                        sumOfPeriods += workPreiod * doubleValue;
-                    else
-                    {
-                        throw new InvalidDataException("work period must be number");
-                    }
-                }
-            }
-            else
-            {
-                throw new InvalidDataException("work period must be number");
-            }
-        }
-        return Math.Round(sumOfPeriods, 2);
-        */
-        return 5;
-    }
+
+    //public static double AveragePartTimeJob(BudgetPensionEmployee employee)
+    //{
+    //    return AveragePartTimeJob(employee.WorkPeriods);
+    //}
+    //protected static double AveragePartTimeJob(DataTable table)
+    //{
+    //    /*
+    //    var numOfRows = table.Rows.Count;
+    //    double sumOfPeriods = 0;
+    //    double doubleValue;
+    //    double workPreiod;
+    //    for (int i = 0; i < numOfRows; i++)
+    //    {
+    //        string cellValue = table.Rows[i][2].ToString();
+    //        if (double.TryParse(cellValue, out doubleValue))
+    //        {
+    //            if (doubleValue >= 0.3329)
+    //            {
+    //                if (double.TryParse(table.Rows[i][3].ToString(), out workPreiod))
+    //                    sumOfPeriods += workPreiod * doubleValue;
+    //                else
+    //                {
+    //                    throw new InvalidDataException("work period must be number");
+    //                }
+    //            }
+    //        }
+    //        else
+    //        {
+    //            throw new InvalidDataException("work period must be number");
+    //        }
+    //    }
+    //    return Math.Round(sumOfPeriods, 2);
+    //    */
+    //    return 5;
+    //}
+
+    //------------------------------------------------------------------------------------------------------------------------------------------------
     // Calculating the allowance
     // חישוב הקצבה
 
-    public static double SalaryDetermines(BudgetPensionEmployee employee)
-    {
-        var salary =  employee.SalaryDetermines;
-        // fix:
-        // יופיע הסכום כפי שהזינו במסך 4,
-        // בניכוי תוספת פנסיונית שלא מהווה בסיס לפנסיה
-        return salary;
-    }
 
-    /// <summary>
-    /// A fixed salary for a full-time budget pension,
-    /// It will appear only in the case that you have entered a pension salary supplement amount that is not calculated for the budget pension.
-    /// The calculation: the total determining salary for a full-time position minus a pension supplement that does not constitute a basis for the budget pension.
-    /// </summary>
-    /// <param name="fixedSalaryForAFullTimePosition">Salary Determines At Age 60</param>
-    /// <param name="pensionSupplement">Salary Increases That Are Not Calculated</param>
-    /// <returns>A fixed salary for a full-time budget pension</returns>
-    public static double FixedSalaryForAFullTimePosition(BudgetPensionEmployee employee)
-    {
-        // well done ...
-        return 0;// fixedSalaryForAFullTimePosition - pensionSupplement;
-    }
-    /*
+
+    ///// <summary>
+    ///// A fixed salary for a full-time budget pension,
+    ///// It will appear only in the case that you have entered a pension salary supplement amount that is not calculated for the budget pension.
+    ///// The calculation: the total determining salary for a full-time position minus a pension supplement that does not constitute a basis for the budget pension.
+    ///// </summary>
+    ///// <param name="fixedSalaryForAFullTimePosition">Salary Determines At Age 60</param>
+    ///// <param name="pensionSupplement">Salary Increases That Are Not Calculated</param>
+    ///// <returns>A fixed salary for a full-time budget pension</returns>
+    //public static double FixedSalaryForAFullTimePosition(BudgetPensionEmployee employee)
+    //{
+    //    // well done ...
+    //    return 0;// fixedSalaryForAFullTimePosition - pensionSupplement;
+    //}
+
+
+
+
+
+
     /// <summary>
     /// calculate the full pension percentage
     /// אחוז קצבה מלא
     /// </summary>
     /// <param name="yearsOfWork"> sum of years that the employee worked</param>
     /// <returns>full pension percentage</returns>
-    public static double FullPensionPercentage(double yearsOfWork) => Math.Round(yearsOfWork * 0.2, 2);
+    public static double FullPensionPercentage(BudgetPensionEmployee employee) => Math.Round(TotalWorkingPeriodForRetirement(employee) * 0.2, 2);
 
     /// <summary>
     /// calculate the annuity percentage calculated
     /// אחוז קצבה מחושב
     /// </summary>
-    /// <param name="fullPensionPercentage"> full pension percentage </param>
-    /// <param name="averagePartTimeJob"> average part-time job </param>
     /// <returns> annuity percentage calculated </returns>
-    public static double AnnuityPercentageCalculated(double fullPensionPercentage, double averagePartTimeJob, bool isIDFRetires)
+    public static double AnnuityPercentageCalculated(BudgetPensionEmployee employee)
     {
-        double annuity = fullPensionPercentage * averagePartTimeJob;
+        double annuity = FullPensionPercentage(employee) * AveragePartTimeJobForRetirement(employee);
         if (annuity > 0.7)
         {
-            if (!isIDFRetires)
+            if (employee.Ownership != TheSignedOwnership.IDFSecurityForces)
             {
                 annuity = 0.7;
             }
@@ -344,29 +317,33 @@ internal class BudgetPensionService : PensionService
     /// <summary>
     /// sum of the allowance
     /// </summary>
-    /// <param name="allowancePercentage"> Annuity percentage calculated </param>
-    /// <param name="fixedSalary"> fixed salary</param>
     /// <returns>sum of the allowance</returns>
-    public static double AllowanceAmount(double allowancePercentage, double fixedSalary) => allowancePercentage * fixedSalary;
+    public static double AllowanceAmount(BudgetPensionEmployee employee) => AnnuityPercentageCalculated(employee) * SalaryDetermines(employee);
 
     /// <summary>
     /// cost of living allowance
     /// תוספת יוקר
     /// </summary>
-    /// <param name="fixedSalary">fixed salary</param>
     /// <returns>cost of living allowance</returns>
-    public static double CostOfLivingAllowance(double fixedSalary)
-        => Math.Round(fixedSalary * 0.382);
+    public static double CostOfLivingAllowance(BudgetPensionEmployee employee)
+    {
+        double allowance;
+
+        if (SalaryDetermines(employee) < SalaryLimitedToCostIncrease)
+        {
+            allowance = Math.Round(SalaryDetermines(employee) * CostOfLiving, 2);
+        }
+        else allowance = Math.Round(AllowanceLimitedToCostOfLiving * CostOfLiving, 2);
+        return allowance;
+    }
 
     /// <summary>
     /// Total estimated allowance amount
     /// סה"כ סכום הקצבה המשוערת
     /// </summary>
-    /// <param name="AllowanceAmount"> allowance amount</param>
-    /// <param name="costOfLivingAllowance">cost of living allowance</param>
     /// <returns>Total estimated allowance amount</returns>
-    public virtual double TotalEstimatedAllowanceAmount(double AllowanceAmount, double costOfLivingAllowance)
-        => AllowanceAmount + costOfLivingAllowance;
+    public virtual double TotalEstimatedAllowanceAmount(BudgetPensionEmployee employee)
+        => CostOfLivingAllowance(employee) * AllowanceAmount(employee);
 
-    */
+
 }
