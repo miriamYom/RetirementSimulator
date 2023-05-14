@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import Vacation from "../ScreenThree/Vacation";
+import { useNavigate } from "react-router-dom";
 
 function PersonalData() {
+
+    const navigate = useNavigate();
 
 
 
@@ -37,6 +40,7 @@ function PersonalData() {
 
 
     const [reason, setReason] = useState('retirementAge');
+    const [aaa, setA] = useState('');
 
     const Reason = e => {
         setReason(e.target.value);
@@ -84,11 +88,16 @@ function PersonalData() {
                         </>) : null}
                 </center>
 
+                
 
 
 
-                            
+
+
                 {/* <button onClick={<Vacation reg = {JSON.stringify(getValues())}></Vacation>}></button> */}
+
+                {/* try navigate */}
+                <button onClick={()=>{ setA(JSON.stringify(getValues())); navigate(`/Vacation/${aaa}`)}}>try me</button>
 
 
                 <button onClick={is_register}>update Vacation page</button> 
