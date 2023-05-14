@@ -2,33 +2,37 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
+import Vacation from "../ScreenThree/Vacation";
 
 function PersonalData() {
 
-const onSubmit = (data) => {
-    console.log(data);
-}
 
-const schema = yup.object().shape({
-    name: yup.string().required(),
-    id: yup.string().required(),
-    birthDate: yup.date(),//min, max...
-    startWorkDate: yup.date(),
-    retirementDate: yup.date().required(),
-    // reason:  enum
-    //isClothingForAudienceMembers: radio button
-    // IsThreeLevel: radio
-    // monthOfClothingPayment: enum
-    // IsCurrentYear: radio
-    //IsMonthlyRecoveryPayment: radio
-    numberOfDaysOfRecoveryToBePaid: yup.number().integer().min(8).max(13).required(),
-    //recoveryPaymentMonth: enum
 
-});
+    const onSubmit = (data) => {
+        console.log(data);
+    }
 
-const { register, handleSubmit, formState: {errors} } = useForm({
-    resolver: yupResolver(schema),
-});
+
+    const schema = yup.object().shape({
+        name: yup.string().required(),
+        id: yup.string().required(),
+        birthDate: yup.date(),//min, max...
+        startWorkDate: yup.date(),
+        retirementDate: yup.date().required(),
+        // reason:  enum
+        //isClothingForAudienceMembers: radio button
+        // IsThreeLevel: radio
+        // monthOfClothingPayment: enum
+        // IsCurrentYear: radio
+        //IsMonthlyRecoveryPayment: radio
+        numberOfDaysOfRecoveryToBePaid: yup.number().integer().min(8).max(13).required(),
+        //recoveryPaymentMonth: enum
+
+    });
+
+    const { register, handleSubmit, formState: { errors } , getValues} = useForm({
+        resolver: yupResolver(schema),
+    });
 
 
 
@@ -38,11 +42,15 @@ const { register, handleSubmit, formState: {errors} } = useForm({
         setReason(e.target.value);
     }
 
+    const is_register=()=>{
+        // console.log("in personal data" , register.data);
+    }
+
 
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)}>
-            <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br>
                 <center>
                     <input name="name" {...register('name')} placeholder="שם העובד"></input>
                     <br></br>
@@ -74,11 +82,23 @@ const { register, handleSubmit, formState: {errors} } = useForm({
                                 <option value="treeMonths">שלושה חודשים</option>
                             </select>
                         </>) : null}
-                    </center>
-                <input type="submit"></input>
+                </center>
+
+
+
+
+                            
+                {/* <button onClick={<Vacation reg = {JSON.stringify(getValues())}></Vacation>}></button> */}
+
+
+                <button onClick={is_register}>update Vacation page</button> 
+                <Vacation reg = {JSON.stringify(getValues())}></Vacation>
+
+
+
                 {/* מצב משפחתי */}
             </form>
-           
+
         </>
     )
 }
