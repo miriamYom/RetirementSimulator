@@ -25,9 +25,9 @@
 .logo-header {
     /* לבן לוגו מיכל לוי (1) 2 */
     position: absolute;
-    left: 90%;
-    top: 3px;
-    padding-top: 0.5%;
+    right: 30px;
+    top: 10px;
+    /* padding-top: 0.5%; */
     /* if you add the url below it adds with white border */
     /* background: url("../img/לבן לוגו מיכל לוי (1) 2.png"); */
 }
@@ -78,7 +78,7 @@
     position: absolute;
     width: 120px;
     height: 100%;
-    left: 2%;
+    left: 30px;
 }
 
 .vector-phone {
