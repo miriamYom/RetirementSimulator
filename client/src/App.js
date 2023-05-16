@@ -16,6 +16,7 @@ import Salary from "./RetirementSimulator/UserSee/ScreenThree/Salary";
 import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
 import Vacation from "./RetirementSimulator/UserSee/ScreenThree/Vacation";
 import ScreenOne from "./RetirementSimulator/UserSee/ScreenOne";
+import Sequence from "./RetirementSimulator/Sequence";
 
 function App() {
   return (
@@ -23,9 +24,10 @@ function App() {
      <BrowserRouter>
      {/* <Api></Api> */}
      {/* <CreateEmployee></CreateEmployee> */}
-     {/* <Header></Header> */}
+     <Header></Header>
+     <Sequence></Sequence>
         <Routes>
-        <Route exact path="/" element={<LoginPage></LoginPage>}/>
+        {/* <Route exact path="/" element={<LoginPage></LoginPage>}/>
          <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
          <Route exact path='BudgetPensin' element = {<BudgetPensin></BudgetPensin>}></Route>
          <Route exact path='AccrualPension' element = {<AccrualPension></AccrualPension>}></Route>
@@ -33,7 +35,7 @@ function App() {
          <Route exact path='GeneralData' element = {<GeneralData></GeneralData>}></Route>
          <Route exact path="Salary" element = {<Salary></Salary>}></Route>
          <Route exact path="ParsonalData" element = {<PersonalData></PersonalData>}></Route>
-         <Route exact path="Vacation" element = {<Vacation></Vacation>}></Route>
+         <Route exact path="Vacation" element = {<Vacation></Vacation>}></Route> */}
          </Routes>
          <PreviousNext></PreviousNext>
       </BrowserRouter>

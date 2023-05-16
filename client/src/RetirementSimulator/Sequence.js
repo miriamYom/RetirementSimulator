@@ -10,12 +10,11 @@ function Sequence() {
                 </div>
                 <div>
                     <ellipse className={page > 3 ? "ellipse-on" : "ellipse-off"}>
-                        {/* <p className="text-num-4">4</p> */}
                         {page > 3 ? "✔️" : "4"}
                     </ellipse>
                 </div>
                 <div>
-                    <div className={page > 2 ? "line-on" : "line-off"}></div>
+                    <hr className={page > 2 ? "line-on" : "line-off"}></hr>
                 </div>
                 <div>
                     <p className={page > 3 ? "text-on" : "text-off"}>סכומים ויתרות</p>
@@ -26,7 +25,7 @@ function Sequence() {
                     </ellipse>
                 </div>
                 <div>
-                    <div className={page > 1 ? "line-on" : "line-off"}></div>
+                    <hr className={page > 1 ? "line-on" : "line-off"}></hr>
                 </div>
                 <div>
                     <p className={page > 1 ? "text-on" : "text-off"}>נתונים כלליים</p>
@@ -37,7 +36,7 @@ function Sequence() {
                     </ellipse>
                 </div>
                 <div>
-                    <div className={page > 0 ? "line-on" : "line-off"}></div>
+                    <hr className={page > 0 ? "line-on" : "line-off"}></hr>
                 </div>
                 <div>
                     <p className={page > 0 ? "text-on" : "text-off"}>סוג פנסיה</p>
