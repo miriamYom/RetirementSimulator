@@ -6,11 +6,10 @@ function Header() {
 
     return (
         <div className='header'>
-            <div className="rec79"></div>
 
             <div className="frame39">
                 <a className="click-to-home-web" href='https://michallcpa.co.il/'>
-                    מעבר לדף הבית
+                    מעבר לאתר הבית
                 </a>
             </div>
             <div className="group-289328">

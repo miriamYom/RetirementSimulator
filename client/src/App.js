@@ -26,6 +26,7 @@ function App() {
      {/* <CreateEmployee></CreateEmployee> */}
      <Header></Header>
      <Sequence></Sequence>
+     {/* <ScreenOne></ScreenOne> */}
         <Routes>
         {/* <Route exact path="/" element={<LoginPage></LoginPage>}/>
          <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
