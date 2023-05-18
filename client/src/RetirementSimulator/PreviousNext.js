@@ -1,18 +1,22 @@
 import './PreviousNext.css';
+import { useNavigate } from "react-router-dom";
 
-function PreviousNext() {
 
+// the func get props who set witch page to go
+function PreviousNext(props) {
+    const navigate = useNavigate();
     return (
         <div className="group-289375">
-            <div className="group-289377">
-                <button className="button1">
-                    <p className="large-button1">הקודם</p>
-                </button>
-                <button className="button2">
-                    <p className="large-button2">הבא</p>
-                </button>
-                {/* <div className="rect-2411"></div>  */}
-            </div>
+            {props.previous !== "null" ? (<button className="button1"
+                onClick={() => {
+                    navigate(`/${props.previous}`)
+                }}>
+                הקודם</button>) : (null)}
+
+            <button className="button2" onClick={() => {
+                navigate(`/${props.next}`)
+            }}>
+                {props.next === "calculats" ? "חשב" : "הבא"}</button>
         </div>
     );
 }

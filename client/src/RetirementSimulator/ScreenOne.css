@@ -1,0 +1,17 @@
+.card{
+    margin: 10px;
+    width: 80%;
+    
+}
+.card-header{
+    text-align: right;
+}
+.card-body{
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+.btn{
+    width: 250px;
+    height: 50px;
+    margin: 5px;
+}

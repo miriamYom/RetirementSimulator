@@ -1,21 +1,15 @@
 .group-289375 {
     /* Group 289375 */
     position: absolute;
-    width: 90%;
-    height: 10%;
+    width: 100%;
+    height: 65px;
     /* top: 90%; */
-bottom: 5%;
-left: 3%;
-}
+    bottom: 0%;
+    left: 0%;
+    background-color: #FFFFFF;
+    /* Drop Shadow */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
 
-.group-289377 {
-    /* Group 289377 */
-    position: absolute;
-    width: inherit;
-    height: inherit;
-    left: 0px;
-    /* top: 90%; */
-bottom: 0%;
 }
 
 .button1 {
@@ -31,30 +25,18 @@ bottom: 0%;
     position: absolute;
     width: 140px;
     height: 46px;
-    left: 150px;
+    left: 200px;
     /* top: 1140px; */
-    bottom: 2%;
+    bottom: 10px;
 
     border: 1.5px solid #457FF0;
     border-radius: 8px;
-}
-
-.large-button1 {
-    /* Large Button */
-    width: 49px;
-    height: 25px;
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 140%;
-    /* or 25px */
     color: #457FF0;
-    /* Inside auto layout */
+    font-family: 'Rubik';
+    font-size: 18px;
     flex: none;
     order: 0;
     flex-grow: 0;
-    z-index: 2;
 }
 
 .button2 {
@@ -75,37 +57,13 @@ bottom: 0%;
     background: #457FF0;
     border-radius: 8px;
     border: none;
-    float: right;
-}
-
-.large-button2 {
-    /* Large Button */
-    width: 33px;
-    height: 25px;
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 140%;
-    /* or 25px */
-    /* White */
+    left: 30px;
     color: #FFFFFF;
-    /* Inside auto layout */
+    font-family: 'Rubik';
+    font-size: 18px;
     flex: none;
     order: 0;
     flex-grow: 0;
-}
+    bottom: 10px;
 
-.rect-2411 {
-    /* Rectangle 2411 */
-    position: absolute;
-    width: 1728px;
-    height: 106px;
-    left: 0px;
-    top: 1115px;
-
-    background: #FFFFFF;
-    /* Drop Shadow */
-
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
 }
