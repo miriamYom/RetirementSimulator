@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Vacation from "./UserSee/ScreenThree/Vacation";
 import PreviousNext from "./PreviousNext";
 import "./ScreenOne.css"
+import Sequence from "./Sequence";
 
 function ScreenOne() {
     const navigate = useNavigate();
@@ -20,6 +21,7 @@ function ScreenOne() {
     const aaa = "pppp"
     return (
         <>
+        <Sequence page="1"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">סוג פנסיה</div>
                 <div class="card-body">

@@ -1,52 +1,48 @@
 import "./Sequence.css";
+import { VscCheck } from "react-icons/vsc";
 
-function Sequence() {
-    let page = 1;
+function Sequence(props) {
+    let page = 2;//parseInt(props.page);
+
+    const arr = [{}, {}];
+
     return (
-        <div className="group-289334">
-            <div className="group-90">
-                <div>
-                    <p className={page > 3 ? "text-on" : "text-off"}>חלקיות משרה</p>
-                </div>
-                <div>
-                    <ellipse className={page > 3 ? "ellipse-on" : "ellipse-off"}>
-                        {page > 3 ? "✔️" : "4"}
-                    </ellipse>
-                </div>
-                <div>
-                    <hr className={page > 2 ? "line-on" : "line-off"}></hr>
-                </div>
-                <div>
-                    <p className={page > 3 ? "text-on" : "text-off"}>סכומים ויתרות</p>
-                </div>
-                <div>
-                    <ellipse className={page > 2 ? "ellipse-on" : "ellipse-off"}>
-                        {page > 2 ? "✔️" : "3"}
-                    </ellipse>
-                </div>
-                <div>
-                    <hr className={page > 1 ? "line-on" : "line-off"}></hr>
-                </div>
-                <div>
-                    <p className={page > 1 ? "text-on" : "text-off"}>נתונים כלליים</p>
-                </div>
-                <div>
-                    <ellipse className={page > 1 ? "ellipse-on" : "ellipse-off"}>
-                        {page > 1 ? "✔️" : "2"}
-                    </ellipse>
-                </div>
-                <div>
-                    <hr className={page > 0 ? "line-on" : "line-off"}></hr>
-                </div>
-                <div>
-                    <p className={page > 0 ? "text-on" : "text-off"}>סוג פנסיה</p>
-                </div>
-                <div>
-                    <ellipse className={page > 0 ? "ellipse-on" : "ellipse-off"}>
-                        {page > 0 ? "✔️" : "1"}
-                    </ellipse>
-                </div>
-            </div>
+        <div className="sequence">
+            <ellipse className={page < 2 ? (page === 1 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
+                {page > 1 ? <VscCheck /> : "1"}
+            </ellipse>
+            <p className={page < 2 ? (page === 1 ? "text t-current" : "text t-before") : "text t-after"}>
+                סוג פנסיה
+            </p>
+            <hr className={page < 2 ? (page === 1 ? "line l-current" : "line l-befor") : "line l-after"}>
+            </hr>
+
+            <ellipse className={page < 3 ? (page === 2 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
+                {page > 2 ? <VscCheck /> : "2"}
+            </ellipse>
+            <p className={page < 3 ? (page === 2 ? "text t-current" : "text t-before") : "text t-after"}>
+                נתונים כלליים
+            </p>
+            <hr className={page < 3 ? (page === 2 ? "line l-current" : "line l-before") : "line l-after"}>
+            </hr>
+
+            <ellipse className={page < 4 ? (page === 3 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
+                {page > 2 ? <VscCheck /> : "3"}
+            </ellipse>
+            <p className={page < 4 ? (page === 3 ? "text t-current" : "text t-before") : "text t-after"}>
+                נתונים כלליים
+            </p>
+            <hr className={page < 5 ? (page === 4 ? "line l-current" : "line l-before") : "line l-after"}>
+            </hr>
+
+            <ellipse className={page < 5 ? (page === 4 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
+                {page > 2 ? <VscCheck /> : "4"}
+            </ellipse>
+            <p className={page < 5 ? (page === 4 ? "text t-current" : "text t-before") : "text t-after"}>
+                חלקיות משרה
+            </p>
+
+
         </div>
     );
 }
