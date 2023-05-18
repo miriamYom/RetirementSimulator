@@ -2,7 +2,7 @@ import "./Sequence.css";
 import { VscCheck } from "react-icons/vsc";
 
 function Sequence(props) {
-    let page = 2;//parseInt(props.page);
+    let page = parseInt(props.page);
 
     const arr = [{}, {}];
 

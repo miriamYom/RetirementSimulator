@@ -16,6 +16,7 @@ import Header from './RetirementSimulator/Header';
 // import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
 import Vacation from "./RetirementSimulator/UserSee/ScreenThree/Vacation";
 import ScreenOne from "./RetirementSimulator/ScreenOne";
+import ScreenTwo from "./RetirementSimulator/ScreenTow";
 // import Sequence from "./RetirementSimulator/Sequence";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
         <Routes>
         {/* <Route exact path="/" element={<LoginPage></LoginPage>}/> */}
          <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
+         <Route exact path="ScreenTow" element={<ScreenTwo></ScreenTwo>}></Route>
          {/* <Route exact path='BudgetPensin' element = {<BudgetPensin></BudgetPensin>}></Route> */}
          {/* <Route exact path='AccrualPension' element = {<AccrualPension></AccrualPension>}></Route> */}
          {/* <Route exact path='BudgetPensionForSeniorSalary' element = {<BudgetPensionForSeniorSalary></BudgetPensionForSeniorSalary>}></Route> */}

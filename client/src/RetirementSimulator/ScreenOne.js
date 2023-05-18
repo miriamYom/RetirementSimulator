@@ -48,7 +48,7 @@ function ScreenOne() {
 
                 </div>
             </div>
-            <PreviousNext next="Vacation" previous="null"></PreviousNext>
+            <PreviousNext next="ScreenTow" previous="null"></PreviousNext>
         </>
     )
 }

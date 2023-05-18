@@ -6,6 +6,8 @@
 .card-header{
     text-align: right;
     background-color: rgb(255, 255, 255) !important;
+    font-family: 'Rubik';
+    font-style: italic;
 }
 .card-body{
     text-align: center;
