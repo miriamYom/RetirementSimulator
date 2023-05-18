@@ -1,6 +1,6 @@
 // דע כי ה... הוא הנותן... לעשות חיל
 import "@fontsource/rubik"; 
-
+import "./App.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LoginPage from './RetirementSimulator/else/LoginPage';
 // import Api from './RetirementSimulator/Else/Api';
@@ -20,7 +20,7 @@ import ScreenOne from "./RetirementSimulator/ScreenOne";
 
 function App() {
   return (
-    <div style={{"direction":"rtl","textAlign":"center"}}>
+    <div className="App">
      <BrowserRouter>
      {/* <Api></Api> */}
      {/* <CreateEmployee></CreateEmployee> */}
