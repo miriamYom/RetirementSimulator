@@ -300,6 +300,23 @@ internal class BudgetPensionService : PensionService
     public static double AnnuityPercentageCalculated(BudgetPensionEmployee employee)
     {
         double annuity = FullPensionPercentage(employee) * AveragePartTimeJobForRetirement(employee);
+
+        if (employee.SignedCopyrightContinuity == true)
+        {
+            if (employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority) //חתם עם המדינה
+            {
+                annuity += employee.PercentagePensionFromPreviousWorkplace;
+            }
+            else if (employee.Ownership == TheSignedOwnership.oldFunds) //חתם עם קרנות ותיקות
+            {
+                annuity = (AllowanceAmount(employee) * employee.PercentagePensionFromPreviousWorkplace) / employee.SalaryDetermines;
+            }
+            else if (employee.Ownership == TheSignedOwnership.IDFSecurityForces) 
+            {
+                annuity = (AllowanceAmount(employee) + AllowanceIsPaidFromTheIDFAndOrTheSecurityForces(employee)) / employee.SalaryDeterminesPensionInIDF;
+            }
+        }
+
         if (annuity > 0.7)
         {
             if (employee.Ownership != TheSignedOwnership.IDFSecurityForces)
@@ -311,6 +328,8 @@ internal class BudgetPensionService : PensionService
                 annuity = 0.76;
             }
         }
+
+
         return annuity;
     }
 
@@ -328,7 +347,7 @@ internal class BudgetPensionService : PensionService
     public static double CostOfLivingAllowance(BudgetPensionEmployee employee)
     {
         double allowance;
-        
+
         if (SalaryDetermines(employee) < SalaryLimitedToCostIncrease)
         {
             allowance = Math.Round(SalaryDetermines(employee) * CostOfLiving, 2);
@@ -341,7 +360,75 @@ internal class BudgetPensionService : PensionService
     /// סה"כ סכום הקצבה המשוערת
     /// </summary>
     /// <returns>Total estimated allowance amount</returns>
-    public virtual double TotalEstimatedAllowanceAmount(BudgetPensionEmployee employee)
-        => CostOfLivingAllowance(employee) * AllowanceAmount(employee);
+    public static  double TotalEstimatedAllowanceAmount(BudgetPensionEmployee employee)
+    {
+        double allowance = CostOfLivingAllowance(employee) + AllowanceAmount(employee);
+        if (employee.SignedCopyrightContinuity == true)
+        {
+            if (employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority) //חתם עם המדינה
+            {
+                allowance += employee.PercentagePensionFromPreviousWorkplace;
+            }
+            else if (employee.Ownership == TheSignedOwnership.IDFSecurityForces) //חתם עם המדינה
+            {
+                allowance += AllowanceIsPaidFromTheIDFAndOrTheSecurityForces(employee);
+            }
+
+        }
+        return allowance;
+    }
+    /// <summary>
+    /// סכום הקצבה המשוערת לאחר התאמה ל-70%
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double TotalEstimatedAllowanceAmountLimitedTo70Percentage(BudgetPensionEmployee employee)
+    {
+        if(TotalEstimatedAllowanceAmount(employee) > SeventyPercent)
+        {
+            //employee.SalaryDetermines * 
+        }
+        return 0;
+    }
+    /// <summary>
+    /// קצבה משולמת מצה"ל ו/או כוחות הביטחון
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double AllowanceIsPaidFromTheIDFAndOrTheSecurityForces(BudgetPensionEmployee employee)
+    {
+        return employee.SalaryDeterminesPensionInIDF * employee.PercentagePensionFromPreviousWorkplace;
+    }
+    /// <summary>
+    /// מספר ימי חופשה לפדיון
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double NumberOfVacationDaysToBeRedeemed(BudgetPensionEmployee employee)
+    {
+        double days = employee.RemainingVacationDaysInRetirement;
+
+        if (days < RemainingVacationDays + DateTime.Now.Month * 1.83)
+        {
+            return days;
+        }
+        return RemainingVacationDays + DateTime.Now.Month * 1.83;
+    }
+
+    /// <summary>
+    /// ערך יום
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ADaysWorth(BudgetPensionEmployee employee)
+    {
+       if(employee.IsFiveBusinessDays == true)
+        {
+            return employee.SalaryDetermines / 21.67;
+        }
+
+        return employee.SalaryDetermines / 26;
+    }
+    
 
 }

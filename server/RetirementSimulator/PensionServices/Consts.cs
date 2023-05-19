@@ -7,5 +7,7 @@ public static class Consts
     public const double SalaryLimitedToCostIncrease = 45000; // גובה משכורת שממנה ומעלה הקצבה מוגבלת
     public const double AllowanceLimitedToCostOfLiving = 7824; // הגבלת הקצבה
     public const double AnnualAnnuityPercentage = 0.02; //  עבור אחוז קיצבה שנתי 2%  
+    public const int RemainingVacationDays = 55; //יתרת ימי חופשה
+    public const int SeventyPercent = 70;
 }
 
