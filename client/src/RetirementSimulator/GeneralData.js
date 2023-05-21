@@ -8,6 +8,9 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
+import PersonalData from "./generalData/PersonalData";
+import BudgetPensin from "./UserSee/BudgetPension";
+import AccrualPension from "./generalData/AccrualPension";
 
 
 const Accordion = styled((props) => (
@@ -68,12 +71,9 @@ function GeneralData() {
                             <Typography>נתונים אישיים</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
+                            {/* <Typography> */}
+                               <PersonalData></PersonalData>
+                            {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
                     <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -81,12 +81,9 @@ function GeneralData() {
                             <Typography>פנסיה תקציבית </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
+                            {/* <Typography> */}
+                               <BudgetPensin></BudgetPensin>
+                            {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
                     <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
@@ -94,12 +91,9 @@ function GeneralData() {
                             <Typography>פנסיה צוברת</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <Typography>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                                malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum dolor
-                                sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                                sit amet blandit leo lobortis eget.
-                            </Typography>
+                            {/* <Typography> */}
+                               <AccrualPension></AccrualPension>
+                            {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
 
