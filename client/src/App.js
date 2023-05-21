@@ -1,4 +1,6 @@
 // דע כי ה... הוא הנותן... לעשות חיל
+//ריאקט מטריאל
+//https://mui.com/material-ui/react-switch/
 import "@fontsource/rubik"; 
 import "./App.css";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -13,11 +15,12 @@ import LoginPage from './RetirementSimulator/else/LoginPage';
 import Header from './RetirementSimulator/Header';
 // import PreviousNext from './RetirementSimulator/PreviousNext';
 // import Salary from "./RetirementSimulator/UserSee/ScreenThree/Salary";
-// import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
+import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
 import Vacation from "./RetirementSimulator/UserSee/ScreenThree/Vacation";
 import GeneralData from "./RetirementSimulator/GeneralData";
 import PensionType from "./RetirementSimulator/PensionType";
 import Start from "./Start";
+
 
 function App() {
   return (
@@ -36,8 +39,9 @@ function App() {
          {/* <Route exact path='BudgetPensionForSeniorSalary' element = {<BudgetPensionForSeniorSalary></BudgetPensionForSeniorSalary>}></Route> */}
          {/* <Route exact path='GeneralData' element = {<GeneralData></GeneralData>}></Route> */}
          {/* <Route exact path="Salary" element = {<Salary></Salary>}></Route> */}
-         {/* <Route exact path="ParsonalData" element = {<PersonalData></PersonalData>}></Route> */}
+         <Route exact path="ParsonalData" element = {<PersonalData></PersonalData>}></Route>
          <Route exact path="Vacation" element = {<Vacation></Vacation>}></Route>
+
          </Routes>
       </BrowserRouter>
      

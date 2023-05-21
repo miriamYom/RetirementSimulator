@@ -13,13 +13,19 @@ import "./style/PensionType.css"
 import Sequence from "./Sequence";
 import React from 'react';
 
+//לסדר מבחינת הקוד, הקודם והבא שיגיע אובייקט עם הנתונים 
 function PensionType() {
     const navigate = useNavigate();
 
     const [isBudgetPension, setIsBudget] = useState(false);
     const [isCollectiveAgrementOnly, setIsCollectiveAgreementOnly] = useState(true);
 
-    const aaa = "pppp"
+    const employeeDetails = {"isBudgetPension": "true"}; //empty object, change to register
+
+    const nextPageWithEmployeeDetails = () => {
+        navigate('/GeneralData', { state: { data: employeeDetails } });
+    };
+    
     return (
         <>
             <Sequence page="1"></Sequence>
@@ -50,7 +56,8 @@ function PensionType() {
 
                 </div>
             </div>
-            <PreviousNext next="GeneralData" previous="null"></PreviousNext>
+            <button onClick={nextPageWithEmployeeDetails}>go to general data with employee details</button>
+            <PreviousNext next="GeneralData" previous="null" /*data={employeeDetails}*/></PreviousNext>
         </>
     )
 }

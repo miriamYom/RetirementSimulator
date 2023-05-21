@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import PersonalData from "./generalData/PersonalData";
 import BudgetPensin from "./UserSee/BudgetPension";
 import AccrualPension from "./generalData/AccrualPension";
+import { useLocation } from 'react-router-dom';
 
 
 const Accordion = styled((props) => (
@@ -56,10 +57,12 @@ function GeneralData() {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-
+    const location = useLocation();
+    const data = location.state.data;
 
     return (
         <>
+        <h1>{data.pensionType}</h1>
             <Sequence page="2"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">נתונים כלליים</div>

@@ -1,27 +1,24 @@
-// import { useParams } from "react-router-dom";
-
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Vacation(){
+function Vacation() {
 
-    const navigate = useNavigate();
+    const location = useLocation();
+    const data = location.state.data;
 
-    const {aaa} = useParams()
-
-
-
-    // const {regi} = useParams();
-    // const reg = props.reg;
-    // console.log("registerrr === ", reg)
-
-    return(
-
-
-        <>
-        <h1>Vacation</h1>
-        <h1>{aaa}</h1>
-        </>
-    )
+    const objectValues = Object.values(data);
+    return (
+        <div>
+            <div>
+                {objectValues.map((value, index) => (
+                    <p key={index}>{value}</p>
+                ))}
+            </div>
+            <p>Name: {data.name}</p>
+            {/* <p>Age: {data.age}</p> */}
+        </div>
+    );
 }
 export default Vacation;

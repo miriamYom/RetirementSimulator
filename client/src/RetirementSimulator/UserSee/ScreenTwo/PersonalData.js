@@ -16,6 +16,10 @@ function PersonalData() {
     }
 
 
+    const goToVactionWithRegister = () => {
+        navigate('/Vacation', { state: { data: getValues() } });
+    };
+
     const schema = yup.object().shape({
         name: yup.string().required(),
         id: yup.string().required(),
@@ -33,21 +37,21 @@ function PersonalData() {
 
     });
 
-    const { register, handleSubmit, formState: { errors } , getValues} = useForm({
+    const { register, handleSubmit, formState: { errors }, getValues } = useForm({
         resolver: yupResolver(schema),
     });
 
 
 
     const [reason, setReason] = useState('retirementAge');
-    const [aaa, setA] = useState('');
+
 
     const Reason = e => {
         setReason(e.target.value);
     }
 
-    const is_register=()=>{
-        // console.log("in personal data" , register.data);
+    const get_my_register = () => {
+        console.log("in personal data", getValues());
     }
 
 
@@ -88,25 +92,11 @@ function PersonalData() {
                         </>) : null}
                 </center>
 
-                
-
-
-
-
-
-                {/* <button onClick={<Vacation reg = {JSON.stringify(getValues())}></Vacation>}></button> */}
-
-                {/* try navigate */}
-                <button onClick={()=>{ setA(JSON.stringify(getValues())); navigate(`/Vacation/${aaa}`)}}>try me</button>
-
-
-                <button onClick={is_register}>update Vacation page</button> 
-                <Vacation reg = {JSON.stringify(getValues())}></Vacation>
-
-
+                <button onClick={get_my_register}>get_my_register</button>
 
                 {/* מצב משפחתי */}
             </form>
+            <button onClick={goToVactionWithRegister}>Go to vaction Component</button>
 
         </>
     )
