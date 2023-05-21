@@ -72,7 +72,7 @@ function GeneralData() {
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}
-                               <PersonalData></PersonalData>
+                            <PersonalData></PersonalData>
                             {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
@@ -82,7 +82,7 @@ function GeneralData() {
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}
-                               <BudgetPensin></BudgetPensin>
+                            <BudgetPensin></BudgetPensin>
                             {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
@@ -92,7 +92,7 @@ function GeneralData() {
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}
-                               <AccrualPension></AccrualPension>
+                            <AccrualPension></AccrualPension>
                             {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>

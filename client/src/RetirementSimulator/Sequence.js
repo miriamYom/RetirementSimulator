@@ -2,11 +2,11 @@ import "./style/Sequence.css";
 import { VscCheck } from "react-icons/vsc";
 
 function Sequence(props) {
-    let page =parseInt(props.page);
+    let page = parseInt(props.page);
 
     return (
         <div className="sequence">
-            
+
             <p className="title">חישוב זכויות פרישה</p>
             <ellipse className={page < 2 ? (page === 1 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
                 {page > 1 ? <VscCheck /> : "1"}
@@ -21,7 +21,7 @@ function Sequence(props) {
                 {page > 2 ? <VscCheck /> : "2"}
             </ellipse>
             <p className={page < 3 ? (page === 2 ? "text t-current" : "text t-before") : "text t-after"}>
-                נתונים כלליים
+                סכומים ויתרות – נתוני העובד
             </p>
             <hr className={page < 3 ? (page === 2 ? "line l-current" : "line l-before") : "line l-after"}>
             </hr>
