@@ -21,7 +21,7 @@ function Sequence(props) {
                 {page > 2 ? <VscCheck /> : "2"}
             </ellipse>
             <p className={page < 3 ? (page === 2 ? "text t-current" : "text t-before") : "text t-after"}>
-                סכומים ויתרות – נתוני העובד
+                נתונים כלליים
             </p>
             <hr className={page < 3 ? (page === 2 ? "line l-current" : "line l-before") : "line l-after"}>
             </hr>
@@ -30,7 +30,7 @@ function Sequence(props) {
                 {page > 3 ? <VscCheck /> : "3"}
             </ellipse>
             <p className={page < 4 ? (page === 3 ? "text t-current" : "text t-before") : "text t-after"}>
-                נתונים כלליים
+                סכומים ויתרות – נתוני העובד
             </p>
             <hr className={page < 5 ? (page === 4 ? "line l-current" : "line l-before") : "line l-after"}>
             </hr>
