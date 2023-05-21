@@ -2,9 +2,7 @@ import "./style/Sequence.css";
 import { VscCheck } from "react-icons/vsc";
 
 function Sequence(props) {
-    let page = parseInt(props.page);
-
-    const arr = [{}, {}];
+    let page =parseInt(props.page);
 
     return (
         <div className="sequence">
@@ -29,7 +27,7 @@ function Sequence(props) {
             </hr>
 
             <ellipse className={page < 4 ? (page === 3 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
-                {page > 2 ? <VscCheck /> : "3"}
+                {page > 3 ? <VscCheck /> : "3"}
             </ellipse>
             <p className={page < 4 ? (page === 3 ? "text t-current" : "text t-before") : "text t-after"}>
                 נתונים כלליים
@@ -38,7 +36,7 @@ function Sequence(props) {
             </hr>
 
             <ellipse className={page < 5 ? (page === 4 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
-                {page > 2 ? <VscCheck /> : "4"}
+                {page > 4 ? <VscCheck /> : "4"}
             </ellipse>
             <p className={page < 5 ? (page === 4 ? "text t-current" : "text t-before") : "text t-after"}>
                 חלקיות משרה
