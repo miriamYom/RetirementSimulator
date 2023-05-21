@@ -1,4 +1,4 @@
-import './PreviousNext.css';
+import './style/PreviousNext.css';
 import { useNavigate } from "react-router-dom";
 
 
@@ -9,12 +9,12 @@ function PreviousNext(props) {
         <div className="group-289375">
             {props.previous !== "null" ? (<button className="button1"
                 onClick={() => {
-                    navigate(`/${props.previous}`)
+                    navigate(`/${props.previous}`,{ replace: true });
                 }}>
                 הקודם</button>) : (null)}
 
             <button className="button2" onClick={() => {
-                navigate(`/${props.next}`)
+                navigate(`/${props.next}`,{ replace: true });
             }}>
                 {props.next === "calculats" ? "חשב" : "הבא"}</button>
         </div>

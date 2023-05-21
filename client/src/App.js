@@ -15,9 +15,9 @@ import Header from './RetirementSimulator/Header';
 // import Salary from "./RetirementSimulator/UserSee/ScreenThree/Salary";
 // import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
 import Vacation from "./RetirementSimulator/UserSee/ScreenThree/Vacation";
-import ScreenOne from "./RetirementSimulator/ScreenOne";
-import ScreenTwo from "./RetirementSimulator/ScreenTow";
-// import Sequence from "./RetirementSimulator/Sequence";
+import GeneralData from "./RetirementSimulator/GeneralData";
+import PensionType from "./RetirementSimulator/PensionType";
+import Start from "./Start";
 
 function App() {
   return (
@@ -26,13 +26,11 @@ function App() {
      {/* <Api></Api> */}
      {/* <CreateEmployee></CreateEmployee> */}
      <Header></Header>
-     {/* <div style={{"width":"100%", "height":"65px","backgroundColor":"red"}}></div> */}
-     {/* <Sequence></Sequence> */}
-     <ScreenOne></ScreenOne>
         <Routes>
         {/* <Route exact path="/" element={<LoginPage></LoginPage>}/> */}
-         <Route exact path="ScreenOne" element={<ScreenOne></ScreenOne>}></Route>
-         <Route exact path="ScreenTow" element={<ScreenTwo></ScreenTwo>}></Route>
+        <Route exact path="/" element={<Start></Start>}/>
+         <Route exact path="PensionType" element={<PensionType></PensionType>}></Route>
+         <Route exact path="GeneralData" element={<GeneralData></GeneralData>}></Route>
          {/* <Route exact path='BudgetPensin' element = {<BudgetPensin></BudgetPensin>}></Route> */}
          {/* <Route exact path='AccrualPension' element = {<AccrualPension></AccrualPension>}></Route> */}
          {/* <Route exact path='BudgetPensionForSeniorSalary' element = {<BudgetPensionForSeniorSalary></BudgetPensionForSeniorSalary>}></Route> */}

@@ -1,4 +1,4 @@
-import './Header.css';
+import './style/Header.css';
 import logo from "../img/לבן לוגו מיכל לוי (1) 2.png";
 import phoneIcon from "../img/phone.png";
 import personIcon from "../img/person.png";

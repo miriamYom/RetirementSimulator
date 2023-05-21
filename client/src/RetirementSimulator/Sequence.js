@@ -1,4 +1,4 @@
-import "./Sequence.css";
+import "./style/Sequence.css";
 import { VscCheck } from "react-icons/vsc";
 
 function Sequence(props) {
@@ -8,6 +8,8 @@ function Sequence(props) {
 
     return (
         <div className="sequence">
+            
+            <p className="title">חישוב זכויות פרישה</p>
             <ellipse className={page < 2 ? (page === 1 ? "ellipse e-current" : "ellipse e-before") : "ellipse e-after"}>
                 {page > 1 ? <VscCheck /> : "1"}
             </ellipse>

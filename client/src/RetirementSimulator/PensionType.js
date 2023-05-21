@@ -9,10 +9,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // import Vacation from "./ScreenThree/Vacation";
 import Vacation from "./UserSee/ScreenThree/Vacation";
 import PreviousNext from "./PreviousNext";
-import "./ScreenOne.css"
+import "./style/PensionType.css"
 import Sequence from "./Sequence";
+import React from 'react';
 
-function ScreenOne() {
+function PensionType() {
     const navigate = useNavigate();
 
     const [isBudgetPension, setIsBudget] = useState(false);
@@ -21,15 +22,16 @@ function ScreenOne() {
     const aaa = "pppp"
     return (
         <>
-        <Sequence page="1"></Sequence>
+            <Sequence page="1"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">סוג פנסיה</div>
                 <div class="card-body">
                     <p>איזה סוג פנסיה תרצה לחשב?</p>
 
+
                     <button className="btn btn-outline-primary" onClick={() => {
                         setIsBudget(true);
-                    }}>פנסיה תקציבית</button>
+                    }}> פנסיה תקציבית </button>
                     <button name="accrualBtn" className="btn btn-outline-primary" >פנסיה צוברת</button>
                     <br></br>
                     <br></br>
@@ -48,8 +50,8 @@ function ScreenOne() {
 
                 </div>
             </div>
-            <PreviousNext next="ScreenTow" previous="null"></PreviousNext>
+            <PreviousNext next="GeneralData" previous="null"></PreviousNext>
         </>
     )
 }
-export default ScreenOne;
+ export default PensionType;
