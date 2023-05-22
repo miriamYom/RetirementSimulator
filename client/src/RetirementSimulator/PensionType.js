@@ -37,7 +37,7 @@ function PensionType() {
 
                     <button className="btn btn-outline-primary" onClick={() => {
                         setIsBudget(true);
-                        employeeDetails.isBudgetPension
+                        // employeeDetails.isBudgetPension
                     }}> פנסיה תקציבית </button>
                     <button name="accrualBtn" className="btn btn-outline-primary" >פנסיה צוברת</button>
                     <br></br>
