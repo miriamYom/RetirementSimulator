@@ -12,22 +12,22 @@ internal class BudgetPensionService : PensionService
 
     }
 
-
     /// <summary>
     /// משכורת קובעת לפנסיה תקציבית למשרה מלאה
-    /// במקרה שהזינו סכום תוספת שכר פנסיוני שלא מחושב לתקציבית,
     /// </summary>
     /// <returns></returns>
     public static double SalaryDetermines(BudgetPensionEmployee employee)
     {
-        if (employee.SalaryIncreasesThatAreNotCalculated > 0)
-        {
-            employee.SalaryDetermines -= employee.SalaryIncreasesThatAreNotCalculated;
+        if (employee.SignedCopyrightContinuity) {
+            if (employee.Ownership == TheSignedOwnership.IDFSecurityForces || 
+                employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority)
+            {
+                return employee.SalaryDeterminesPensionInIDF > employee.SalaryDetermines ?
+                    employee.SalaryDeterminesPensionInIDF : employee.SalaryDetermines;
+            }
         }
         return employee.SalaryDetermines;
     }
-
-
 
     /// <summary>
     /// get data table with start date, end date and part time job and calculate the work periods.
@@ -278,11 +278,6 @@ internal class BudgetPensionService : PensionService
     //    // well done ...
     //    return 0;// fixedSalaryForAFullTimePosition - pensionSupplement;
     //}
-
-
-
-
-
 
     /// <summary>
     /// calculate the full pension percentage

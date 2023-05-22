@@ -37,7 +37,7 @@ function PensionType() {
 
                     <button className="btn btn-outline-primary" onClick={() => {
                         setIsBudget(true);
-                        // employeeDetails.isBudgetPension
+                        employeeDetails.isBudgetPension = "true";
                     }}> פנסיה תקציבית </button>
                     <button name="accrualBtn" className="btn btn-outline-primary" >פנסיה צוברת</button>
                     <br></br>
@@ -57,7 +57,7 @@ function PensionType() {
 
                 </div>
             </div>
-            <button onClick={nextPageWithEmployeeDetails}>go to general data with employee details</button>
+            {/* <button onClick={nextPageWithEmployeeDetails}>go to general data with employee details</button> */}
             <PreviousNext next="GeneralData" previous="null" /*data={employeeDetails}*/></PreviousNext>
         </>
     )
