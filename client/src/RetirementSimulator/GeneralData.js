@@ -57,12 +57,14 @@ function GeneralData() {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    // const location = useLocation();
-    // const data = location.state.data;
+    const location = useLocation();
+    const data = location.state.data;
 
     return (
         <>
-        {/* <h1>{data.pensionType}</h1> */}
+        <h1>{data.name}</h1>
+        <h1>{data.id}</h1>
+        {console.log(data)}
             <Sequence page="2"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">נתונים כלליים</div>

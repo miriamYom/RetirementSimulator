@@ -20,7 +20,7 @@ function PensionType() {
     const [isBudgetPension, setIsBudget] = useState(false);
     const [isCollectiveAgrementOnly, setIsCollectiveAgreementOnly] = useState(true);
 
-    const employeeDetails = {"isBudgetPension": "true"}; //empty object, change to register
+    const employeeDetails = {name: "yehudit", id: 214256190}; //empty object, change to register
 
     const nextPageWithEmployeeDetails = () => {
         navigate('/GeneralData', { state: { data: employeeDetails } });
@@ -37,6 +37,7 @@ function PensionType() {
 
                     <button className="btn btn-outline-primary" onClick={() => {
                         setIsBudget(true);
+                        employeeDetails.isBudgetPension
                     }}> פנסיה תקציבית </button>
                     <button name="accrualBtn" className="btn btn-outline-primary" >פנסיה צוברת</button>
                     <br></br>
