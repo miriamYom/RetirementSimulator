@@ -1,4 +1,6 @@
-﻿namespace BL.PensionServices;
+﻿using System.Runtime.ConstrainedExecution;
+
+namespace BL.PensionServices;
 public static class Consts
 {
     public const int Months = 12;
@@ -9,5 +11,6 @@ public static class Consts
     public const double AnnualAnnuityPercentage = 0.02; //  עבור אחוז קיצבה שנתי 2%  
     public const int RemainingVacationDays = 55; //יתרת ימי חופשה
     public const int SeventyPercent = 70;
+    public const double AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs5Days = 21.67;
+    public const double AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs6Days = 21.67;
 }
-

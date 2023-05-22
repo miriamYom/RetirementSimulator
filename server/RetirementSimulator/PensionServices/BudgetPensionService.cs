@@ -9,7 +9,6 @@ internal class BudgetPensionService : PensionService
 {
     public BudgetPensionService()
     {
-
     }
 
     /// <summary>
@@ -18,8 +17,28 @@ internal class BudgetPensionService : PensionService
     /// <returns></returns>
     public static double SalaryDetermines(BudgetPensionEmployee employee)
     {
-        if (employee.SignedCopyrightContinuity) {
-            if (employee.Ownership == TheSignedOwnership.IDFSecurityForces || 
+      /*  if (employee.SignedCopyrightContinuity)
+        {
+            if (employee.Ownership == TheSignedOwnership.IDFSecurityForces ||
+                employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority)
+            {
+                return employee.SalaryDeterminesPensionInIDF > employee.SalaryDetermines ?
+                    employee.SalaryDeterminesPensionInIDF : employee.SalaryDetermines;
+            }
+        }*/
+        return employee.SalaryDetermines;
+    }
+    /// <summary>
+    /// רלוונטי אם חתם על הסכם רציפות זכויות עם המדינה או רשות מקומית או אם צה"ל 
+    ///  הפונקציה מחזירה את המשכורת הגבוהה יותר- או בצהל או ברשות
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double HigherSalaryDetermines(BudgetPensionEmployee employee)
+    {
+        if (employee.SignedCopyrightContinuity)
+        {
+            if (employee.Ownership == TheSignedOwnership.IDFSecurityForces ||
                 employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority)
             {
                 return employee.SalaryDeterminesPensionInIDF > employee.SalaryDetermines ?
@@ -28,7 +47,6 @@ internal class BudgetPensionService : PensionService
         }
         return employee.SalaryDetermines;
     }
-
     /// <summary>
     /// get data table with start date, end date and part time job and calculate the work periods.
     /// </summary>
@@ -285,7 +303,8 @@ internal class BudgetPensionService : PensionService
     /// </summary>
     /// <param name="yearsOfWork"> sum of years that the employee worked</param>
     /// <returns>full pension percentage</returns>
-    public static double FullPensionPercentage(BudgetPensionEmployee employee) => Math.Round(TotalWorkingPeriodForRetirement(employee) * 0.2, 2);
+    public static double FullPensionPercentage(BudgetPensionEmployee employee) 
+        => Math.Round(TotalWorkingPeriodForRetirement(employee) * AnnualAnnuityPercentage, 2);
 
     /// <summary>
     /// calculate the annuity percentage calculated
@@ -294,45 +313,31 @@ internal class BudgetPensionService : PensionService
     /// <returns> annuity percentage calculated </returns>
     public static double AnnuityPercentageCalculated(BudgetPensionEmployee employee)
     {
-        double annuity = FullPensionPercentage(employee) * AveragePartTimeJobForRetirement(employee);
+        double annuity;
 
-        if (employee.SignedCopyrightContinuity == true)
-        {
-            if (employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority) //חתם עם המדינה
-            {
-                annuity += employee.PercentagePensionFromPreviousWorkplace;
-            }
-            else if (employee.Ownership == TheSignedOwnership.oldFunds) //חתם עם קרנות ותיקות
-            {
-                annuity = (AllowanceAmount(employee) * employee.PercentagePensionFromPreviousWorkplace) / employee.SalaryDetermines;
-            }
-            else if (employee.Ownership == TheSignedOwnership.IDFSecurityForces) 
-            {
-                annuity = (AllowanceAmount(employee) + AllowanceIsPaidFromTheIDFAndOrTheSecurityForces(employee)) / employee.SalaryDeterminesPensionInIDF;
-            }
-        }
-
-        if (annuity > 0.7)
-        {
-            if (employee.Ownership != TheSignedOwnership.IDFSecurityForces)
-            {
-                annuity = 0.7;
-            }
-            else if (annuity > 0.76)
-            {
-                annuity = 0.76;
-            }
-        }
-
+        annuity = FullPensionPercentage(employee) * AveragePartTimeJobForRetirement(employee);
 
         return annuity;
+    }
+
+    public static double TotalAllowancePercentage(BudgetPensionEmployee employee)
+    {
+        double allowance = 0;
+        if (employee.SignedCopyrightContinuity)
+        {
+            if(employee.Ownership ==TheSignedOwnership.theStateOrLocalAuthority) { 
+            allowance = 6;
+            }
+        }
+        return allowance;
     }
 
     /// <summary>
     /// sum of the allowance
     /// </summary>
     /// <returns>sum of the allowance</returns>
-    public static double AllowanceAmount(BudgetPensionEmployee employee) => AnnuityPercentageCalculated(employee) * SalaryDetermines(employee);
+    public static double AllowanceAmount(BudgetPensionEmployee employee) 
+        => AnnuityPercentageCalculated(employee) * SalaryDetermines(employee);
 
     /// <summary>
     /// cost of living allowance
@@ -360,14 +365,15 @@ internal class BudgetPensionService : PensionService
         double allowance = CostOfLivingAllowance(employee) + AllowanceAmount(employee);
         if (employee.SignedCopyrightContinuity == true)
         {
-            if (employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority) //חתם עם המדינה
+            if (employee.Ownership == TheSignedOwnership.theStateOrLocalAuthority) // או רשות מקומית חתם עם המדינה
             {
-                allowance += employee.PercentagePensionFromPreviousWorkplace;
+                allowance += employee.PercentagePensionFromPreviousWorkplace * HigherSalaryDetermines(employee);
             }
-            else if (employee.Ownership == TheSignedOwnership.IDFSecurityForces) //חתם עם המדינה
+            else if (employee.Ownership == TheSignedOwnership.IDFSecurityForces) //חתם עם צה"ל
             {
                 allowance += AllowanceIsPaidFromTheIDFAndOrTheSecurityForces(employee);
             }
+
 
         }
         return allowance;
@@ -394,36 +400,8 @@ internal class BudgetPensionService : PensionService
     {
         return employee.SalaryDeterminesPensionInIDF * employee.PercentagePensionFromPreviousWorkplace;
     }
-    /// <summary>
-    /// מספר ימי חופשה לפדיון
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <returns></returns>
-    public static double NumberOfVacationDaysToBeRedeemed(BudgetPensionEmployee employee)
-    {
-        double days = employee.RemainingVacationDaysInRetirement;
+    
 
-        if (days < RemainingVacationDays + DateTime.Now.Month * 1.83)
-        {
-            return days;
-        }
-        return RemainingVacationDays + DateTime.Now.Month * 1.83;
-    }
-
-    /// <summary>
-    /// ערך יום
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <returns></returns>
-    public static double ADaysWorth(BudgetPensionEmployee employee)
-    {
-       if(employee.IsFiveBusinessDays == true)
-        {
-            return employee.SalaryDetermines / 21.67;
-        }
-
-        return employee.SalaryDetermines / 26;
-    }
     
 
 }

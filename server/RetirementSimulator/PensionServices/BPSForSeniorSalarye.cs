@@ -41,4 +41,6 @@ internal class BPSForSeniorSalarye : BudgetPensionService
     {
         return (employee.SalaryDetermines * AnnuityPercentageInACollectiveAgreement(employee) * CostOfLiving);
     }
+
+
 }

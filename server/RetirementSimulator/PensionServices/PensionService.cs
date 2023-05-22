@@ -1,4 +1,5 @@
 ﻿using BL.DTO;
+using System;
 using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
@@ -74,6 +75,120 @@ internal class PensionService
     {
         //well done
         return TotalYears(employee.StartWorkDate, employee.RetirementDate);
+    }
+    public static double NumberOfVacationDaysToBeRedeemed(BudgetPensionEmployee employee)
+    {
+        double days = employee.RemainingVacationDaysInRetirement;
+
+        if (days < RemainingVacationDays + DateTime.Now.Month * 1.83)
+        {
+            return days;
+        }
+        return RemainingVacationDays + DateTime.Now.Month * 1.83;
+    }
+
+    /// <summary>
+    /// ערך יום
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ADaysWorth(BudgetPensionEmployee employee)
+    {
+        if (employee.IsFiveBusinessDays == true)
+        {
+            return employee.SalaryDetermines / AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs5Days;
+        }
+
+        return employee.SalaryDetermines / AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs6Days;
+    }
+    // --------------------------------חופשה-------------------------------
+    /// <summary>
+    /// מספר ימי חופשה לפדיון
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double NumberOfVacationDaysToBeRedeemed(Employee employee)
+    {
+        double days = employee.RemainingVacationDaysInRetirement;
+
+        if (days < RemainingVacationDays + DateTime.Now.Month * 1.83)
+        {
+            return days;
+        }
+        return RemainingVacationDays + DateTime.Now.Month * 1.83;
+    }
+
+    /// <summary>
+    /// ערך יום
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ADaysWorth(Employee employee)
+    {
+        if (employee.IsFiveBusinessDays == true)
+        {
+            return employee.SalaryDetermines / AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs5Days;
+        }
+
+        return employee.SalaryDetermines / AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs6Days;
+    }
+    /// <summary>
+    /// סה"כ פדיון ימי חופשה
+    /// פונקציה חסרה
+    /// </summary>
+    /// <returns></returns>
+    public static double TotalRedemptionOfVacationDays(Employee employee)
+    {
+        double x = NumberOfVacationDaysToBeRedeemed(employee) * ADaysWorth(employee);
+        if (employee.IsAggregationByParts == false)
+        {
+            //חלקיות משרת העובד בשנת הפרישה
+            //אין לזה שם משתנה עדיין
+            //לקרוא לשם משתנה חלקיות משרה אחרונה
+            x *= 1; 
+        }
+        return x;
+    }
+
+   //-----------------------------פיצוי בגין ימי מחלה שלא נוצלו
+   /// <summary>
+   /// האם זכאי לפיצוי בכלל
+   /// </summary>
+   /// <param name="employee"></param>
+   /// <returns></returns>
+   protected static bool IsEntitled(Employee employee)
+    {
+        bool flag = false;
+        if (employee.Reason == Enums.RetirementReason.dismissal)
+        {
+            if(YearsOfWorkAtTheAuthority(employee) >= 3)
+            {
+                flag = true;
+            }
+        }
+        else if(employee.Reason == Enums.RetirementReason.retirementForHealthReasons)
+        {
+            if(YearsOfWorkAtTheAuthority(employee) >= 5)
+            {
+                flag = true;
+            }
+        }
+        else if (EmployeesAgeAtRetirement(employee) >= 50)
+        {
+            if(YearsOfWorkAtTheAuthority(employee) >= 10)
+            {
+                flag = true;
+            }
+        }
+        if (flag)
+        {
+            if(employee.IsAggregationByParts)
+            {
+                30 * YearsOfWorkAtTheAuthority(employee) * //נותר לחשב שלא ניצל יותר מ65 אחוז מימי המחלה שלו
+            }
+            
+        }
+        return false;
     }
 }
 
