@@ -1,6 +1,8 @@
-import "./style/PensionType.css"
-import Sequence from "./Sequence";
-import PreviousNext from "./PreviousNext";
+// import "./style/PensionType.css"
+// import './style/GeneralData.css';
+
+import Sequence from "../Sequence";
+import PreviousNext from "../PreviousNext";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -8,9 +10,9 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import PersonalData from "./generalData/PersonalData";
-import BudgetPensin from "./UserSee/BudgetPension";
-import AccrualPension from "./generalData/AccrualPension";
+import PersonalData from "./PersonalData";
+// import BudgetPensin from "./UserSee/BudgetPension";
+import AccrualPension from "./AccrualPension";
 import { useLocation } from 'react-router-dom';
 
 
@@ -57,14 +59,11 @@ function GeneralData() {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    // const location = useLocation();
-    // const data = location.state.data;
+    const location = useLocation();
+    const data = location.state.data;
 
     return (
         <>
-        {/* <h1>{data.name}</h1>
-        <h1>{data.id}</h1>
-        <h1>{data.isBudgetPension}</h1> */}
         {/* {console.log(data)} */}
             <Sequence page="2"></Sequence>
             <div class="card bg-light mb-3">
@@ -74,7 +73,7 @@ function GeneralData() {
 
                     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-                            <Typography>נתונים אישיים</Typography>
+                            <Typography className="title">נתונים אישיים</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}
@@ -84,17 +83,17 @@ function GeneralData() {
                     </Accordion>
                     <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-                            <Typography>פנסיה תקציבית </Typography>
+                            <Typography className="title">פנסיה תקציבית </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}
-                            <BudgetPensin></BudgetPensin>
+                            {/* <BudgetPensin></BudgetPensin> */}
                             {/* </Typography> */}
                         </AccordionDetails>
                     </Accordion>
                     <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-                            <Typography>פנסיה צוברת</Typography>
+                            <Typography className="title">פנסיה צוברת</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
                             {/* <Typography> */}

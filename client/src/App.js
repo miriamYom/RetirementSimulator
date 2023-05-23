@@ -15,11 +15,11 @@ import LoginPage from './RetirementSimulator/else/LoginPage';
 import Header from './RetirementSimulator/Header';
 // import PreviousNext from './RetirementSimulator/PreviousNext';
 // import Salary from "./RetirementSimulator/UserSee/ScreenThree/Salary";
-import PersonalData from "./RetirementSimulator/UserSee/ScreenTwo/PersonalData";
 import Vacation from "./RetirementSimulator/UserSee/ScreenThree/Vacation";
-import GeneralData from "./RetirementSimulator/GeneralData";
+import GeneralData from "./RetirementSimulator/ScreenTwo-GeneralData/GeneralData";
 import PensionType from "./RetirementSimulator/PensionType";
 import Start from "./Start";
+import PersonalData from "./RetirementSimulator/ScreenTwo-GeneralData/PersonalData";
 
 
 function App() {

@@ -40,5 +40,5 @@ text-align: right;
      flex-grow: 0;
      width: 250px;
      margin-top: 0;
-     border: 0.01px solid rgba(128, 128, 128, 0.411);
+     /* border: 0.01px solid rgba(128, 128, 128, 0.411); */
 }
