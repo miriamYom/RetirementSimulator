@@ -20,6 +20,7 @@ import GeneralData from "./RetirementSimulator/ScreenTwo-GeneralData/GeneralData
 import PensionType from "./RetirementSimulator/PensionType";
 import Start from "./Start";
 import PersonalData from "./RetirementSimulator/ScreenTwo-GeneralData/PersonalData";
+import Details from "./RetirementSimulator/ScreenThree-GeneralData/Details";
 
 
 function App() {
@@ -41,6 +42,7 @@ function App() {
          {/* <Route exact path="Salary" element = {<Salary></Salary>}></Route> */}
          <Route exact path="ParsonalData" element = {<PersonalData></PersonalData>}></Route>
          <Route exact path="Vacation" element = {<Vacation></Vacation>}></Route>
+         <Route exact path="Details" element = {<Details></Details>}></Route>
 
          </Routes>
       </BrowserRouter>
