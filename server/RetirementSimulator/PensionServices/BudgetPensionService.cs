@@ -1,5 +1,6 @@
 ﻿using BL.DTO;
 using BL.Enums;
+using DL.Tables;
 using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
@@ -51,6 +52,7 @@ internal class BudgetPensionService : PensionService
     /// get data table with start date, end date and part time job and calculate the work periods.
     /// </summary>
     /// <returns> data table with the calculated column</returns>
+    //למה כל החישובים של התקופות עבודה נמצאים כאן? ולא באמפלויי רגיל?
     public static void TotalWorkPeriods(BudgetPensionEmployee employee)
     {
         //שהפונקציה תעדכן את הטבלה (שנמצאת בפרופרטיז של האמפלויי), אין צורך בהחזרתה
@@ -400,8 +402,29 @@ internal class BudgetPensionService : PensionService
     {
         return employee.SalaryDeterminesPensionInIDF * employee.PercentagePensionFromPreviousWorkplace;
     }
-    
+    //---------------------------------------מחלה
+    /// <summary>
+    /// אחוז פיצוי
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double CompensationPercentage(Employee employee)
+    {
+        int age = (int)EmployeesAgeAtRetirement(employee);
+        double percentage;
+        if (employee.Reason == Enums.RetirementReason.death || employee.Reason == Enums.RetirementReason.retirementForHealthReasons)
+        {
+            percentage = 1; // 100% compensation
+        }
+        else if (IsEntitled(employee)) // if eligible in terms of age and seniority 
+        {
+            CompensationPercentagesForSickness compensationPercentages = new(); //singleton
+            percentage = compensationPercentages.AgesAndPercentsBudgetePension[age] / 100;
+        }
+        else percentage = 0;
+        return percentage;
 
-    
+    }
+
 
 }

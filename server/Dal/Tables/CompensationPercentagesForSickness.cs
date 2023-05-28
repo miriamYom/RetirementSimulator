@@ -3,8 +3,8 @@
 public class CompensationPercentagesForSickness
 {
     static string PATH = "../../../אחוזי פיצוי לפדיון מחלה.csv";
-    public Dictionary<int, string> AgesAndPercentsAccrualPension { get; }
-    public Dictionary<int, string> AgesAndPercentsBudgetePension { get; }
+    public Dictionary<int, int> AgesAndPercentsAccrualPension { get; }
+    public Dictionary<int, int> AgesAndPercentsBudgetePension { get; }
 
     /// <summary>
     /// The ctor initializes the 2 dictionaries with the values it receives from data tables. 
@@ -15,15 +15,15 @@ public class CompensationPercentagesForSickness
     /// </summary>
     public CompensationPercentagesForSickness()
     {
-        AgesAndPercentsAccrualPension = new Dictionary<int, string>();
-        AgesAndPercentsBudgetePension = new Dictionary<int, string>();
+        AgesAndPercentsAccrualPension = new Dictionary<int, int>();
+        AgesAndPercentsBudgetePension = new Dictionary<int, int>();
 
         DataTable dataTable = ReadFromExcel.RaedToTable(PATH);
 
         foreach (DataRow row in dataTable.Rows)
         {
-            AgesAndPercentsAccrualPension.Add(Convert.ToInt16(row[0]), Convert.ToString(row[2]));
-            AgesAndPercentsBudgetePension.Add(Convert.ToInt16(row[0]), Convert.ToString(row[1]));
+            AgesAndPercentsAccrualPension.Add(Convert.ToInt16(row[0]), Convert.ToInt16(row[2]));
+            AgesAndPercentsBudgetePension.Add(Convert.ToInt16(row[0]), Convert.ToInt16(row[1]));
         }
 
     }

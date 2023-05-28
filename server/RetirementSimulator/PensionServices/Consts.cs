@@ -13,4 +13,10 @@ public static class Consts
     public const int SeventyPercent = 70;
     public const double AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs5Days = 21.67;
     public const double AverageNumberDaysOfEmploymentPerMonthPerEmployeeIs6Days = 21.67;
+    public const int SickDaysPerYear = 30; //צבירת ימי מחלה לשנה
+    public const double UtilizationPercentage35 = 0.35; //אחוז ניצול לימי מחלה, עד 35 אחוז
+    public const double UtilizationPercentage65 = 0.65; //אחוז ניצול לימי מחלה, עד 65 אחוז
+    public const double WorthDayOfSickness = 25; //ערך יום לימי מחלה
+
+
 }

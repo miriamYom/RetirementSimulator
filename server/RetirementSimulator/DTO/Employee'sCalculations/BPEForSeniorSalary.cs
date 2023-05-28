@@ -11,11 +11,7 @@ public class BPEForSeniorSalary : BudgetPensionEmployee
     /// משכורת קובעת
     /// </summary>
     public double DeterminedSalaryByCollectiveAgreement { get; set; }
-    /// <summary>
-    /// אופן צבירת המחלה - צבירה מלאה / צבירה לפי חלקיות
-    /// Full accrual / partial accrual
-    /// </summary>
-    public bool IsFullAccrual { get; set; }
+
     /// <summary>
     /// יתרת ימי מחלה במועד המעבר לשכר בכירים
     /// </summary>

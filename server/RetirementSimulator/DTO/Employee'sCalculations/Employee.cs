@@ -147,6 +147,11 @@ public class Employee
     /// </summary>
     public int RemainingSickDays { get; set; }
     /// <summary>
+    /// אופן צבירת המחלה - צבירה מלאה / צבירה לפי חלקיות
+    /// Full accrual / partial accrual
+    /// </summary>
+    public bool IsFullAccrual { get; set; }
+    /// <summary>
     /// יתרת ימי חופשה בפרישה
     /// </summary>
     public int RemainingVacationDaysInRetirement { get; set; }
