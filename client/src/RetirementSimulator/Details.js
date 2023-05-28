@@ -1,8 +1,8 @@
-// import "./style/PensionType.css"
-// import './style/GeneralData.css';
+import './style/Card.css';
+import './style/Accordion.css';
 
-import Sequence from "../Sequence";
-import PreviousNext from "../PreviousNext";
+import Sequence from "./Sequence";
+import PreviousNext from "./PreviousNext";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -11,9 +11,9 @@ import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom';
-import Clothing from "./Clothing";
+import Clothing from "./ScreenThree-Details/Clothing";
 
-
+//#region accordion
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -49,6 +49,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
+//#endregion
 
 function Details() {
 
@@ -57,12 +58,13 @@ function Details() {
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
-    
+
+    const location = useLocation();
+    let employeeDetails = location.state.data;
 
     return (
         <>
-        {/* {console.log(data)} */}
-            <Sequence page="2"></Sequence>
+            <Sequence page="3"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">נתונים כלליים</div>
                 <div class="card-body">
@@ -73,61 +75,57 @@ function Details() {
                             <Typography className="title">ביגוד</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
-                        <Clothing></Clothing>
-                            {/* </Typography> */}
+                            <Typography>
+                                <Clothing></Clothing>
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
+
                     <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
                             <Typography className="title">הבראה</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
-                            {/* <BudgetPensin></BudgetPensin> */}
-                            {/* </Typography> */}
+                            <Typography>
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
+
                     <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">משכורת</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
-                            {/* <AccrualPension></AccrualPension> */}
-                            {/* </Typography> */}
+                            <Typography>
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
 
-                    
-                    <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+
+                    <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">מחלה</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
-                            {/* <AccrualPension></AccrualPension> */}
-                            {/* </Typography> */}
+                            <Typography>
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                    <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">חופשה</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
-                            {/* <AccrualPension></AccrualPension> */}
-                            {/* </Typography> */}
+                            <Typography>
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
-
 
                 </div>
             </div>
 
-            
-            <PreviousNext next="Vacation" previous="PensionType"></PreviousNext>
+            <PreviousNext next="PartTimeJob" previous="GeneralData" data={employeeDetails}></PreviousNext>
         </>
     )
 }

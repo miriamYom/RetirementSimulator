@@ -71,11 +71,12 @@
     color: #E9E9E9;
 }
 
-.title {
+.top-title {
     font-family: 'Rubik';
     font-style: normal;
     font-weight: 700;
     font-size: 34px;
     line-height: 40px;
     color: #142E2B;
+    text-align: center;
 }

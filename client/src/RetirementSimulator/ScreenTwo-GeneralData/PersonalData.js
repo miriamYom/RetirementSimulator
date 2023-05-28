@@ -1,5 +1,5 @@
 import { useState } from "react";
-import '../style/PersonalData.css';
+// import '../style/PersonalData.css';
 import { useLocation } from 'react-router-dom';
 
 // לסדר שלא יהיה אפשר לעבור לשלב הבא בלי להזין את כל הנתונים

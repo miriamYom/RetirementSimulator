@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import PreviousNext from "../PreviousNext";
 
 export default function Clothing() {
 

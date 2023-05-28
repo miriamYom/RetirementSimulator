@@ -1,29 +1,16 @@
+import "./style/Card.css";
+import "./style/PensionType.css";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-// import AccrualPension from "./AccrualPension";
-// import AccrualPension from "./UserSee/AccrualPension";
-// import BudgetPensin from "./BudgetPension";
-// import BudgetPensin from "./UserSee/BudgetPension";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import Vacation from "./ScreenThree/Vacation";
-import Vacation from "./UserSee/ScreenThree/Vacation";
 import PreviousNext from "./PreviousNext";
-import "./style/PensionType.css"
 import Sequence from "./Sequence";
 import React from 'react';
 
 function PensionType() {
-    const navigate = useNavigate();
-
     const [isBudgetPension, setIsBudget] = useState(false);
     const [isCollectiveAgrementOnly, setIsCollectiveAgreementOnly] = useState(true);
 
     const employeeDetails = {}; //empty object, change to register?
-
-    const nextPageWithEmployeeDetails = () => {
-        navigate('/GeneralData', { state: { data: employeeDetails } });
-    };
 
     return (
         <>
@@ -48,17 +35,9 @@ function PensionType() {
 
                     {employeeDetails.isBudgetPension = isBudgetPension}
                     {employeeDetails.isCollectiveAgrement = isCollectiveAgrementOnly}
-                    {/* <button onClick={() =>
-                        { isBudgetPension === true && isCollectiveAgrementOnly === true ?
-                         navigate(`/BudgetPensin`) : isBudgetPension === true ?
-                          navigate(`/BudgetPensionForSeniorSalary`) : navigate(`/AccrualPension`) }}>הבא</button> */}
-                    {/* <Vacation register={aaa}></Vacation> */}
-                    {/* <button onClick={navigate(`/Vacation`)<Vacation></}>Vacation</button> */}
-
                 </div>
             </div>
-            <button onClick={nextPageWithEmployeeDetails}>go to general data with employee details</button>
-            <PreviousNext next="GeneralData" previous="null" /*data={employeeDetails}*/></PreviousNext>
+             <PreviousNext next="GeneralData" previous="null" data={employeeDetails}></PreviousNext>
         </>
     )
 }

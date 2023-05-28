@@ -1,8 +1,8 @@
-// import "./style/PensionType.css"
-// import './style/GeneralData.css';
+import './style/Card.css';
+import './style/Accordion.css';
 
-import Sequence from "../Sequence";
-import PreviousNext from "../PreviousNext";
+import Sequence from "./Sequence";
+import PreviousNext from "./PreviousNext";
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import ArrowForwardIosSharpIcon from '@mui/icons-material/ArrowForwardIosSharp';
@@ -10,12 +10,11 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import PersonalData from "./PersonalData";
-// import BudgetPensin from "./UserSee/BudgetPension";
-import AccrualPension from "./AccrualPension";
-import { useLocation, useNavigate } from 'react-router-dom';
+import PersonalData from "./ScreenTwo-GeneralData/PersonalData";
+import AccrualPension from "./ScreenTwo-GeneralData/AccrualPension";
+import { useLocation } from 'react-router-dom';
 
-
+//#region eccordion
 const Accordion = styled((props) => (
     <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -51,6 +50,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
     padding: theme.spacing(2),
     borderTop: '1px solid rgba(0, 0, 0, .125)',
 }));
+//#endregion
 
 function GeneralData() {
 
@@ -63,16 +63,14 @@ function GeneralData() {
     const location = useLocation();
     const data = location.state.data;
 
-    const navigate = useNavigate();
+    // const employeeDetails = {};
+    let employeeDetails = data;
 
-    const nextPageWithEmployeeDetails = () => {
-        navigate('/Details', { state: { data: data } });
-    };
+
     
-
     return (
         <>
-        {/* {console.log(data)} */}
+        {console.log(data)}
             <Sequence page="2"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">נתונים כלליים</div>
@@ -84,9 +82,9 @@ function GeneralData() {
                             <Typography className="title">נתונים אישיים</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
+                            <Typography>
                             <PersonalData></PersonalData>
-                            {/* </Typography> */}
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
@@ -94,9 +92,9 @@ function GeneralData() {
                             <Typography className="title">פנסיה תקציבית </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
+                            <Typography>
                             {/* <BudgetPensin></BudgetPensin> */}
-                            {/* </Typography> */}
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
                     <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
@@ -104,9 +102,9 @@ function GeneralData() {
                             <Typography className="title">פנסיה צוברת</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                            {/* <Typography> */}
+                            <Typography>
                             <AccrualPension></AccrualPension>
-                            {/* </Typography> */}
+                            </Typography>
                         </AccordionDetails>
                     </Accordion>
 
@@ -114,8 +112,7 @@ function GeneralData() {
                 </div>
             </div>
 
-            <button onClick={nextPageWithEmployeeDetails}>go to details with data</button>
-            <PreviousNext next="Details" previous="PensionType"></PreviousNext>
+            <PreviousNext next="Details" previous="PensionType" data={employeeDetails}></PreviousNext>
         </>
     )
 }
