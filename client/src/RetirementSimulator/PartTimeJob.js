@@ -4,13 +4,16 @@ import './style/Table.css';
 import Sequence from "./Sequence";
 import PreviousNext from "./PreviousNext";
 import PartialityTable from './ScreenFour-PartTimeJob/PartialityTable';
+import { useLocation } from 'react-router-dom';
 
 function PartTimeJob() {
     var dateobj = new Date();
 
     const location = useLocation();
     let employeeDetails = location.state.data;
-    
+
+    let enableNext = false;
+
     return (
         <>
             <Sequence page="4"></Sequence>
@@ -24,13 +27,13 @@ function PartTimeJob() {
                         <label className='p2-pg4'>על המשתמש להזין אחוז , בין 0% ל- 100%</label>
                         <input className='input-pg4'></input>
                         <p className='p1-pg4'>חלקיות משרת העובד בשנת הפרישה - {dateobj.getFullYear()-1}: </p>
-                        <label className='p2-pg4'>על המשתמש להזין אחוז , בין 0% ל- 100%</label>x
+                        <label className='p2-pg4'>על המשתמש להזין אחוז , בין 0% ל- 100%</label>
                         <input className='input-pg4'></input>
                     </div>
                 </div>
             </div>
 
-            <PreviousNext next="calculations" previous="Details" data={employeeDetails}></PreviousNext>
+            <PreviousNext next="Calculation" data={employeeDetails} enableNext={enableNext}></PreviousNext>
 
         </>
     );

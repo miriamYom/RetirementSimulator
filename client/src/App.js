@@ -10,9 +10,11 @@ import PensionType from "./RetirementSimulator/PensionType";
 import Start from "./Start";
 import Details from "./RetirementSimulator/Details";
 import PartTimeJob from "./RetirementSimulator/PartTimeJob";
+import Calculation from "./RetirementSimulator/Calculation";
 
 
 function App() {
+
   return (
     <div className="App">
      <BrowserRouter>
@@ -23,6 +25,7 @@ function App() {
          <Route exact path="GeneralData" element={<GeneralData></GeneralData>}></Route>
          <Route exact path="Details" element = {<Details></Details>}></Route>
          <Route exact path="PartTimeJob" element = {<PartTimeJob></PartTimeJob>}></Route>
+         <Route exact path="Calculation" element = {<Calculation></Calculation>}></Route>
          </Routes>
       </BrowserRouter>
     </div>

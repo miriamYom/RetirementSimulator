@@ -61,7 +61,7 @@ function Details() {
 
     const location = useLocation();
     let employeeDetails = location.state.data;
-
+    let enableNext = true;
     return (
         <>
             <Sequence page="3"></Sequence>
@@ -125,7 +125,7 @@ function Details() {
                 </div>
             </div>
 
-            <PreviousNext next="PartTimeJob" previous="GeneralData" data={employeeDetails}></PreviousNext>
+            <PreviousNext next="PartTimeJob" data={employeeDetails} enableNext={enableNext}></PreviousNext>
         </>
     )
 }

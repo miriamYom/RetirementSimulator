@@ -13,6 +13,7 @@ import Typography from '@mui/material/Typography';
 import PersonalData from "./ScreenTwo-GeneralData/PersonalData";
 import AccrualPension from "./ScreenTwo-GeneralData/AccrualPension";
 import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
 
 //#region eccordion
 const Accordion = styled((props) => (
@@ -54,23 +55,19 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 function GeneralData() {
 
-    const [expanded, setExpanded] = React.useState('panel1');
+    const [expanded, setExpanded] = useState('');
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
 
     const location = useLocation();
-    const data = location.state.data;
+    let employeeDetails = location.state.data;;
 
-    // const employeeDetails = {};
-    let employeeDetails = data;
-
-
+    let enableNext = true;
     
     return (
         <>
-        {console.log(data)}
             <Sequence page="2"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">נתונים כלליים</div>
@@ -112,7 +109,7 @@ function GeneralData() {
                 </div>
             </div>
 
-            <PreviousNext next="Details" previous="PensionType" data={employeeDetails}></PreviousNext>
+            <PreviousNext next="Details" data={employeeDetails} enableNext={enableNext} ></PreviousNext>
         </>
     )
 }
