@@ -408,7 +408,7 @@ internal class BudgetPensionService : PensionService
     /// </summary>
     /// <param name="employee"></param>
     /// <returns></returns>
-    public static double CompensationPercentage(Employee employee)
+    public static double CompensationPercentage(BudgetPensionEmployee employee)
     {
         int age = (int)EmployeesAgeAtRetirement(employee);
         double percentage;
@@ -424,6 +424,15 @@ internal class BudgetPensionService : PensionService
         else percentage = 0;
         return percentage;
 
+    }
+    /// <summary>
+    /// סכום לתשלום - פיצוי ביגן ימי מחלה שלא נוצלו
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double AmountToBePaidCompensationForUnusedSickDays(BudgetPensionEmployee employee)
+    {
+        return ADaysWorthOfSickness(employee) * DaysToMaturity(employee) * CompensationPercentage(employee);
     }
 
 
