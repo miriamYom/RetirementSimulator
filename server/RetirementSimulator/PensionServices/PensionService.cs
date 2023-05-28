@@ -135,22 +135,21 @@ internal class PensionService
     /// <summary>
     /// סה"כ פדיון ימי חופשה
     /// פונקציה חסרה
+    /// מספר ימים לפדיון כפול ערך יום
+    ///אם הצבירה היא מלאה, אז יש להכפיל בחלקיות משרה אחרונה
     /// </summary>
     /// <returns></returns>
     public static double TotalRedemptionOfVacationDays(Employee employee)
     {
-        double x = NumberOfVacationDaysToBeRedeemed(employee) * ADaysWorth(employee);
+        double redemption = NumberOfVacationDaysToBeRedeemed(employee) * ADaysWorth(employee);
         if (employee.IsAggregationByParts == false)
         {
-            //חלקיות משרת העובד בשנת הפרישה
-            //אין לזה שם משתנה עדיין
-            //לקרוא לשם משתנה חלקיות משרה אחרונה
-            x *= 1; 
+            redemption *= employee.LastPartTimeJob; 
         }
-        return x;
+        return redemption;
     }
 
-   //-----------------------------פיצוי בגין ימי מחלה שלא נוצלו
+   //-----------------------------פיצוי בגין ימי מחלה שלא נוצלו---------------------------------
    /// <summary>
    /// האם זכאי לפיצוי בכלל
    /// </summary>
@@ -184,7 +183,7 @@ internal class PensionService
         {
             if(employee.IsAggregationByParts)
             {
-                30 * YearsOfWorkAtTheAuthority(employee) * //נותר לחשב שלא ניצל יותר מ65 אחוז מימי המחלה שלו
+                30 * YearsOfWorkAtTheAuthority(employee) *//נותר לחשב שלא ניצל יותר מ65 אחוז מימי המחלה שלו
             }
             
         }
