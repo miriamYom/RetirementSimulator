@@ -126,7 +126,7 @@ public class Employee
 
     /// <summary>
     /// תקופות עבודה- טבלה בעלת 4 עמודות-
-    /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה ממצועת 
+    /// תאריך תחילת עבודה, תאריך סיום עבודה, סה"כ תקופת עבודה וחלקיות משרה  
     /// </summary>
      private DataTable workPeriods;
 
@@ -135,12 +135,22 @@ public class Employee
          get { return workPeriods; }
          set { workPeriods = value; }//.ToDataTable(); }
      }
-
+    /// <summary>
+    /// חלקיות משרה אחרונה
+    ///לשלוף נתון זה מהשורה האחרונה בטבלה
+    ///אולי כדאי לעשות זאת בריאקט
+    /// </summary>
+    public double LastPartTimeJob { get; set; } 
     public double SalaryDetermines { get; set; }
     /// <summary>
     /// יתרת ימי מחלה 
     /// </summary>
     public int RemainingSickDays { get; set; }
+    /// <summary>
+    /// אופן צבירת המחלה - צבירה מלאה / צבירה לפי חלקיות
+    /// Full accrual / partial accrual
+    /// </summary>
+    public bool IsFullAccrual { get; set; }
     /// <summary>
     /// יתרת ימי חופשה בפרישה
     /// </summary>

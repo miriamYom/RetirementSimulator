@@ -1,4 +1,5 @@
 ﻿using BL.DTO;
+using DL.Tables;
 using System;
 using static BL.PensionServices.Consts;
 
@@ -64,7 +65,6 @@ internal class PensionService
     /// <returns></returns>
     public static double EmployeesAgeAtRetirement(Employee employee)
     {
-        //well done
         return TotalYears(employee.BirthDate, employee.RetirementDate);
     }
     /// <summary>
@@ -73,8 +73,18 @@ internal class PensionService
     /// <returns></returns>
     public static double YearsOfWorkAtTheAuthority(Employee employee)
     {
-        //well done
         return TotalYears(employee.StartWorkDate, employee.RetirementDate);
+    }
+    /// <summary>
+    /// חלקיות משרה ממוצעת של העובד בכל תקופת העבודה
+    /// נתון שצריך להיות מחושב מהטבלה המזעזעת
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double AveragePartTimeJobDuringTheEntireWorkPeriod(Employee employee)
+    {
+        //change it!!!
+        return 80;
     }
     public static double NumberOfVacationDaysToBeRedeemed(BudgetPensionEmployee employee)
     {
@@ -135,28 +145,27 @@ internal class PensionService
     /// <summary>
     /// סה"כ פדיון ימי חופשה
     /// פונקציה חסרה
+    /// מספר ימים לפדיון כפול ערך יום
+    ///אם הצבירה היא מלאה, אז יש להכפיל בחלקיות משרה אחרונה
     /// </summary>
     /// <returns></returns>
     public static double TotalRedemptionOfVacationDays(Employee employee)
     {
-        double x = NumberOfVacationDaysToBeRedeemed(employee) * ADaysWorth(employee);
+        double redemption = NumberOfVacationDaysToBeRedeemed(employee) * ADaysWorth(employee);
         if (employee.IsAggregationByParts == false)
         {
-            //חלקיות משרת העובד בשנת הפרישה
-            //אין לזה שם משתנה עדיין
-            //לקרוא לשם משתנה חלקיות משרה אחרונה
-            x *= 1; 
+            redemption *= employee.LastPartTimeJob; 
         }
-        return x;
+        return redemption;
     }
 
-   //-----------------------------פיצוי בגין ימי מחלה שלא נוצלו
+   //-----------------------------פיצוי בגין ימי מחלה שלא נוצלו---------------------------------
    /// <summary>
-   /// האם זכאי לפיצוי בכלל
+   ///מבחינת גיל וותק- האם זכאי לפיצוי בכלל
    /// </summary>
    /// <param name="employee"></param>
    /// <returns></returns>
-   protected static bool IsEntitled(Employee employee)
+   public static bool IsEntitled(Employee employee)
     {
         bool flag = false;
         if (employee.Reason == Enums.RetirementReason.dismissal)
@@ -180,15 +189,89 @@ internal class PensionService
                 flag = true;
             }
         }
-        if (flag)
-        {
-            if(employee.IsAggregationByParts)
-            {
-                30 * YearsOfWorkAtTheAuthority(employee) * //נותר לחשב שלא ניצל יותר מ65 אחוז מימי המחלה שלו
-            }
-            
-        }
-        return false;
+        return flag;
     }
+    /// <summary>
+    /// צבירת ימי מחלה
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double AccumulationOfSickDays(Employee employee)
+    {
+        double days = YearsOfWorkAtTheAuthority(employee) * SickDaysPerYear;
+        if(employee.IsFullAccrual == false)
+        {
+            days *= AveragePartTimeJobDuringTheEntireWorkPeriod(employee);
+        }
+        return days;
+    }
+    /// <summary>
+    /// ימי מחלה שנוצלו
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double SickDaysUsed(Employee employee)
+    {
+        return AccumulationOfSickDays(employee) - employee.RemainingSickDays;
+    }
+    /// <summary>
+    /// אחוז ניצול
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double UtilizationPercentage(Employee employee)
+    {
+        return AccumulationOfSickDays(employee) - SickDaysUsed(employee);
+    }
+    /// <summary>
+    /// ימים לפיצוי לכל 30 ימים שביתרה
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static int DaysForCompensationEvery30Days(Employee employee)
+    {
+        int days;
+        if (UtilizationPercentage(employee) <= UtilizationPercentage35)
+        {
+            days = 8;
+        }
+        else if (UtilizationPercentage(employee) <= UtilizationPercentage65)
+        {
+            days = 6;
+        }
+        else days = 0;
+
+        return days;
+    }
+    /// <summary>
+    /// ימים לפדיון
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double DaysToMaturity(Employee employee)
+    {
+        return employee.RemainingSickDays / 30 * DaysForCompensationEvery30Days(employee);
+    }
+    /// <summary>
+    /// משכורת קובעת כולל הבראה וביגוד
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double DeterminedSalaryIncludingRecoveryAndClothing(Employee employee)
+    {
+        return employee.SalaryDetermines; ///   1/12 clothing...
+    }
+    /// <summary>
+    /// ערך יום 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ADaysWorthOfSickness(Employee employee)
+    {
+        return DeterminedSalaryIncludingRecoveryAndClothing(employee) / WorthDayOfSickness;
+    }
+    //אחוז פיצוי- נמצא בקלאסים של פנסיה תקציבית וצוברת מכיון שמחושב באופן שונה
+    //וגם סכום לתשלום - פיצוי בגין ימי מחלה שלא נוצלו
+
 }
 
