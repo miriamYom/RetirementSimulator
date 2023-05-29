@@ -6,7 +6,7 @@ using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
 
-internal class BudgetPensionService : PensionService
+public class BudgetPensionService : PensionService
 //תקציבית
 {
     public BudgetPensionService()
@@ -553,5 +553,21 @@ internal class BudgetPensionService : PensionService
         return Math.Min(capitalization, OptionCAnnuityCapitalization(employee));
     }
 
-    
+    //---------------------------------------------ביגוד--------------------------------------------
+    /// <summary>
+    /// קצובת הביגוד בגין שנה נוכחית 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ClothingForCurrentYear(BudgetPensionEmployee employee)
+    {
+        if (employee.IsMonthlyClothingPayment)
+        {
+            return 0;
+        }
+        int month = (int)employee.MonthOfClothingPayment;
+        return month;
+
+    }
+
 }

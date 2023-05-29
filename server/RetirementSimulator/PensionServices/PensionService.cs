@@ -4,7 +4,7 @@ using System;
 using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
-internal class PensionService
+public class PensionService
 {
     #region total years
     /// <summary>

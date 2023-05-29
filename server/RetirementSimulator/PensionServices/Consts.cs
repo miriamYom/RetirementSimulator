@@ -23,6 +23,9 @@ public static class Consts
     public const double AllowanceLimitation = 0.7; //הגבלת הקיצבה
     public const double AllowanceLimitationForTheIDF = 0.76; //הגבלת הקיצבה לפורשי צהל
     public const int Age60 = 60; // רלוונטי לכל חישובי הפיטורין
+    public const double Level3Clothing = 1603; // ביגוד רמה 3, מתעדכן כל שנה, להעביר מריאקט
+    public const double Level4Clothing = 2237; // ביגוד רמה 4, מתעדכן כל שנה, להעביר מריאקט
+
 
 
 }

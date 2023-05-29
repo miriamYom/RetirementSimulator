@@ -1,5 +1,6 @@
 ﻿using BL.Enums;
 using BL.PensionServices;
+using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 
@@ -140,7 +141,15 @@ public class Employee
     ///לשלוף נתון זה מהשורה האחרונה בטבלה
     ///אולי כדאי לעשות זאת בריאקט
     /// </summary>
-    public double LastPartTimeJob { get; set; } 
+    public double LastPartTimeJob { get; set; }
+    /// <summary>
+    /// חלקיות משרה בשנה הנוכחית
+    /// </summary>
+    public int PartTimeJobCurrentYear { get; set; }
+    /// <summary>
+    /// חלקיות משרה בשנה קודמת
+    /// </summary>
+    public int PartTimeJobLastYear { get; set; }
     public double SalaryDetermines { get; set; }
     /// <summary>
     /// יתרת ימי מחלה 
