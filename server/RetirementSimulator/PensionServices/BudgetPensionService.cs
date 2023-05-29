@@ -566,8 +566,28 @@ public class BudgetPensionService : PensionService
             return 0;
         }
         int month = (int)employee.MonthOfClothingPayment;
-        return month;
+        int currentMonth = employee.RetirementDate.Month;
+        if(month < currentMonth) //אם עדיין לא שילמו לו השנה
+        {
+            return employee.IsThreeLevel ? employee.PartTimeJobCurrentYear * Level3Clothing :
+                employee.PartTimeJobCurrentYear * Level4Clothing;
+        }
+        return 0; // כבר שילמו השנה
 
+    }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double ClothingForLastYear(BudgetPensionEmployee employee)
+    {
+        if (employee.IsMonthlyClothingPayment)
+        {
+            return 0;
+        }
+        return employee.IsThreeLevel ? employee.PartTimeJobLastYear * Level3Clothing :
+                employee.PartTimeJobLastYear * Level4Clothing;
     }
 
 }
