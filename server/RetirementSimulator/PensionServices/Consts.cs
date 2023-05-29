@@ -3,6 +3,8 @@
 namespace BL.PensionServices;
 public static class Consts
 {
+    public const double Clothing = 1; //ביגוד, מתעדכן כל שנה. למצוא דרך להעבירו מהריאקט
+    public const double Recovery = 1; //הבראה, מתעדכן כל שנה. למצוא דרך להעבירו מהריאקט
     public const int Months = 12;
     public const int DaysAYear = 365;
     public const double CostOfLiving = 0.382; // תוספת יוקר
@@ -17,6 +19,10 @@ public static class Consts
     public const double UtilizationPercentage35 = 0.35; //אחוז ניצול לימי מחלה, עד 35 אחוז
     public const double UtilizationPercentage65 = 0.65; //אחוז ניצול לימי מחלה, עד 65 אחוז
     public const double WorthDayOfSickness = 25; //ערך יום לימי מחלה
+    public const double AgeLimitForExcessYearsGrant = 60; //גיל סף למענק שנים עודפות
+    public const double AllowanceLimitation = 0.7; //הגבלת הקיצבה
+    public const double AllowanceLimitationForTheIDF = 0.76; //הגבלת הקיצבה לפורשי צהל
+
 
 
 }

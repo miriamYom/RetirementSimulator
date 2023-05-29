@@ -259,7 +259,7 @@ internal class PensionService
     /// <returns></returns>
     public static double DeterminedSalaryIncludingRecoveryAndClothing(Employee employee)
     {
-        return employee.SalaryDetermines; ///   1/12 clothing...
+        return employee.SalaryDetermines + 1 / 12 * Clothing + 1 / 12 * Recovery;
     }
     /// <summary>
     /// ערך יום 
@@ -273,5 +273,6 @@ internal class PensionService
     //אחוז פיצוי- נמצא בקלאסים של פנסיה תקציבית וצוברת מכיון שמחושב באופן שונה
     //וגם סכום לתשלום - פיצוי בגין ימי מחלה שלא נוצלו
 
+    
 }
 

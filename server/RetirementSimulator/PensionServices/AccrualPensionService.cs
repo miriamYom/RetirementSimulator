@@ -47,12 +47,16 @@ internal  class AccrualPensionService : PensionService
         double percentage;
         if (employee.Reason == Enums.RetirementReason.death || employee.Reason == Enums.RetirementReason.retirementForHealthReasons)
         {
-            percentage = 1; // 100% compensation
+            percentage = 1; //100% compensation
         }
         else if (IsEntitled(employee)) // if eligible in terms of age and seniority 
         {
             CompensationPercentagesForSickness compensationPercentages = new(); //singleton
             percentage = compensationPercentages.AgesAndPercentsAccrualPension[age] / 100;
+        }
+        else if(age >= 57)
+        {
+            percentage = 1; //100% compensation
         }
         else percentage = 0;
         return percentage;

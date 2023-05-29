@@ -421,6 +421,10 @@ internal class BudgetPensionService : PensionService
             CompensationPercentagesForSickness compensationPercentages = new(); //singleton
             percentage = compensationPercentages.AgesAndPercentsBudgetePension[age] / 100;
         }
+        else if (age >= 57)
+        {
+            percentage = 1; //100% compensation
+        }
         else percentage = 0;
         return percentage;
 
