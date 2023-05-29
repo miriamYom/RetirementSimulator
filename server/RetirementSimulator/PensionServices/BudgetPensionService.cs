@@ -438,6 +438,52 @@ internal class BudgetPensionService : PensionService
     {
         return ADaysWorthOfSickness(employee) * DaysToMaturity(employee) * CompensationPercentage(employee);
     }
-
-
+    //-------------------------------מענק שנים עודפות-----------------------------------
+    /// <summary>
+    /// מענק שנים עודפות - בדיקת זכאות אחוז קצבה וגיל
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static bool IsEntitledToAGrant(BudgetPensionEmployee employee)
+    {
+        if(EmployeesAgeAtRetirement(employee) >= AgeLimitForExcessYearsGrant && TotalEstimatedAllowanceAmount(employee) > 0.7)
+        {
+            return true;
+        }
+        return false;
+    }
+    /// <summary>
+    /// כמות שנים עודפות
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double AmountOfExcessYears(BudgetPensionEmployee employee)
+    {
+        if (employee.SignedCopyrightContinuity)
+        {
+            if(employee.Ownership == TheSignedOwnership.IDFSecurityForces)
+            {
+                return (FullPensionPercentage(employee) - AllowanceLimitationForTheIDF) / 0.02;
+            }
+        }
+        return (FullPensionPercentage(employee) - AllowanceLimitation) / 0.02;
+    }
+    /// <summary>
+    /// משכורת קובעת
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double SalaryDeterminesTheGrant(BudgetPensionEmployee employee)
+    {
+        return employee.SalaryDetermines + (1 / 12 * Recovery) + (1 / 12 * Clothing);
+    }
+    /// <summary>
+    /// סה"כ מענק שנים עודפות
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double TotalSurplusYearsGrant(BudgetPensionEmployee employee)
+    {
+        return AmountOfExcessYears(employee) * SalaryDeterminesTheGrant(employee);
+    }
 }
