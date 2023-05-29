@@ -1,6 +1,7 @@
 ﻿using BL.DTO;
 using BL.Enums;
 using DL.Tables;
+using System.Runtime.ConstrainedExecution;
 using static BL.PensionServices.Consts;
 
 namespace BL.PensionServices;
@@ -468,15 +469,7 @@ internal class BudgetPensionService : PensionService
         }
         return (FullPensionPercentage(employee) - AllowanceLimitation) / 0.02;
     }
-    /// <summary>
-    /// משכורת קובעת
-    /// </summary>
-    /// <param name="employee"></param>
-    /// <returns></returns>
-    public static double SalaryDeterminesTheGrant(BudgetPensionEmployee employee)
-    {
-        return employee.SalaryDetermines + (1 / 12 * Recovery) + (1 / 12 * Clothing);
-    }
+    
     /// <summary>
     /// סה"כ מענק שנים עודפות
     /// </summary>
@@ -484,6 +477,81 @@ internal class BudgetPensionService : PensionService
     /// <returns></returns>
     public static double TotalSurplusYearsGrant(BudgetPensionEmployee employee)
     {
-        return AmountOfExcessYears(employee) * SalaryDeterminesTheGrant(employee);
+        return AmountOfExcessYears(employee) * DeterminedSalaryIncludingRecoveryAndClothing(employee);
     }
+    //-------------------------------מענק פרישה--------------------------------------
+    /// <summary>
+    /// האם זכאי למענק פרישה מבחינת גיל וסיבת פרישה פיטורין
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static bool IsEntitledToARetirementGrant(BudgetPensionEmployee employee)
+    {
+        return EmployeesAgeAtRetirement(employee) <= 60 && employee.Reason == Enums.RetirementReason.dismissal;
+    }
+    /// <summary>
+    /// אופציה א - משכורת לשנה
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double OptionASalaryForYear(BudgetPensionEmployee employee)
+    {
+        return DeterminedSalaryIncludingRecoveryAndClothing(employee) * AveragePartTimeJobDuringTheEntireWorkPeriod(employee) * Consts.Months;
+    }
+    /// <summary>
+    /// אופציה ב' - חצי משכורת לשנת עבודה
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double OptionBHalfSalaryForAYearOfWork(BudgetPensionEmployee employee)
+    {
+        double years = YearsOfWorkAtTheAuthority(employee);
+        if (years > 24)
+        {
+            years = 24;
+        }
+        return DeterminedSalaryIncludingRecoveryAndClothing(employee) * AveragePartTimeJobDuringTheEntireWorkPeriod(employee) * 0.5 * years;
+    }
+    /// <summary>
+    /// אופציה ג - היוון קצבה
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double OptionCAnnuityCapitalization(BudgetPensionEmployee employee)
+    {
+        //משכורת צפויה בגיל 60
+        double salaryAtAge60 = employee.SalaryDeterminesAtAge60 + (1/Consts.Months * Clothing) + (1/Consts.Months * Recovery);
+        //שנים עד שהעובד יהיה בן 60
+        double yearsUntilAge60 = Age60 - EmployeesAgeAtRetirement(employee);
+        //אחוז קיצבה צפוי לגיל 60, מוגבל ב70%
+        double pensionPercentageAtAge60 = AnnuityPercentageCalculated(employee) * yearsUntilAge60 * 0.02 * AveragePartTimeJobDuringTheEntireWorkPeriod(employee);
+        if(pensionPercentageAtAge60 > 0.7)
+        {
+            pensionPercentageAtAge60 = 0.7;
+        }
+        //חישוב הקיצבה בגיל 60
+        double calculatingThePensionAtAge60 = salaryAtAge60 * pensionPercentageAtAge60;
+        //הפרש קצבה לפורש
+        double pensionDifferenceForRetiree = calculatingThePensionAtAge60 - TotalEstimatedAllowanceAmount(employee);
+        //הפרש לשנה
+        double differencePerYear = pensionDifferenceForRetiree * Consts.Months; // להכפיל במקדם;
+
+        if(employee.FamilyStatus == FamilyStatus.ManHavePartner)
+        {
+
+        }
+        return 0;
+    }
+    /// <summary>
+    /// סה"כ סכום היוון קצבה 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double TotalAllowanceCapitalizationAmount(BudgetPensionEmployee employee)
+    {
+        double capitalization = Math.Min(OptionASalaryForYear(employee), OptionBHalfSalaryForAYearOfWork(employee));
+        return Math.Min(capitalization, OptionCAnnuityCapitalization(employee));
+    }
+
+    
 }

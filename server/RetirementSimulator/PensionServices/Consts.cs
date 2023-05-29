@@ -22,7 +22,7 @@ public static class Consts
     public const double AgeLimitForExcessYearsGrant = 60; //גיל סף למענק שנים עודפות
     public const double AllowanceLimitation = 0.7; //הגבלת הקיצבה
     public const double AllowanceLimitationForTheIDF = 0.76; //הגבלת הקיצבה לפורשי צהל
-
+    public const int Age60 = 60; // רלוונטי לכל חישובי הפיטורין
 
 
 }

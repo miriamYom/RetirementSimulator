@@ -273,6 +273,23 @@ internal class PensionService
     //אחוז פיצוי- נמצא בקלאסים של פנסיה תקציבית וצוברת מכיון שמחושב באופן שונה
     //וגם סכום לתשלום - פיצוי בגין ימי מחלה שלא נוצלו
 
-    
+    //---------------------------------------- חלף הודעה מוקדמת-----------------------------------------------
+    public static double TotalPaymentAdvanceNotice(Employee employee)
+    {
+        int months = 0;
+        if(employee.AdvanceNotice == MonthOrTwoOrTree.month)
+        {
+            months = 1;
+        }
+        else if (employee.AdvanceNotice == MonthOrTwoOrTree.twoMonths)
+        {
+            months = 2;
+        }
+        else if (employee.AdvanceNotice == MonthOrTwoOrTree.treeMonths)
+        {
+            months = 3;
+        }
+        return months * DeterminedSalaryIncludingRecoveryAndClothing(employee);
+    }
 }
 
