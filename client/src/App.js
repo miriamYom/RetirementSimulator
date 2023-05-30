@@ -7,10 +7,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './RetirementSimulator/Header';
 import GeneralData from "./RetirementSimulator/GeneralData";
 import PensionType from "./RetirementSimulator/PensionType";
-import Start from "./Start";
 import Details from "./RetirementSimulator/Details";
 import PartTimeJob from "./RetirementSimulator/PartTimeJob";
 import Calculation from "./RetirementSimulator/Calculation";
+import Login from "./RetirementSimulator/Login";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -23,7 +23,7 @@ function App() {
         <BrowserRouter>
           <Header></Header>
           <Routes>
-            <Route exact path="/" element={<Start></Start>} />
+            <Route exact path="/" element={<Login></Login>} />
             <Route exact path="PensionType" element={<PensionType></PensionType>}></Route>
             <Route exact path="GeneralData" element={<GeneralData></GeneralData>}></Route>
             <Route exact path="Details" element={<Details></Details>}></Route>

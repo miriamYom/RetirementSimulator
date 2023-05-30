@@ -64,7 +64,7 @@
 /* class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-entered css-pwcg7p-MuiCollapse-root" */
 /* class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner" */
 .MuiSvgIcon-root {
-    transform: rotate(-180deg) !important;
+    transform: rotate(90deg) !important;
     color: #38EADD !important;
 }
 

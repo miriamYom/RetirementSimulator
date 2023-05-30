@@ -10,6 +10,7 @@
     /* Drop Shadow */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.08);
 }
+
 .button1 {
     /* Button */
     box-sizing: border-box;
@@ -26,7 +27,7 @@
     left: 200px;
     /* top: 1140px; */
     bottom: 10px;
-
+    background-color: #FFFFFF;
     border: 1.5px solid #457FF0;
     border-radius: 8px;
     color: #457FF0;

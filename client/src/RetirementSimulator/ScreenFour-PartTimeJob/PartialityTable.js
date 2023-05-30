@@ -45,7 +45,7 @@ export default function PartialityTable() {
                                 <th>תאריך סיום</th>
                                 <th>סה’’כ תקופת עבודה</th>
                                 <th>חלקיות משרה</th>
-                                <th></th>
+                                {/* <th></th> */}
                             </tr>
                         </thead>
                         <tbody>

@@ -1,0 +1,18 @@
+.login-body{
+    display: grid;
+    grid-template-columns: auto;
+}
+
+.login-connect {
+    background: #457FF0;
+    border-radius: 3.37792px;
+}
+.login-input{
+    text-align: right;
+}
+.mail-icom{
+    background: url('C:\Users\user\source\repos\RetirementSimulator\client\src\img\mail.png') no-repeat;
+}
+.lock-icom{
+    background: url('C:\Users\user\source\repos\RetirementSimulator\client\src\img\lock.png') no-repeat;
+}
