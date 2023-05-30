@@ -12,14 +12,14 @@ function PartTimeJob() {
     const location = useLocation();
     let employeeDetails = location.state.data;
 
-    let enableNext = false;
+    let enableNext = true;
 
     return (
         <>
             <Sequence page="4"></Sequence>
 
             <div class="card bg-light mb-3">
-                <div class="card-header">נתונים כלליים</div>
+                <div class="card-header">חלקיות משרה</div>
                 <div class="card-body tbl">
                     <PartialityTable></PartialityTable>
                     <div>

@@ -1,8 +1,6 @@
-﻿using BL.DTO;
-
-namespace BL.Pension;
+﻿namespace BL.Pension;
 
 public interface IPensionFactory
 {
-    string Create(string pensionType, object employee);
+    object Create(string pensionType, object employee);
 }

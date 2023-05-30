@@ -64,9 +64,10 @@ function Details() {
     let enableNext = true;
     return (
         <>
+        {console.log("Im in details !!! \n", employeeDetails)}
             <Sequence page="3"></Sequence>
             <div class="card bg-light mb-3">
-                <div class="card-header">נתונים כלליים</div>
+                <div class="card-header">סכומים ויתרות- נתוני העובד</div>
                 <div class="card-body">
 
 

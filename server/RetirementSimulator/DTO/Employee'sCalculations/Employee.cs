@@ -13,14 +13,14 @@ public class Employee
        
     }
 
-    public virtual string Clculates()
+    public virtual object Clculates()
     {
         string json = "{";
         object[] param = { this };
         foreach (var methodInfo in typeof(PensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
             var result = methodInfo.Invoke(null, param);
-            json += $" '{methodInfo.Name}' : '{result}'";
+            json += $" '{methodInfo.Name}' : '{result}',";
         }
         json += "}";
         return json.Replace("'", "\"");

@@ -17,7 +17,7 @@ public class BudgetPensionEmployee : Employee
         foreach (var methodInfo in typeof(BudgetPensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
             var result = methodInfo.Invoke(null, param);
-            json += $" '{methodInfo.Name}' : '{result}'";
+            json += $" '{methodInfo.Name}' : '{result}',";
         }
         json += "}";
         return json.Replace("'", "\"");

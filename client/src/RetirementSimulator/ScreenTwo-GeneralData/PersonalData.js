@@ -1,10 +1,14 @@
 import { useState } from "react";
-// import '../style/PersonalData.css';
+import { addDetail } from "../../redux/actions/employeeAction";
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from "react-redux";
 
 // לסדר שלא יהיה אפשר לעבור לשלב הבא בלי להזין את כל הנתונים
 // לעצב
 export default function PersonalData() {
+
+    const dispatch = useDispatch();
+    let emp = useSelector((state) => state.employeeReducer);
 
     const location = useLocation();
     const data = location.state.data;
@@ -17,19 +21,19 @@ export default function PersonalData() {
     const [retirementReason, setRetirementReason] = useState('retirementAge');
     const [advanceNotice, setAdvanceNotice] = useState('notEligible'); //חלף הודעה מוקדמת
 
-    const addDetails = () => {
-        data.name = name;
-        data.id = id;
-        data.birthDate = birthDate;
-        data.startWorkDate = startWorkDate;
-        data.retirementDate = retirementDate;
-        data.retirementReason = retirementReason;
-        data.advanceNotice = advanceNotice;
-    };
+    // const addDetails = () => {
+    //     data.name = name;
+    //     data.id = id;
+    //     data.birthDate = birthDate;
+    //     data.startWorkDate = startWorkDate;
+    //     data.retirementDate = retirementDate;
+    //     data.retirementReason = retirementReason;
+    //     data.advanceNotice = advanceNotice;
+    // };
 
     return (
         <div className="wrepper">
-            {console.log(data)}
+            {console.log("Im in personal data and this is my obj: \n", data)}
             <div className="grid-item">
                 <p className="item">שם העובד</p>
                 <input className="item"
@@ -41,7 +45,10 @@ export default function PersonalData() {
                 <p className="item">תעודת זהות</p>
                 <input className="item"
                     name="id"
-                    onChange={(e) => setId(e.target.value)}
+                    onChange={(e) => {
+                        e.preventDefault();
+                        dispatch(addDetail("id", e.target.value));
+                    }}
                 ></input>
             </div>
             <div className="grid-item">
@@ -94,7 +101,6 @@ export default function PersonalData() {
                 : null
             }
 
-            {console.log(addDetails())}
         </div >
     );
 }

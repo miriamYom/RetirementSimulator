@@ -7,7 +7,7 @@ public class PensionFactory : IPensionFactory
     public PensionFactory()
     {
     }
-    public string Create(string pensionType, object employee)
+    public object Create(string pensionType, object employee)
     {
         Employee pensionEmployee;
 
