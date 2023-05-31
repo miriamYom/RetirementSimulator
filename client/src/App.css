@@ -3,6 +3,6 @@
   direction: rtl;
   width: 100%;
   min-height: 100vh;
-  background-color: rgba(236, 242, 247, 0.319);
+  background-color: rgba(236, 242, 247, 0.319) !important; 
 }
 

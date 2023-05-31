@@ -29,57 +29,69 @@ function Login() {
     let [password, setPassword] = useState("");
     let [result, setResult] = useState();
 
+    function login() {
+        console.log("login=> 😝");
+        console.log(email);
+        console.log(password);
+        const config = { headers: { 'Content-Type': 'application/json' } };
+        axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`,
+            { password }, config)
+            .then(res => {
+                res.status === 200 ?
+                    navigate("PensionType") :
+                    alert("youe login is uncorrect");
+            })
+            .catch(error => {
+                alert("youe login is uncorrect");
+                console.error(error);
+            })
+    }
+    const [name, setName] = useState("");
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+            }
+          };
+        axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`,
+            password  , axiosConfig)
+            .then(res => {
+                res.status === 200 ?
+                    navigate("PensionType") :
+                    alert("youe login is uncorrect");
+            })
+            .catch(error => {
+                alert("youe login is uncorrect");
+                console.error(error);
+            })
+    }
+
     return (
         <>
-            {/* <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn> */}
-
-            <MDBModal className='login-modal' tabIndex='-1' show={centredModal} setShow={setCentredModal}>
+            <MDBModal className='login-modal' tabIndex='-1' show={centredModal} staticBackdrop={Login} /*setShow={setCentredModal}*/>
                 <MDBModalDialog centered>
                     <MDBModalContent>
-                        {/* <MDBModalHeader>
-
-                        </MDBModalHeader> */}
-                        <MDBModalBody className='login-body'>
-                            <MDBBtn className='btn-close' color='none' onClick={toggleShow}>X</MDBBtn>
+                        <MDBModalBody className='login-body' >
                             <img className='login-img' src={img1}></img>
-                            <input className='login-input mail-icom' placeholder='מייל' type="email"
-                                onChange={(e) => setEmail(e.target.value)} required={true}>
-                            </input>
-                            <input className='login-input lock-icom' placeholder='סיסמא' type='text'
-                                onChange={(e) => setPassword(e.target.value)} required={true}>
-                            </input>
-                            <a href='https://www.google.com/search?q=%D7%AA%D7%A8%D7%92%D7%95%D7%9E%D7%95%D7%9F&rlz=1C1SQJL_iwIL974IL974&oq=&aqs=chrome.2.35i39i362l6j46i39i362j35i39i362.490596j0j7&sourceid=chrome&ie=UTF-8'>שכחת סיסמא?</a>
+                            <form onSubmit={handleSubmit}>
+                                <input className='login-input mail-icom' placeholder='מייל' type="email"
+                                    onChange={(e) => setEmail(e.target.value)} required="required">
+                                </input>
+                                <input className='login-input lock-icom' placeholder='סיסמא' type='text'
+                                    onChange={(e) => setPassword(e.target.value)} required="required">
+                                </input>
+                                <br></br>
+                                <a href='https://www.google.com/search?q=%D7%AA%D7%A8%D7%92%D7%95%D7%9E%D7%95%D7%9F&rlz=1C1SQJL_iwIL974IL974&oq=&aqs=chrome.2.35i39i362l6j46i39i362j35i39i362.490596j0j7&sourceid=chrome&ie=UTF-8'>שכחת סיסמא?</a>
+                                <br></br>
+                                <MDBBtn type='submit' className='login-connect' /*onClick={login}*/>התחברות</MDBBtn>
+                            </form>
                         </MDBModalBody>
-                        <MDBModalFooter>
-                            <MDBBtn className='login-connect'
-                                onClick={async () => {
-                                    // let res = await axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
-                                    // if (res.status === 0) {
-                                    //     setResult(res);
-                                    //     console.log(res + "jjjjjjj");
-                                    // }
-                                    // else {
-                                    //     console.log("hhhhhhhhhhhhh");
-                                    //     navigate("PensionType");
-                                    // }
-                                    axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
-                                        // .then(response => response.json())
-                                        .then(res => {
-                                            res.status === 200 ?
-                                                navigate("PensionType") :
-                                                alert("youe login is uncorrect");
-                                        })
-                                        .catch(error => {
-                                            alert("youe login is uncorrect");
-                                            console.error(error);
-                                        })
-                                }}
-
-                            >התחברות</MDBBtn>
-                        </MDBModalFooter>
                     </MDBModalContent>
                 </MDBModalDialog>
-            </MDBModal>
+            </MDBModal >
         </>
     );
 }
