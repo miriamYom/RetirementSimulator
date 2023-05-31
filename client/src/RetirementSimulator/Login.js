@@ -53,21 +53,28 @@ function Login() {
                         <MDBModalFooter>
                             <MDBBtn className='login-connect'
                                 onClick={async () => {
-                                    let res = await axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
-                                    if (res.status === 0) {
-                                        setResult(res);
-                                        console.log(res + "jjjjjjj");
-                                    }
-                                    else {
-                                        console.log("hhhhhhhhhhhhh");
-                                        navigate("PensionType");
-                                    }
-                                    // .then(response => response.json())
-                                    // .then(navigate("PensionType"))
-                                    // .catch(error=>{
-                                    //     alert("youe login is uncorrect");
-                                    //     console.error(error);})
+                                    // let res = await axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
+                                    // if (res.status === 0) {
+                                    //     setResult(res);
+                                    //     console.log(res + "jjjjjjj");
+                                    // }
+                                    // else {
+                                    //     console.log("hhhhhhhhhhhhh");
+                                    //     navigate("PensionType");
+                                    // }
+                                    axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
+                                        // .then(response => response.json())
+                                        .then(res => {
+                                            res.status === 200 ?
+                                                navigate("PensionType") :
+                                                alert("youe login is uncorrect");
+                                        })
+                                        .catch(error => {
+                                            alert("youe login is uncorrect");
+                                            console.error(error);
+                                        })
                                 }}
+
                             >התחברות</MDBBtn>
                         </MDBModalFooter>
                     </MDBModalContent>
