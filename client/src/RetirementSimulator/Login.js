@@ -12,6 +12,7 @@ import {
 import './style/Login.css';
 import img1 from "../img/connect.png";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
     const navigate = useNavigate();
@@ -26,20 +27,21 @@ function Login() {
 
     let [email, setEmail] = useState("");
     let [password, setPassword] = useState("");
+    let [result, setResult] = useState();
 
     return (
         <>
             {/* <MDBBtn onClick={toggleShow}>Vertically centered modal</MDBBtn> */}
 
-            <MDBModal tabIndex='-1' show={centredModal} setShow={setCentredModal}>
+            <MDBModal className='login-modal' tabIndex='-1' show={centredModal} setShow={setCentredModal}>
                 <MDBModalDialog centered>
                     <MDBModalContent>
-                        <MDBModalHeader>
+                        {/* <MDBModalHeader>
 
-                        </MDBModalHeader>
+                        </MDBModalHeader> */}
                         <MDBModalBody className='login-body'>
                             <MDBBtn className='btn-close' color='none' onClick={toggleShow}>X</MDBBtn>
-                            <img src={img1}></img>
+                            <img className='login-img' src={img1}></img>
                             <input className='login-input mail-icom' placeholder='מייל' type="email"
                                 onChange={(e) => setEmail(e.target.value)} required={true}>
                             </input>
@@ -50,20 +52,21 @@ function Login() {
                         </MDBModalBody>
                         <MDBModalFooter>
                             <MDBBtn className='login-connect'
-                                onClick={() => {
-                                    const requestOptions = {
-                                        method: 'POST',
-                                        headers: { 'Content-Type': 'application/json' },
-                                        body: `"${password}"`
-                                    };
-                                    fetch(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, requestOptions)
-                                        .then(response => response.json())
-                                        .then(data => console.log(data))
-                                        .then(navigate("PensionType"))
-                                        .catch(error => {
-                                            alert({ errorMessage: error.toString() });
-                                            console.error('There was an error!\n', error);
-                                        });
+                                onClick={async () => {
+                                    let res = await axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`, password)
+                                    if (res.status === 0) {
+                                        setResult(res);
+                                        console.log(res + "jjjjjjj");
+                                    }
+                                    else {
+                                        console.log("hhhhhhhhhhhhh");
+                                        navigate("PensionType");
+                                    }
+                                    // .then(response => response.json())
+                                    // .then(navigate("PensionType"))
+                                    // .catch(error=>{
+                                    //     alert("youe login is uncorrect");
+                                    //     console.error(error);})
                                 }}
                             >התחברות</MDBBtn>
                         </MDBModalFooter>

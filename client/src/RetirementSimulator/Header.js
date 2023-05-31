@@ -13,8 +13,8 @@ function Header() {
                 </a>
             </div>
             <div className="group-289328">
+                <p className="welcome">היי דודי</p>
                 <img className='personIcon' src={personIcon}></img>
-                <p className="welcome">היי someone</p>
             </div>
             <div className="group-289327">
                 <img className="vector-phone" src={phoneIcon}></img>
