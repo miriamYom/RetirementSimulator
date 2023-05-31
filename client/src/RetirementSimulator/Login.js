@@ -61,6 +61,7 @@ function Login() {
             .then(res => {
                 res.status === 200 ?
                     navigate("PensionType") :
+                    alert("youe login is uncorrect");
             })
             .catch(error => {
                 alert("youe login is uncorrect");
