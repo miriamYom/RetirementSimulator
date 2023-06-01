@@ -4,7 +4,7 @@ namespace BL.PensionServices;
 public static class Consts
 {
     public const double Clothing = 1; //ביגוד, מתעדכן כל שנה. למצוא דרך להעבירו מהריאקט
-    public const double Recovery = 1; //הבראה, מתעדכן כל שנה. למצוא דרך להעבירו מהריאקט
+    public const double Recovery = 449; //הבראה, מתעדכן כל שנה. למצוא דרך להעבירו מהריאקט
     public const int Months = 12;
     public const int DaysAYear = 365;
     public const double CostOfLiving = 0.382; // תוספת יוקר
@@ -25,6 +25,8 @@ public static class Consts
     public const int Age60 = 60; // רלוונטי לכל חישובי הפיטורין
     public const double Level3Clothing = 1603; // ביגוד רמה 3, מתעדכן כל שנה, להעביר מריאקט
     public const double Level4Clothing = 2237; // ביגוד רמה 4, מתעדכן כל שנה, להעביר מריאקט
+    public const double MonthsOfSalaryForHeirs = 3; // מספר חודשים עבורים זכאים השארים למשכורת
+    
 
 
 

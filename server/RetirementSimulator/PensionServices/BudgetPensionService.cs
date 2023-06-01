@@ -54,6 +54,7 @@ public class BudgetPensionService : PensionService
     /// </summary>
     /// <returns> data table with the calculated column</returns>
     //למה כל החישובים של התקופות עבודה נמצאים כאן? ולא באמפלויי רגיל?
+    //חלק העברתי לאמפלויי רגיל כי נדרשתי אליהם
     public static void TotalWorkPeriods(BudgetPensionEmployee employee)
     {
         //שהפונקציה תעדכן את הטבלה (שנמצאת בפרופרטיז של האמפלויי), אין צורך בהחזרתה

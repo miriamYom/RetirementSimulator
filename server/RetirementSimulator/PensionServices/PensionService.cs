@@ -1,4 +1,5 @@
 ﻿using BL.DTO;
+using BL.Enums;
 using DL.Tables;
 using System;
 using static BL.PensionServices.Consts;
@@ -85,6 +86,53 @@ public class PensionService
     {
         //change it!!!
         return 80;
+    }
+    /// <summary>
+    /// Total period of work for which he is entitled to compensation
+    /// </summary>
+    /// <returns>The total work periods in which the employee worked less than 1/3 of a job</returns>
+    /// <exception cref="InvalidDataException">if the data in the data table is not a number</exception>
+    public static double WorkingPeriodForCompensation(Employee employee)
+    {
+        /*
+        DataTable table = employee.WorkPeriods;
+        var numOfRows = table.Rows.Count;
+        double sumOfPeriods = 0;
+        double doubleValue;
+        double workPreiod;
+        for (int i = 0; i < numOfRows; i++)
+        {
+            string cellValue = table.Rows[i][2].ToString();
+            if (double.TryParse(cellValue, out doubleValue))
+            {
+                if (doubleValue < 0.3329)
+                {
+                    if (double.TryParse(table.Rows[i][3].ToString(), out workPreiod))
+                        sumOfPeriods += workPreiod;
+                    else
+                    {
+                        throw new InvalidDataException("work period must be number");
+                    }
+                }
+            }
+            else
+            {
+                throw new InvalidDataException("work period must be number");
+            }
+        }
+        return Math.Round(sumOfPeriods, 2);
+        */
+        return 3;
+    }
+    /// <summary>
+    /// חלקיות משרה משוקללת
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double WeightedPartTimeJob(Employee employee)
+    {
+        //מתוך מסך 3, חלקיות משרה משוקללת מחושבת עבור תקופת עבודה של פחות מ-1/3 משרה
+        return 1;
     }
     public static double NumberOfVacationDaysToBeRedeemed(BudgetPensionEmployee employee)
     {
@@ -290,6 +338,58 @@ public class PensionService
             months = 3;
         }
         return months * DeterminedSalaryIncludingRecoveryAndClothing(employee);
+    }
+    //--------------------------------------הבראה------------------------------------------------
+    /// <summary>
+    /// קצובת ההבראה בגין שנה קודמת 
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double RecoveryForPreviousYear(Employee employee)
+    {
+        if (employee.IsMonthlyRecoveryPayment) 
+        {
+            return 0;
+        }
+        int month = (int)employee.RecoveryPaymentMonth;
+        int currentMonth = employee.RetirementDate.Month;
+        if (month < currentMonth) //אם עדיין לא שילמו לו 
+        {
+            return employee.NumberOfDaysOfRecoveryToBePaid * employee.PartTimeJobLastYear * Recovery;
+        }
+        return 0; // כבר שילמו 
+    }
+    /// <summary>
+    /// הערה לעובד
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static string RecoveryNote(Employee employee)
+    {
+        int currentYear = employee.RetirementDate.Year;
+        return $"הבראה בגין שנת הפרישה - {currentYear}, תשולם בשנת {currentYear + 1} בהתאם לחלקיות המשרה המשוקללת (חלקיות משרה בעבודה בפועל עד לחודש הפרישה, ולפי אחוז הקצבה ממועד הפרישה)";
+    }
+
+    //-----------------------------------פיצויים------------------------------------------
+    /// <summary>
+    /// פיצויים לתשלום
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double CompensationToBePaid(Employee employee)
+    {
+        return DeterminedSalaryIncludingRecoveryAndClothing(employee) * WorkingPeriodForCompensation(employee);
+    }
+
+    //------------------------------3 חודשי משכורת לשארים--------------------------------
+    /// <summary>
+    /// סכום לתשלום - 3 חודשי משכורת לשארים
+    /// </summary>
+    /// <param name="employee"></param>
+    /// <returns></returns>
+    public static double TreeMonthsSalaryForHeirs(Employee employee)
+    {
+        return employee.SalaryDetermines * MonthsOfSalaryForHeirs;
     }
 }
 
