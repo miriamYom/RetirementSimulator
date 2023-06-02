@@ -2,7 +2,11 @@ import './style/Header.css';
 import logo from "../img/לבן לוגו מיכל לוי (1) 2.png";
 import phoneIcon from "../img/phone.png";
 import personIcon from "../img/person.png";
+import { useSelector, useDispatch } from "react-redux";
+
 function Header() {
+    const dispatch = useDispatch();
+    let user = useSelector((state) => state.userReducer);
 
     return (
         <div className='header'>
@@ -13,7 +17,7 @@ function Header() {
                 </a>
             </div>
             <div className="group-289328">
-                <p className="welcome">היי דודי</p>
+                <p className="welcome"> {user===null?"":"היי "+user.name}</p>
                 <img className='personIcon' src={personIcon}></img>
             </div>
             <div className="group-289327">

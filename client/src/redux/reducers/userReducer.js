@@ -1,4 +1,4 @@
-const initialState = {};
+const initialState = {"name":"ג'ודית"};
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {

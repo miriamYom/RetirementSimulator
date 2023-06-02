@@ -71,8 +71,8 @@ function Login() {
                     navigate("PensionType") :
                     alert("youe login is uncorrect");
                     // need checks
-                    e.preventDefault();
-                    dispatch(addDetail(response.json()));
+                    // e.preventDefault();
+                    dispatch(userLogin(response.json()));
             })
             .catch(error => {
                 alert("youe login is uncorrect");
