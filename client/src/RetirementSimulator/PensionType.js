@@ -25,6 +25,7 @@ function PensionType() {
     const [isBudgetPension, setIsBudget] = useState(false);
     const employeeDetails = {};
     const [enableNext, setEnableNext] = useState(false);
+    
     return (
 
         <div style={{ "textAlign": "center" }}>

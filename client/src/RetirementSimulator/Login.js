@@ -16,8 +16,12 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
+import { userLogin } from "../redux/actions/userAction";
+import { useSelector, useDispatch } from "react-redux";
 
 function Login() {
+    const dispatch = useDispatch();
+    let user = useSelector((state) => state.userReducer);
 
     const navigate = useNavigate();
     const [centredModal, setCentredModal] = useState(false);
@@ -62,10 +66,13 @@ function Login() {
         };
         axios.post(`https://localhost:7049/RentiermentSimulator/Login?email=${email}`,
             password, axiosConfig)
-            .then(res => {
-                res.status === 200 ?
+            .then(response => {
+                response.status === 200 ?
                     navigate("PensionType") :
                     alert("youe login is uncorrect");
+                    // need checks
+                    e.preventDefault();
+                    dispatch(addDetail(response.json()));
             })
             .catch(error => {
                 alert("youe login is uncorrect");
