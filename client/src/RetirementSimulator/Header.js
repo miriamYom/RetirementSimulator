@@ -7,6 +7,9 @@ import { useSelector, useDispatch } from "react-redux";
 function Header() {
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
+console.log(user);
+console.log(user==={});
+console.log(Object.keys(user).length === 0 );
 
     return (
         <div className='header'>
@@ -16,16 +19,20 @@ function Header() {
                     מעבר לאתר הבית
                 </a>
             </div>
+            {Object.keys(user).length === 0 ?
+            null:
             <div className="group-289328">
-                <p className="welcome"> {user===null?"":"היי "+user.name}</p>
+                <p className="welcome">היי {user.name}</p>
                 <img className='personIcon' src={personIcon}></img>
-            </div>
+            </div>}
             <div className="group-289327">
                 <img className="vector-phone" src={phoneIcon}></img>
                 <p className="contact-us">צור קשר</p>
             </div>
             <img className="logo-header" src={logo} onClick={() => { window.location.href = "https://simulator.michallcpa.co.il/HomeComponent" }}></img>
-            <div className="line11"></div>
+            {Object.keys(user).length === 0?
+            null:
+            <div className="line11"></div>}
         </div>
     );
 }

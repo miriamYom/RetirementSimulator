@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 export default function PersonalData() {
 
     const dispatch = useDispatch();
-    let emp = useSelector((state) => state.employeeReducer);
+    // let emp = useSelector((state) => state.employeeReducer);
 
     const location = useLocation();
     const data = location.state.data;
