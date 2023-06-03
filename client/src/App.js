@@ -13,6 +13,7 @@ import Calculation from "./RetirementSimulator/Calculation";
 import Login from "./RetirementSimulator/Login";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import Admin from "./RetirementSimulator/Admin";
 
 
 function App() {
@@ -23,7 +24,9 @@ function App() {
         <BrowserRouter>
           <Header></Header>
           <Routes>
-            <Route exact path="/" element={<Login></Login>} />
+            {/* <Route exact path="/" element={<Login></Login>} /> */}
+            <Route exact path="/" element={<Admin></Admin>}></Route>
+            <Route exact path="Admin" element={<Admin></Admin>}></Route>
             <Route exact path="PensionType" element={<PensionType></PensionType>}></Route>
             <Route exact path="GeneralData" element={<GeneralData></GeneralData>}></Route>
             <Route exact path="Details" element={<Details></Details>}></Route>

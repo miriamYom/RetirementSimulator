@@ -2,14 +2,10 @@ import './style/Header.css';
 import logo from "../img/לבן לוגו מיכל לוי (1) 2.png";
 import phoneIcon from "../img/phone.png";
 import personIcon from "../img/person.png";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Header() {
-    const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
-console.log(user);
-console.log(user==={});
-console.log(Object.keys(user).length === 0 );
 
     return (
         <div className='header'>
