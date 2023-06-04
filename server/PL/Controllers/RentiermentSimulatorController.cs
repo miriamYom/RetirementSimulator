@@ -3,7 +3,6 @@ using BL.BLImplements;
 using BL.DTO;
 using BL.Pension;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace UI.Controllers;
 
@@ -61,7 +60,7 @@ public class RentiermentSimulatorController : ControllerBase
         try
         {
             var o = employee;
-            return pensionFactory.Create(pensionType, employee);
+           return pensionFactory.Create(pensionType, employee);
         }
         catch (InvalidParameterException ex)
         {
@@ -79,8 +78,8 @@ public class RentiermentSimulatorController : ControllerBase
     {
         return new Employee();
     }
-    
-    
-    
+
+
+
 }
 

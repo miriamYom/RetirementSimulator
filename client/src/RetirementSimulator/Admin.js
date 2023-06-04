@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import GetAllUsers from './Admin/GetAllUsers';
 import CreateUser from './Admin/CreateUser';
+import DeleteUser from './Admin/DeleteUser';
 
 
 function Admin() {
@@ -80,7 +81,7 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <p>jbbibi</p>
+                               <DeleteUser></DeleteUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
