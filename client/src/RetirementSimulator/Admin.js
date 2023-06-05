@@ -7,11 +7,12 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 import GetAllUsers from './Admin/GetAllUsers';
 import CreateUser from './Admin/CreateUser';
 import DeleteUser from './Admin/DeleteUser';
+import GetUser from './Admin/GetUser';
+import UpdateUser from './Admin/UpdateUser';
 
 
 function Admin() {
@@ -91,7 +92,7 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <p>jbbibi</p>
+                             <UpdateUser></UpdateUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -111,7 +112,7 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                                <p>jbbibi</p>
+                             <GetUser></GetUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>

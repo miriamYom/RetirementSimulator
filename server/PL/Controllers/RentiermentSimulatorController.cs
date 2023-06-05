@@ -34,7 +34,13 @@ public class RentiermentSimulatorController : ControllerBase
     [HttpPost("CreateUser")]
     public bool CreateUser([FromBody] UserDTO user)
     {
+        try { 
         return userServiceBL.CreateAsync(user).Result;
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     [HttpDelete("DeleteUser")]

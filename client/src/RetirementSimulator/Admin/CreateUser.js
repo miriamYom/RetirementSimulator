@@ -7,13 +7,6 @@ import * as yup from 'yup';
 
 
 function CreateUser() {
-    // const [name, setName] = useState("");
-    // const [role, setRole] = useState("");
-    // const [email, setEmail] = useState("");
-    // const [phoneNumber, setPhoneNumber] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [subscriptionPeriodDate, setSubscriptionPeriodDate] = useState(new Date());
-
 
     const schema = yup.object().shape({
         name: yup.string().required(),
@@ -29,55 +22,18 @@ function CreateUser() {
 
     });
 
-    // function validateForm() {
-    //     //change this
-    //     return true;
-    // };
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     // createUser();
-    // };
 
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         resolver: yupResolver(schema),
     });
 
-    // const onSubmitHandler = (data) => {
-    //     console.log(data.data);
-    //     axios.post(`https://localhost:7049/RentiermentSimulator/CreateUser`,
-    //     {
-    //         data
-    //     })
-    //     .then(data => console.log(data))
-    //         .catch(error =>
-    //             console.error('There was an error!\n', error));
-    // };
-
     const onSubmit = (data) => {
         console.log("data: ", data);
         axios.post('https://localhost:7049/RentiermentSimulator/CreateUser', data)
             .then(response => console.log(response.data))
-            .catch(error => console.error(error));
+            // .catch(error => console.log(error));
+            .catch(alert("נראה שקרתה תקלה. 🧐"));
     };
- 
-      
-
-    // function createUser() {
-    //     axios.post(`https://localhost:7049/RentiermentSimulator/CreateUser`,
-    //         {
-    //             name,
-    //             role,
-    //             email,
-    //             phoneNumber,
-    //             password,
-    //             subscriptionPeriodDate
-    //         }
-    //     )
-    //         .then(data => console.log(data))
-    //         .catch(error =>
-    //             console.error('There was an error!\n', error));
-    // };
 
     return (
         <>
@@ -89,7 +45,13 @@ function CreateUser() {
                 <p style={{ "color": "red" }}>{errors.name?.message}</p>
 
                 <label>תפקיד:</label>
-                <input {...register("role")} type="text" />
+                <select {...register("role")} >
+                    <option value="מזכיר.ה">מזכיר.ה</option>
+                    <option value="חשב.ת שכר">חשב.ת שכר</option>
+                    <option value="רוא.ת חשבון">רו"ח</option>
+                    <option value="אחר"> אחר</option>
+                </select>
+                {/* <input {...register("role")} type="text" /> */}
                 <p style={{ "color": "red" }}>{errors.role?.message}</p>
 
                 <label>כתובת מייל:</label>

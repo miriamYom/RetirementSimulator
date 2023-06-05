@@ -26,6 +26,16 @@ public class UserServiceBL : IUserServiceBL
     public async Task<bool> CreateAsync(UserDTO userDTO)
     {
         User user = userMapper.Map<User>(userDTO);
+        /*if (user.Role.Equals("Admin")|| user.Role.Equals("admin"))
+        {
+            throw new InvalidParameterException("the role is not valid");
+        }*/
+        var filter =  Builders<User>.Filter.Eq("Email", user.Email);
+        var result = await userService.GetAsync(filter);
+        if (result.Id.Equals(""))
+        {
+            throw new Exception("email is not valid");
+        }
         return await userService.CreateAsync(user);
     }
     public Task<bool> DeleteAsync(UserDTO user)
