@@ -19,8 +19,8 @@ function CreateUser() {
         name: yup.string().required(),
         role: yup.string().required(),
         email: yup.string().email('Invalid email').required('Email is required'),
-        phoneNumber: yup.number().required(),
-        // password: yup.string().required('Password is required').min(8, 'סיסמה חייבת להכיל 8 תוים')
+        phoneNumber: yup.string().required(),
+        password: yup.string().required('Password is required').min(8, 'סיסמה חייבת להכיל 8 תוים'),
         //     .matches(/[0-9]/, 'Password requires a number')
         //     .matches(/[a-z]/, 'Password requires a lowercase letter')
         //     .matches(/[A-Z]/, 'Password requires an uppercase letter')
@@ -55,21 +55,12 @@ function CreateUser() {
     // };
 
     const onSubmit = (data) => {
-        // console.log(typeof(data) )
-        axios.post('https://localhost:7049/RentiermentSimulator/CreateUser', {
-      data
-    })
+        console.log("data: ", data);
+        axios.post('https://localhost:7049/RentiermentSimulator/CreateUser', data)
             .then(response => console.log(response.data))
             .catch(error => console.error(error));
     };
-    // const onSubmit = async (data) => {
-    //     try {
-    //       const response = await axios.post('https://localhost:7049/RentiermentSimulator/CreateUser', {...data});
-    //       console.log(response.data);
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   };
+ 
       
 
     // function createUser() {

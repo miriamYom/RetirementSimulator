@@ -32,7 +32,7 @@ public class RentiermentSimulatorController : ControllerBase
     }
 
     [HttpPost("CreateUser")]
-    public bool CreateUser(UserDTO user)
+    public bool CreateUser([FromBody] UserDTO user)
     {
         return userServiceBL.CreateAsync(user).Result;
     }
