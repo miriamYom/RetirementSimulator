@@ -18,7 +18,8 @@ function DeleteUser() {
     });
 
     const onSubmit = (data) => {
-        axios.delete("https://localhost:7049/RentiermentSimulator/DeleteUser", { schema })
+        console.log(data)
+        axios.delete("https://localhost:7049/RentiermentSimulator/DeleteUser", { data })
             .then(response => console.log(response))
     }
    
@@ -26,7 +27,7 @@ function DeleteUser() {
 
     return(
         <>
-            <label>Create new user</label>
+            <label>delete user</label>
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <label>שם:</label>
