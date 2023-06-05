@@ -20,25 +20,15 @@ function CreateUser() {
         role: yup.string().required(),
         email: yup.string().email('Invalid email').required('Email is required'),
         phoneNumber: yup.string().required(),
-        password: yup.string().required('Password is required').min(8, 'סיסמה חייבת להכיל 8 תוים'),
-        //     .matches(/[0-9]/, 'Password requires a number')
-        //     .matches(/[a-z]/, 'Password requires a lowercase letter')
-        //     .matches(/[A-Z]/, 'Password requires an uppercase letter')
-        //     .matches(/[^\w]/, 'Password requires a symbol'),
+        password: yup.string().required('Password is required').min(8, 'סיסמה חייבת להכיל 8 תוים')
+            .matches(/[0-9]/, 'Password requires a number')
+            .matches(/[a-z]/, 'Password requires a lowercase letter')
+            .matches(/[A-Z]/, 'Password requires an uppercase letter')
+            .matches(/[^\w]/, 'Password requires a symbol'),
         subscriptionPeriodDate: yup.date().required()
 
     });
-
-    // function validateForm() {
-    //     //change this
-    //     return true;
-    // };
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     // createUser();
-    // };
-
+    
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         resolver: yupResolver(schema),
     });

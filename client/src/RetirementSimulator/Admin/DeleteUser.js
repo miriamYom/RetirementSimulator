@@ -10,6 +10,7 @@ function DeleteUser() {
         role: yup.string(),//.required(),
         email: yup.string().email(),//.required('Email is required'),'Invalid email'
         phoneNumber: yup.number(),//.required()
+        password: yup.string(),
         subscriptionPeriodDate: yup.date()//.required()
     })
 
@@ -19,7 +20,7 @@ function DeleteUser() {
 
     const onSubmit = (data) => {
         console.log(data)
-        axios.delete("https://localhost:7049/RentiermentSimulator/DeleteUser", { data })
+        axios.delete("https://localhost:7049/RentiermentSimulator/DeleteUser",  data )
             .then(response => console.log(response))
     }
    
@@ -49,7 +50,10 @@ function DeleteUser() {
                 <label>תוקף מנוי:</label>
                 <input {...register("subscriptionPeriodDate")} type="date" ></input>
                 {/* <p style={{ "color": "red" }}>{errors.subscriptionPeriodDate?.message}</p> */}
-
+                
+                <label>סיסמה:</label>
+                <input {...register("password")} type="password" ></input>
+                
                 <button type="submit">Submit</button>
             </form>
 

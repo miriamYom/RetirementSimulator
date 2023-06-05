@@ -6,10 +6,11 @@ import { useRef } from 'react';
 export default function GetAllUsers() {
 
     const allUsers = useRef();
-    // allUsers.current = {};
+
 
     const [flag, setflag] = useState(false);
     function getAll() {
+        
         setflag(true);
         axios.get('https://localhost:7049/RentiermentSimulator/GetAll')
             .then((response) => {
