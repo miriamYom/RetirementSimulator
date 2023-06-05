@@ -22,7 +22,6 @@ export default function GetAllUsers() {
 
     return (
         <center>
-
             <button disabled={flag} onClick={getAll}>קבל פרטי כל המנויים</button>
             <table  class="table table-bordered border-primary">
                 <tr class="table-info">
