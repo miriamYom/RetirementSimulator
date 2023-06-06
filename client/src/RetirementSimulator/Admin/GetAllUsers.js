@@ -2,10 +2,12 @@ import { AllInbox } from '@mui/icons-material';
 import axios from 'axios';
 import { useState } from 'react';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function GetAllUsers() {
 
     const allUsers = useRef();
+    const navigate = useNavigate();
 
 
     const [flag, setflag] = useState(false);
@@ -17,6 +19,7 @@ export default function GetAllUsers() {
                 allUsers.current = response.data;
                 console.log(allUsers.current);
                 setflag(true);
+                navigate("/", { state: { data: response.data } });
             });
     }
 
