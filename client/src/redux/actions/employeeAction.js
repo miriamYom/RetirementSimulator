@@ -10,3 +10,8 @@ export const addDetails = (obj) => {
         playload: obj
     }
 }
+export const removePensionType = () => {
+    return {
+        type: "REMOVEPENSIONTYPE"
+    }
+}

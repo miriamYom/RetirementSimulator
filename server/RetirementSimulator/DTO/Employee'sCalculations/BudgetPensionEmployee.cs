@@ -12,12 +12,19 @@ public class BudgetPensionEmployee : Employee
     }
     public override string Clculates()
     {
+        bool flag = false;
         string json = "{";
         object[] param = { this };
         foreach (var methodInfo in typeof(BudgetPensionService).GetMethods(BindingFlags.Static | BindingFlags.Public))
         {
             var result = methodInfo.Invoke(null, param);
-            json += $" '{methodInfo.Name}' : '{result}',";
+            if (!flag)
+            {
+                flag = true;
+                json += $" '{methodInfo.Name}' : '{result}'";
+
+            }
+            else json += $" ,'{methodInfo.Name}' : '{result}'";
         }
         json += "}";
         return json.Replace("'", "\"");
