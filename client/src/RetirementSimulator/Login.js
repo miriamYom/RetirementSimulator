@@ -32,6 +32,7 @@ function Login() {
     const toggleShow = () => setCentredModal(!centredModal);
 
     useEffect(() => {
+        dispatch(userLogin({}));
         console.log("useEffect");
         setCentredModal(!centredModal);
     }, [])
@@ -52,12 +53,13 @@ function Login() {
         resolver: yupResolver(schema),
     });
 
-    const navigetToCurrentPage = () => {
-        //הבדיקה הזאת צריכה להיות בשרת
-        user.role == "Admin" || user.role == "admin" ?
-            navigate("Admin") :
-            navigate("PensioType");
-    }
+    // const navigetToCurrentPage = () => {
+    //     console.log(user.role);
+    //     //הבדיקה הזאת צריכה להיות בשרת
+    //     user.role == "Admin" || user.role == "admin" ?
+    //         navigate("Admin") :
+    //         navigate("PensionType");
+    // }
 
     const onSubmitHandler = (data) => {
         axios.post('http://localhost:5170/RentiermentSimulator/Login?email=' + data.email, '"' + data.password + '"', {
@@ -66,16 +68,21 @@ function Login() {
             }
         })
             .then(response => {
-                console.log("response", response.data);
+                console.log("response", response.data, "vgvv");
                 if (response.status >= 200 && response.status < 300) {
                     if (response.data != null) //לסדר. טיפש גמור שלא מבין עברית
-                        // dispatch(userLogin(response.json()));
-                        // <PensionType></PensionType>
-                        navigetToCurrentPage();
+                        try {
+                            dispatch(userLogin(response.data));
+                            navigate("/PensionType");
+                        }
+                        catch (e) {
+                            console.log(e);
+                        }
+                    // navigetToCurrentPage();
                 }
                 else {
-                    alert("כתובת מייל או סיסמה שגויים");
-                    { <p>gggg</p> }
+                    alert("2כתובת מייל או סיסמה שגויים");
+
                 }
             })
             .catch(error => {

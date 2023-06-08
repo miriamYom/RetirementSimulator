@@ -35,8 +35,9 @@ function CreateUser() {
 
     const onSubmit = (data) => {
         console.log("data: ", data);
-        axios.post('https://localhost:7049/RentiermentSimulator/CreateUser', data)
+        axios.post('http://localhost:5170/RentiermentSimulator/CreateUser', data)
             .then(response => console.log(response.data))
+            .then(alert("good"))
             // .catch(error => console.log(error));
             .catch(alert("נראה שקרתה תקלה. 🧐"));
     };

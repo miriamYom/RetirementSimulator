@@ -32,7 +32,7 @@ public class UserServiceBL : IUserServiceBL
         }*/
         var filter =  Builders<User>.Filter.Eq("Email", user.Email);
         var result = await userService.GetAsync(filter);
-        if (result.Id.Equals(""))
+        if (result is not null)
         {
             throw new Exception("email is not valid");
         }

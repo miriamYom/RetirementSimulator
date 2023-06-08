@@ -1,10 +1,11 @@
 // const initialState = {"name":"ג'ודית"};
-const initialState = { "role": "admin" };
+const initialState = {  };
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case "USERLOGIN": {
-            initialState = action.playload.obj;
+            console.log(action.playload.obj);
+            state = action.playload.obj;
             return state;
         }
     }

@@ -6,23 +6,23 @@ import { useNavigate } from 'react-router-dom';
 
 export default function GetAllUsers() {
 
-    const allUsers = useRef();
+    // const allUsers = useRef();
+    const [allUsers,setallUsers] = useState();
     const navigate = useNavigate();
 
 
     const [flag, setflag] = useState(false);
     function getAll() {
-        
         setflag(true);
-        axios.get('https://localhost:7049/RentiermentSimulator/GetAll')
+        axios.get('http://localhost:5170/RentiermentSimulator/GetAll')
             .then((response) => {
-                allUsers.current = response.data;
-                console.log(allUsers.current);
+                setallUsers(response.data);
+                console.log(allUsers);
                 setflag(true);
-                navigate("/", { state: { data: response.data } });
-            });
+                // navigate("/", { state: { data: response.data } });
+            })
+            .catch((error)=>console.error(error));
     }
-
 
     return (
         <center>
@@ -36,15 +36,15 @@ export default function GetAllUsers() {
                     <th>טלפון</th>
                     <th >תוקף מנוי</th>
                 </tr>
-                {Array.isArray(allUsers.current) ? (
-                    allUsers.current.map((item, index) => (
+                {Array.isArray(allUsers) ? (
+                   Object.keys(allUsers).map((key, index) => (
                         <tr key={index}>
-                            <td> {item.name}</td>
-                            <td>{item.role}</td>
-                            <td> {item.email}</td>
-                            <td>{item.password}</td>
-                            <td>{item.phoneNumber}</td>
-                            <td> {item.subscriptionPeriodDate.slice(0, 10)}</td>
+                            <td> {allUsers[key].name}</td>
+                            <td>{allUsers[key].role}</td>
+                            <td> {allUsers[key].email}</td>
+                            <td>{allUsers[key].password}</td>
+                            <td>{allUsers[key].phoneNumber}</td>
+                            <td> {allUsers[key].subscriptionPeriodDate.slice(0, 10)}</td>
                         </tr>
                     ))
                 ) : (
