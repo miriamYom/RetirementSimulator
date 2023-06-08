@@ -18,6 +18,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import { userLogin } from "../redux/actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
+import PensionType from './PensionType';
 
 function Login() {
     const dispatch = useDispatch();
@@ -52,34 +53,35 @@ function Login() {
     });
 
     const navigetToCurrentPage = () => {
+        //הבדיקה הזאת צריכה להיות בשרת
         user.role == "Admin" || user.role == "admin" ?
-            navigate("Admun") :
+            navigate("Admin") :
             navigate("PensioType");
     }
 
-    const onSubmitHandler = () => {
-        // event.preventDefault();
-        let axiosConfig = {
+    const onSubmitHandler = (data) => {
+        axios.post('http://localhost:5170/RentiermentSimulator/Login?email=' + data.email, '"' + data.password + '"', {
             headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': "application/json; charset=utf-8" //== "application/json"
+                'Content-Type': 'application/json'
             }
-        };
-        axios.post(`http://localhost:5170/RentiermentSimulator/Login?email=${email}`,
-            password)//, axiosConfig)
+        })
             .then(response => {
-                console.log("response", response);
-                if (response.status === 200) {
-                    dispatch(userLogin(response.json()));
-                    navigetToCurrentPage();
+                console.log("response", response.data);
+                if (response.status >= 200 && response.status < 300) {
+                    if (response.data != null) //לסדר. טיפש גמור שלא מבין עברית
+                        // dispatch(userLogin(response.json()));
+                        // <PensionType></PensionType>
+                        navigetToCurrentPage();
                 }
                 else {
-
+                    alert("כתובת מייל או סיסמה שגויים");
+                    { <p>gggg</p> }
                 }
             })
             .catch(error => {
-                alert("youe login is uncorrect");
+                alert("כתובת מייל או סיסמה שגויים");
                 console.log(error.response);
+                { <p>gggg</p> }
             })
     }
 
