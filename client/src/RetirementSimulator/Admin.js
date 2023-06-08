@@ -13,7 +13,7 @@ import CreateUser from './Admin/CreateUser';
 import DeleteUser from './Admin/DeleteUser';
 import GetUser from './Admin/GetUser';
 import UpdateUser from './Admin/UpdateUser';
-
+import PreviousNext from './PreviousNext';
 
 function Admin() {
 
@@ -61,6 +61,8 @@ function Admin() {
         setExpanded(newExpanded ? panel : false);
     };
 
+    let enableNext = true;
+
     return (
         <>
             <div class="card bg-light mb-3">
@@ -82,7 +84,7 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                               <DeleteUser></DeleteUser>
+                                <DeleteUser></DeleteUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -92,7 +94,7 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                             <UpdateUser></UpdateUser>
+                                <UpdateUser></UpdateUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
@@ -112,13 +114,13 @@ function Admin() {
                         </AccordionSummary>
                         <AccordionDetails>
                             <Typography>
-                             <GetUser></GetUser>
+                                <GetUser></GetUser>
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
                 </div>
             </div>
-
+            <PreviousNext next="PensionType" enableNext={enableNext}></PreviousNext>
         </>
     );
 }

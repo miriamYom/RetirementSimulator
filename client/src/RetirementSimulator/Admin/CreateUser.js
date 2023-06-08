@@ -4,8 +4,6 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 
-
-
 function CreateUser() {
 
     const schema = yup.object().shape({
@@ -19,7 +17,6 @@ function CreateUser() {
             .matches(/[A-Z]/, 'Password requires an uppercase letter')
             .matches(/[^\w]/, 'Password requires a symbol'),
         subscriptionPeriodDate: yup.date().required()
-
     });
 
     // function validateForm() {
@@ -81,7 +78,6 @@ function CreateUser() {
 
                 <button type="submit">Submit</button>
             </form>
-
         </>
     );
 };

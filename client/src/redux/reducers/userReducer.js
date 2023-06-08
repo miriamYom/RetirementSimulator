@@ -1,5 +1,5 @@
 // const initialState = {"name":"ג'ודית"};
-const initialState = {};
+const initialState = { "role": "admin" };
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
