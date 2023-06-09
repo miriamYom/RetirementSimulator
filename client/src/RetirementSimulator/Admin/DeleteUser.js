@@ -6,33 +6,42 @@ import * as yup from 'yup';
 
 function DeleteUser() {
     const schema = yup.object().shape({
-        name: yup.string().default(""),//.required(),
-        role: yup.string().default(""),//.required(),
-        email: yup.string().email().required('Email is required'),//'Invalid email'
-        phoneNumber: yup.number().default(""),//.required()
-        subscriptionPeriodDate: new Date()
-        // subscriptionPeriodDate: /*JSON.parse*/(yup.date()).toJSON()//.required()
+        name: yup.string().default(""),
+        role: yup.string().default(""),
+        email: yup.string().email('Invalid email').required('Email is required'),
+        phoneNumber: yup.string().default(""),
+        password: yup.string().default(""),
+        subscriptionPeriodDate: yup.date().default(() => new Date())
     });
 
-
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
-        defaultValues: {
-            name:"",
-            subscriptionPeriodDate: new Date().toJSON()
-          },
-
         resolver: yupResolver(schema),
     });
 
     const onSubmit = (data) => {
         console.log(data);
-        data.subscriptionPeriodDate = data.subscriptionPeriodDate.toJSON();
-        console.log(data);
-
-        // axios.delete("https://localhost:5170/RentiermentSimulator/DeleteUser", data)
-        //     .then(response => console.log(response.data))
-        //     .catch((error) => console.log(error));
+        axios.delete('http://localhost:5170/RentiermentSimulator/DeleteUser', data, {
+            headers: {
+                'accept': 'text/plain',
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+                alert("נראה שקרתה תקלה. 🧐")
+            });
     };
+    // const onSubmit = (data) => {
+    //     console.log(data);
+    //     data.subscriptionPeriodDate = data.subscriptionPeriodDate.toJSON();
+    //     console.log(data);
+    //     // axios.delete("https://localhost:5170/RentiermentSimulator/DeleteUser", data)
+    //     //     .then(response => console.log(response.data))
+    //     //     .catch((error) => console.log(error));
+    // };
 
     return (
         <>
@@ -40,7 +49,7 @@ function DeleteUser() {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>כתובת מייל:</label>
                 <input {...register("email")} placeholder="email" type="email" ></input>
-                {/* <p style={{ "color": "red" }}>{errors.email?.message}</p> */}
+                <p style={{ "color": "red" }}>{errors.email?.message}</p>
 
                 {/* <label>שם:</label>
                 <input {...register("name")} type="text" />
@@ -62,8 +71,6 @@ function DeleteUser() {
                 {/* <label>תוקף מנוי:</label>
                 <input {...register("subscriptionPeriodDate")} type="text" /> */}
                 {/* <p style={{ "color": "red" }}>{errors.subscriptionPeriodDate?.message}</p> */}
-
-
                 <button type="submit">Submit</button>
             </form>
         </>

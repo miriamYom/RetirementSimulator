@@ -39,7 +39,7 @@ function CreateUser() {
             .then(response => console.log(response.data))
             .then(alert("good"))
             // .catch(error => console.log(error));
-            .catch(alert("נראה שקרתה תקלה. 🧐"));
+            .catch(error=>alert("נראה שקרתה תקלה. 🧐"));
     };
 
     return (
