@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useLocation } from 'react-router-dom';
-import PreviousNext from "../PreviousNext";
+// import { useLocation } from 'react-router-dom';
+// import PreviousNext from "../PreviousNext";
 
 export default function Clothing() {
 
-    const location = useLocation();
-    const data = location.state.data;
+    // const location = useLocation();
+    // const data = location.state.data;
 
     const [isClothingForAudienceMembers, setIsClothingForAudienceMembers] = useState(false);
     const [isMonthlyClothingPayment, setIsMonthlyClothingPayment] = useState(false);
@@ -29,13 +29,13 @@ export default function Clothing() {
             <option value="December">דצמבר</option>
         </>
 
-    const addDetails = () => {
-        data.isClothingForAudienceMembers = isClothingForAudienceMembers;
-        data.isMonthlyClothingPayment = isMonthlyClothingPayment;
-        data.isThreeLevel = isThreeLevel;
-        data.isCurrentYear = isCurrentYear;
-        data.monthOfClothingPayment = monthOfClothingPayment;
-    };
+    // const addDetails = () => {
+    //     data.isClothingForAudienceMembers = isClothingForAudienceMembers;
+    //     data.isMonthlyClothingPayment = isMonthlyClothingPayment;
+    //     data.isThreeLevel = isThreeLevel;
+    //     data.isCurrentYear = isCurrentYear;
+    //     data.monthOfClothingPayment = monthOfClothingPayment;
+    // };
 
 
 
@@ -73,8 +73,8 @@ export default function Clothing() {
                     <input type="radio" value={true} name="IsCurrentYear" onChange={(e) => setIsCurrentYear(e.target.value)}/> שנה קנדרית קודמת
                     <input type="radio" value={false} name="IsCurrentYear" onChange={(e) => setIsCurrentYear(e.target.value)}/> שנה נוכחית
                 </>) : null}
-                {addDetails()}
-                {console.log(data)}
+                {/* {addDetails()} */}
+                {/* {console.log(data)} */}
         </>
     )
 }

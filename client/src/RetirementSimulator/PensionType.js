@@ -27,8 +27,7 @@ function PensionType() {
     const [enableNext, setEnableNext] = useState(false);
 
     return (
-
-        <div style={{ "textAlign": "center" }}>
+        <>
             <Sequence page="1"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">סוג פנסיה</div>
@@ -60,7 +59,7 @@ function PensionType() {
                 </div>
             </div >
             <PreviousNext next="GeneralData" enableNext={enableNext}></PreviousNext>
-        </div>
+        </>
     )
 }
 export default PensionType;

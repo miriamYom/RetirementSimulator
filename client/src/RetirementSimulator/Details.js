@@ -52,14 +52,12 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 
 function Details() {
 
-    const [expanded, setExpanded] = React.useState('panel1');
+    const [expanded, setExpanded] = React.useState('');
 
     const handleChange = (panel) => (event, newExpanded) => {
         setExpanded(newExpanded ? panel : false);
     };
 
-
-    let employeeDetails = {};
     let enableNext = true;
     return (
         <>
@@ -80,7 +78,7 @@ function Details() {
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
                             <Typography className="title">הבראה</Typography>
                         </AccordionSummary>
@@ -90,7 +88,7 @@ function Details() {
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">משכורת</Typography>
                         </AccordionSummary>
@@ -101,7 +99,7 @@ function Details() {
                     </Accordion>
 
 
-                    <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">מחלה</Typography>
                         </AccordionSummary>
@@ -111,7 +109,7 @@ function Details() {
                         </AccordionDetails>
                     </Accordion>
 
-                    <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">חופשה</Typography>
                         </AccordionSummary>

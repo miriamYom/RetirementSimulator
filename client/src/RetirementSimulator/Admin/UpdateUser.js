@@ -12,11 +12,12 @@ function UpdateUser() {
         role: yup.string().default(""),
         email: yup.string().email('Invalid email').required('Email is required'),
         phoneNumber: yup.string().default(""),
-        password: yup.string().default("").min(8, 'סיסמה חייבת להכיל 8 תוים')
-            .matches(/[0-9]/, 'Password requires a number')
-            .matches(/[a-z]/, 'Password requires a lowercase letter')
-            .matches(/[A-Z]/, 'Password requires an uppercase letter')
-            .matches(/[^\w]/, 'Password requires a symbol'),
+        password: yup.string().default(""),
+        // .min(8, 'סיסמה חייבת להכיל 8 תוים')
+        //     .matches(/[0-9]/, 'Password requires a number')
+        //     .matches(/[a-z]/, 'Password requires a lowercase letter')
+        //     .matches(/[A-Z]/, 'Password requires an uppercase letter')
+        //     .matches(/[^\w]/, 'Password requires a symbol'),
         subscriptionPeriodDate: yup.date().default(() => new Date())
     });
 
