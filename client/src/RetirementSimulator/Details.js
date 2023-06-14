@@ -10,7 +10,6 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
-import { useLocation } from 'react-router-dom';
 import Clothing from "./ScreenThree-Details/Clothing";
 
 //#region accordion
@@ -59,19 +58,18 @@ function Details() {
         setExpanded(newExpanded ? panel : false);
     };
 
-    const location = useLocation();
-    let employeeDetails = location.state.data;
+
+    let employeeDetails = {};
     let enableNext = true;
     return (
         <>
-        {console.log("Im in details !!! \n", employeeDetails)}
             <Sequence page="3"></Sequence>
             <div class="card bg-light mb-3">
                 <div class="card-header">סכומים ויתרות- נתוני העובד</div>
                 <div class="card-body">
 
 
-                    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title">ביגוד</Typography>
                         </AccordionSummary>
@@ -126,7 +124,7 @@ function Details() {
                 </div>
             </div>
 
-            <PreviousNext next="PartTimeJob" data={employeeDetails} enableNext={enableNext}></PreviousNext>
+            <PreviousNext next="PartTimeJob" enableNext={enableNext}></PreviousNext>
         </>
     )
 }

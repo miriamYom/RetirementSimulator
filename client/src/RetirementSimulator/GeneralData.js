@@ -74,7 +74,7 @@ function GeneralData() {
                 <div class="card-body">
 
 
-                    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <Accordion className="accordion" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title">נתונים אישיים</Typography>
                         </AccordionSummary>
@@ -84,7 +84,7 @@ function GeneralData() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                    <Accordion className="accordion" expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
                             <Typography className="title">פנסיה תקציבית </Typography>
                         </AccordionSummary>
@@ -94,7 +94,7 @@ function GeneralData() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                    <Accordion className="accordion" expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
                             <Typography className="title">פנסיה צוברת</Typography>
                         </AccordionSummary>
@@ -109,7 +109,7 @@ function GeneralData() {
                 </div>
             </div>
 
-            <PreviousNext next="Details" data={employeeDetails} enableNext={enableNext} ></PreviousNext>
+            <PreviousNext next="Details" enableNext={enableNext} ></PreviousNext>
         </>
     )
 }

@@ -2,11 +2,9 @@ import './style/PreviousNext.css';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-
 // the func get props who set witch page to go
 function PreviousNext(props) {
     let user = useSelector((state) => state.userReducer);
-
     const navigate = useNavigate();
 
     return (
@@ -28,13 +26,14 @@ function PreviousNext(props) {
                         "לסימולטור" :
                         "הבא")}
             </button>
+          
             {
                 user.role === "Admin" || user.role === "admin" ?
                     <button className='button3'
                         onClick={() => navigate("/Admin")}
                     >מנהל</button> : null
             }
-
+-
         </div>
     );
 }

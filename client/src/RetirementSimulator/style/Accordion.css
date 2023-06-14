@@ -1,3 +1,7 @@
+.accordion {
+    margin: 20px;
+}
+
 .title {
     font-family: 'Rubik' !important;
     font-style: normal !important;
@@ -81,18 +85,19 @@
     /* transform: matrix(-1, 0, 0, 1, 0, 0); */
     border: none;
 }
-.MuiPaper-root{
+
+.MuiPaper-root {
     border: none !important;
 }
 
-.MuiCollapse-root{
+.MuiCollapse-root {
     border-top: none !important;
 }
 
-.MuiCollapse-wrapperInner{
+.MuiCollapse-wrapperInner {
     /* border-top: none !important; */
     background: #FFFFFF !important;
     box-shadow: 0px 6px 16px rgba(102, 102, 102, 0.21) !important;
     border-radius: 14px !important;
     margin: 5px !important;
- }
+}

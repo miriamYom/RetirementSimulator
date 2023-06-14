@@ -59,7 +59,7 @@ function PensionType() {
                     ) : (null)}
                 </div>
             </div >
-            <PreviousNext next="GeneralData" data={employeeDetails} enableNext={enableNext}></PreviousNext>
+            <PreviousNext next="GeneralData" enableNext={enableNext}></PreviousNext>
         </div>
     )
 }

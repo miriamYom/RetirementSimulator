@@ -33,8 +33,7 @@ function PartTimeJob() {
                 </div>
             </div>
 
-            <PreviousNext next="Calculation" data={employeeDetails} enableNext={enableNext}></PreviousNext>
-
+            <PreviousNext next="Calculation" enableNext={enableNext}></PreviousNext>
         </>
     );
 }

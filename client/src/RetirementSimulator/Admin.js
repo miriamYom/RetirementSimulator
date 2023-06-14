@@ -68,7 +68,7 @@ function Admin() {
             <div class="card bg-light mb-3">
                 <div class="card-header"> ניהול משתמשים</div>
                 <div class="card-body">
-                    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                    <Accordion className="accordion" expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title">יצירת מנוי חדש</Typography>
                         </AccordionSummary>
@@ -78,7 +78,7 @@ function Admin() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title">מחיקת מנוי</Typography>
                         </AccordionSummary>
@@ -88,7 +88,7 @@ function Admin() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title"> עדכון משתמש</Typography>
                         </AccordionSummary>
@@ -98,7 +98,7 @@ function Admin() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title"> כל המשתמשים</Typography>
                         </AccordionSummary>
@@ -108,7 +108,7 @@ function Admin() {
                             </Typography>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
+                    <Accordion className="accordion"  expanded={expanded === 'panel5'} onChange={handleChange('panel5')}>
                         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
                             <Typography className="title">פרטי מנוי</Typography>
                         </AccordionSummary>
