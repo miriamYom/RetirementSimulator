@@ -41,25 +41,19 @@ function Login() {
         email: yup.string().email("כתובת מייל לא תקינה").required("נא הזן.י כתובת מייל"),
         password: yup
             .string().required("נא הזן.י סיסמא")
-        // כל הולידציות האלו צריכות להיות בחירת סיסמה
-        // .min(8, 'סיסמה חייבת להכיל 8 תוים')
-        // .matches(/[0-9]/, 'Password requires a number')
-        // .matches(/[a-z]/, 'Password requires a lowercase letter')
-        // .matches(/[A-Z]/, 'Password requires an uppercase letter')
-        // .matches(/[^\w]/, 'Password requires a symbol'),
     });
 
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: yupResolver(schema),
     });
 
-    // const navigetToCurrentPage = () => {
-    //     console.log(user.role);
-    //     //הבדיקה הזאת צריכה להיות בשרת
-    //     user.role == "Admin" || user.role == "admin" ?
-    //         navigate("Admin") :
-    //         navigate("PensionType");
-    // }
+    const navigetToCurrentPage = () => {
+        console.log(user.role);
+        //הבדיקה הזאת צריכה להיות בשרת
+        user.role == "Admin" || user.role == "admin" ?
+            navigate("Admin") :
+            navigate("PensionType");
+    }
 
     const onSubmitHandler = (data) => {
         axios.post('http://localhost:5170/RentiermentSimulator/Login?email=' + data.email, '"' + data.password + '"', {
@@ -68,9 +62,8 @@ function Login() {
             }
         })
             .then(response => {
-                console.log("response", response.data, "vgvv");
                 if (response.status >= 200 && response.status < 300) {
-                    if (response.data != null) //לסדר. טיפש גמור שלא מבין עברית
+                    if (response.data != "") {
                         try {
                             dispatch(userLogin(response.data));
                             navigate("/PensionType");
@@ -78,17 +71,15 @@ function Login() {
                         catch (e) {
                             console.log(e);
                         }
-                    // navigetToCurrentPage();
-                }
-                else {
-                    alert("2כתובת מייל או סיסמה שגויים");
-
+                        navigetToCurrentPage();
+                    }
+                    else {
+                        {document.getElementById('errorMassege').hidden = false}
+                    }
                 }
             })
             .catch(error => {
-                alert("כתובת מייל או סיסמה שגויים");
-                console.log(error.response);
-                { <p>gggg</p> }
+                {document.getElementById('errorMassege').hidden = false}
             })
     }
 
@@ -110,10 +101,11 @@ function Login() {
                                     {...register('password')}>
                                 </input>
                                 <p style={{ "color": "red" }}>{errors.password?.message}</p>
+                                <p style={{ "color": "red" }} id='errorMassege' hidden='true'>כתובת מייל או סיסמא שגויים</p>
                                 <br></br>
                                 <a href='https://www.google.com/search?q=%D7%AA%D7%A8%D7%92%D7%95%D7%9E%D7%95%D7%9F&rlz=1C1SQJL_iwIL974IL974&oq=&aqs=chrome.2.35i39i362l6j46i39i362j35i39i362.490596j0j7&sourceid=chrome&ie=UTF-8'>שכחת סיסמא?</a>
                                 <br></br>
-                                <MDBBtn type='submit' className='login-connect' /*onClick={login}*/>התחברות</MDBBtn>
+                                <MDBBtn type='submit' className='login-connect'>התחברות</MDBBtn>
                             </form>
                         </MDBModalBody>
                     </MDBModalContent>

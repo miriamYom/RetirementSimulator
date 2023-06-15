@@ -104,9 +104,9 @@ public class UserServiceBL : IUserServiceBL
                 }
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-
+            return null;
         }
         return null;
     }
