@@ -20,12 +20,9 @@ function DeleteUser() {
 
     const onSubmit = (data) => {
         console.log(data);
-        axios.delete('http://localhost:5170/RentiermentSimulator/DeleteUser', data, {
-            headers: {
-                'accept': 'text/plain',
-                'Content-Type': 'application/json'
-            }
-        })
+        // axios.get("https://api.url.com", {headers: {'Content-Type': 'application/json'} })
+        // , {headers: {'Content-Type': 'application/json'} }
+        axios.delete('http://localhost:5170/RentiermentSimulator/DeleteUser', data)
             .then(response => {
                 console.log(response.data);
             })
@@ -34,18 +31,9 @@ function DeleteUser() {
                 alert("נראה שקרתה תקלה. 🧐")
             });
     };
-    // const onSubmit = (data) => {
-    //     console.log(data);
-    //     data.subscriptionPeriodDate = data.subscriptionPeriodDate.toJSON();
-    //     console.log(data);
-    //     // axios.delete("https://localhost:5170/RentiermentSimulator/DeleteUser", data)
-    //     //     .then(response => console.log(response.data))
-    //     //     .catch((error) => console.log(error));
-    // };
 
     return (
         <>
-            <p>delete user</p>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>כתובת מייל:</label>
                 <input {...register("email")} placeholder="email" type="email" ></input>
@@ -71,7 +59,7 @@ function DeleteUser() {
                 {/* <label>תוקף מנוי:</label>
                 <input {...register("subscriptionPeriodDate")} type="text" /> */}
                 {/* <p style={{ "color": "red" }}>{errors.subscriptionPeriodDate?.message}</p> */}
-                <button type="submit">Submit</button>
+                <button type="submit">מחק</button>
             </form>
         </>
     );

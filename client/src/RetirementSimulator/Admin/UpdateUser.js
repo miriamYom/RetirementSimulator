@@ -51,14 +51,12 @@ function UpdateUser() {
 
     return (
         <>
-            <label>Create new user</label>
-
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label> כתובת מייל של העובד הרצוי:</label>
                 <input {...register("email")} placeholder="email" type="email" />
                 <p style={{ "color": "red" }}>{errors.email?.message}</p>
 
-                <p> הזן את הפרט שברצונך לשנות:</p>
+                <p> הזן.י את הפרט שברצונך לעדכן:</p>
 
                 <label>שם:</label>
                 <input {...register("name")} type="text" />
@@ -67,10 +65,10 @@ function UpdateUser() {
 
                 <label>תפקיד:</label>
                 <select {...register("role")} >
-                    <option value="מזכיר.ה">מזכיר.ה</option>
                     <option value="חשב.ת שכר">חשב.ת שכר</option>
-                    <option value="רוא.ת חשבון">רו"ח</option>
-                    <option value="אחר"> אחר</option>
+                    <option value="מנהל.ת משאבי אנוש">מנהל.ת משאבי אנוש</option>
+                    <option value="גזבר.ית">גזבר.ית</option>
+                    <option value="מנכל">מנכ"ל</option>
                 </select>
                 {/* <input {...register("role")} type="text" /> */}
                 {/* <p style={{ "color": "red" }}>{errors.role?.message}</p> */}
@@ -90,8 +88,8 @@ function UpdateUser() {
                 <input {...register("subscriptionPeriodDate")} type="date" />
                 {/* <p style={{ "color": "red" }}>{errors.subscriptionPeriodDate?.message}</p> */}
                 <br></br>
-                
-                <button type="submit">Submit</button>
+
+                <button type="submit">עדכן</button>
             </form>
         </>
     );

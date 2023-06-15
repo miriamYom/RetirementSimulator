@@ -30,7 +30,7 @@ public class UserServiceBL : IUserServiceBL
         {
             throw new InvalidParameterException("the role is not valid");
         }*/
-        var filter =  Builders<User>.Filter.Eq("Email", user.Email);
+        var filter = Builders<User>.Filter.Eq("Email", user.Email);
         var result = await userService.GetAsync(filter);
         if (result is not null)
         {
@@ -75,9 +75,12 @@ public class UserServiceBL : IUserServiceBL
         {
             if (prop.PropertyType == typeof(string))
             {
-                if (prop.GetValue(user).ToString().Length > 0)
+                if (prop.Name != "SubscriptionPeriodDate")
                 {
-                    filter = Builders<User>.Filter.Eq(prop.Name, prop.GetValue(user));
+                    if (prop.GetValue(user).ToString().Length > 0)
+                    {
+                        filter = Builders<User>.Filter.Eq(prop.Name, prop.GetValue(user));
+                    }
                 }
             }
         }

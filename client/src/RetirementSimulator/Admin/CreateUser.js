@@ -19,15 +19,6 @@ function CreateUser() {
         subscriptionPeriodDate: yup.date().required()
     });
 
-    // function validateForm() {
-    //     //change this
-    //     return true;
-    // };
-
-    // function handleSubmit(event) {
-    //     event.preventDefault();
-    //     // createUser();
-    // };
 
     const { register, handleSubmit, formState: { errors }, reset, getValues } = useForm({
         resolver: yupResolver(schema),
@@ -44,7 +35,6 @@ function CreateUser() {
 
     return (
         <>
-            <label>Create new user</label>
             <form onSubmit={handleSubmit(onSubmit)}>
 
                 <label>שם:</label>
@@ -53,10 +43,10 @@ function CreateUser() {
 
                 <label>תפקיד:</label>
                 <select {...register("role")} >
-                    <option value="מזכיר.ה">מזכיר.ה</option>
                     <option value="חשב.ת שכר">חשב.ת שכר</option>
-                    <option value="רוא.ת חשבון">רו"ח</option>
-                    <option value="אחר"> אחר</option>
+                    <option value="מנהל.ת משאבי אנוש">מנהל.ת משאבי אנוש</option>
+                    <option value="גזבר.ית">גזבר.ית</option>
+                    <option value="מנכל">מנכ"ל</option>
                 </select>
                 {/* <input {...register("role")} type="text" /> */}
                 <p style={{ "color": "red" }}>{errors.role?.message}</p>
