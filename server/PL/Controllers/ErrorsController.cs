@@ -4,11 +4,13 @@ namespace UI.Controllers;
 
 [ApiController]
 [Route("[controller]")]
+[ApiExplorerSettings(IgnoreApi = true)]
+
 public class ErrorsController : Controller
 {
     // שיחרור הסלשים גורר שגיאה 
     // שלא נותנת להריץ את ה SWAGGER
-    /*
+    
     [Route("/error")]
     public ActionResult Error([FromServices] IHostEnvironment hostEnvironment)
     {
@@ -23,5 +25,5 @@ public class ErrorsController : Controller
         return Problem();
 
     }
-    */
+
 }
