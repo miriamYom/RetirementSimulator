@@ -4,9 +4,6 @@ import "./style/PensionType.css";
 import { useState, useEffect } from "react";
 import PreviousNext from "./PreviousNext";
 import Sequence from "./Sequence";
-import Box from '@mui/joy/Box';
-import Radio from '@mui/joy/Radio';
-import RadioGroup from '@mui/joy/RadioGroup';
 //very good design:
 //https://mui.com/joy-ui/react-radio-button/#segmented-controls
 const pension = {
