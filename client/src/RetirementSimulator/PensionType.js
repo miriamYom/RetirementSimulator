@@ -4,6 +4,10 @@ import "./style/PensionType.css";
 import { useState, useEffect } from "react";
 import PreviousNext from "./PreviousNext";
 import Sequence from "./Sequence";
+
+import axios from 'axios';
+import { useSelector } from "react-redux";
+
 //very good design:
 //https://mui.com/joy-ui/react-radio-button/#segmented-controls
 const pension = {
@@ -16,12 +20,21 @@ function PensionType() {
     const [justify, setJustify] = useState('flex-start');
 
     useEffect(() => {
+        navigetToCurrentPage();
         employeeDetails.PensionType !== null ? setEnableNext(true) : setEnableNext(false);
     }, 0);
 
     const [isBudgetPension, setIsBudget] = useState(false);
     const employeeDetails = {};
     const [enableNext, setEnableNext] = useState(false);
+
+    const user = useSelector((state) => state.userReducer);
+
+
+    const navigetToCurrentPage = async () =>
+        await axios.post('http://localhost:5170/RentiermentSimulator/IsAdmin', user)
+
+
 
     return (
         <>

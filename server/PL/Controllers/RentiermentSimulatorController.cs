@@ -61,6 +61,16 @@ public class RentiermentSimulatorController : ControllerBase
         var r=userServiceBL.Login(email, pass);
         return r;
     }
+
+    [HttpPost("IsAdmin")]
+    public bool IsAdmin(UserDTO user)
+    {
+        if (user.Role.Equals("admin") || user.Role.Equals("ADMIN") || user.Role.Equals("Admin"))
+        {
+            return true;
+        }
+        return false;
+    }
     [HttpPost("GetPensionCalculates")]
     public object CreatePensionService(string pensionType, [FromBody] object employee)
     {
