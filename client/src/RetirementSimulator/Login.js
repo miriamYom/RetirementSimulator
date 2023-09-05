@@ -22,7 +22,6 @@ import { useSelector, useDispatch } from "react-redux";
 function Login() {
     const dispatch = useDispatch();
     let user = useSelector((state) => state.userReducer);
-
     const navigate = useNavigate();
     const [centredModal, setCentredModal] = useState(false);
     const [email, setEmail] = useState("");
@@ -46,13 +45,6 @@ function Login() {
         resolver: yupResolver(schema),
     });
 
-    const navigetToCurrentPage = () => {
-        console.log(user.role);
-        //הבדיקה הזאת צריכה להיות בשרת
-        user.role == "Admin" || user.role == "admin" ?
-            navigate("Admin") :
-            navigate("PensionType");
-    }
 
     const onSubmitHandler = (data) => {
         axios.post('http://localhost:5170/RentiermentSimulator/Login?email=' + data.email, '"' + data.password + '"', {
@@ -70,7 +62,6 @@ function Login() {
                         catch (e) {
                             console.log(e);
                         }
-                        navigetToCurrentPage();
                     }
                     else {
                         {document.getElementById('errorMassege').hidden = false}

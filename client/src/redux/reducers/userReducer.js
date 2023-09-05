@@ -1,6 +1,6 @@
 const initialState = {  };
 
-const userReducer = (state = initialState, action) => {
+const UserReducer = (state = initialState, action) => {
     switch (action.type) {
         case "USERLOGIN": {
             console.log(action.playload.obj);
@@ -10,4 +10,4 @@ const userReducer = (state = initialState, action) => {
     }
     return state;
 }
-export default userReducer;
+export default UserReducer;
