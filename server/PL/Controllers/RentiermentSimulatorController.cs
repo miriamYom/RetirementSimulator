@@ -66,7 +66,7 @@ public class RentiermentSimulatorController : ControllerBase
     {
         try
         {
-            var o = employee;
+           var o = employee;
            return pensionFactory.Create(pensionType, employee);
         }
         catch (InvalidParameterException ex)
