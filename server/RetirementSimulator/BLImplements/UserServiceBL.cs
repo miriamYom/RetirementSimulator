@@ -4,7 +4,6 @@ using DL.DalApi;
 using DL.DataObjects;
 using MongoDB.Driver;
 using System.Reflection;
-
 namespace BL.BLImplements;
 public class UserServiceBL : IUserServiceBL
 {
@@ -36,6 +35,7 @@ public class UserServiceBL : IUserServiceBL
         {
             throw new Exception("email is not valid");
         }
+        user.Password = Auth.HashPassword(userDTO.Password);
         return await userService.CreateAsync(user);
     }
     public Task<bool> DeleteAsync(UserDTO user)
@@ -94,9 +94,9 @@ public class UserServiceBL : IUserServiceBL
             UserDTO u = new UserDTO() { Password = pas };
             var filter = Builders<User>.Filter.Eq("Email", email);
             User theUser = userService.GetAsync(filter).Result;
-            if (theUser.Password.Equals(pas))
+            if (Auth.VerifyPassword(pas, theUser.Password))
             {
-                if (theUser.SubscriptionPeriodDate >= DateTime.Now)
+                if (theUser.SubscriptionPeriodDate <= DateTime.Now)
                 {
                     return userMapper.Map<UserDTO>(theUser);
                 }
