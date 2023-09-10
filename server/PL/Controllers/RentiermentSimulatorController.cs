@@ -1,11 +1,13 @@
 ﻿using BL;
+using BL.Auth;
 using BL.BLImplements;
 using BL.DTO;
 using BL.Pension;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UI.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class RentiermentSimulatorController : ControllerBase
@@ -13,10 +15,13 @@ public class RentiermentSimulatorController : ControllerBase
     IUserServiceBL userServiceBL;
 
     IPensionFactory pensionFactory;
-    public RentiermentSimulatorController(IUserServiceBL us, IPensionFactory pf)
+    private readonly IJWTManagerRepository jWTManager;
+
+    public RentiermentSimulatorController(IUserServiceBL us, IPensionFactory pf, IJWTManagerRepository jWTManager)
     {
         userServiceBL = us;
         pensionFactory = pf;
+        this.jWTManager = jWTManager;
     }
 
     [HttpGet("GetAll")]
@@ -58,8 +63,8 @@ public class RentiermentSimulatorController : ControllerBase
     [HttpPost("Login")]
     public UserDTO Login(string email, [FromBody] string pass)
     {
-        var r=userServiceBL.Login(email, pass);
-        return r;
+        return userServiceBL.Login(email, pass);
+
     }
 
     [HttpPost("IsAdmin")]
@@ -84,19 +89,36 @@ public class RentiermentSimulatorController : ControllerBase
             throw ex;
         }
     }
-    [HttpPost("GetBudgetEmp")]
-    public Employee GetBudgetEmp()
+    [AllowAnonymous]
+    [HttpPost]
+    [Route("authenticate")]
+    public async Task<IActionResult> AuthenticateAsync(UserDTO usersdata)
     {
-        return new BudgetPensionEmployee();
+        var validUser = jWTManager.UserAuthenticate(usersdata.Email,usersdata.Password);
+
+        if (validUser == null)
+        {
+            return Unauthorized("Incorrect username or password!");
+        }
+
+        var token = jWTManager.Authenticate(validUser);
+
+        if (token == null)
+        {
+            return Unauthorized("Invalid Attempt!");
+        }
+
+        //// saving refresh token to the db
+        //UserRefreshTokenDTO obj = new UserRefreshTokenDTO
+        //{
+        //    RefreshToken = token.RefreshToken,
+        //    UserId = validUser.Id,
+        //    Email = usersdata.Email,
+        //};
+
+        //await tokenActions.AddUserRefreshTokens(obj);
+        return Ok(new { user = validUser, token = token });
     }
-
-    [HttpPost("GetEmp")]
-    public Employee GetEmp()
-    {
-        return new Employee();
-    }
-
-
 
 }
 
